@@ -1,1 +1,3 @@
-# CDDGO-FrontEnd
+# CDDGO-Project
+
+index.php = General Homepage
