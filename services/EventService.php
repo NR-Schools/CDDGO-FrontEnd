@@ -57,10 +57,18 @@ function updateEvent(Event $event): bool
     return SQLwithoutFetch(
         $PDOConnection,
         "
-        INSERT INTO EVENTS
-        VALUES (null, :eventName, :eventDesc, :eventDate, :eventLoc, :datePosted)
+        UPDATE EVENTS
+        SET
+            EventName = :eventName
+            AND EventDescription = :eventDesc
+            AND EventDate = :eventDate
+            AND EventLocation = :eventLoc
+            AND DatePosted = :datePosted
+        WHERE
+            EventID = :eventId
         ",
         [
+            ":eventId" => $event->EventID,
             ":eventName" => $event->EventName,
             ":eventDesc" => $event->EventDescription,
             ":eventDate" => $event->EventDate,
