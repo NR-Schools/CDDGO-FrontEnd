@@ -62,7 +62,7 @@ function SQLwithFetch(PDO $connection, string $query, array $keyValueBindMap = [
 
         // Bind values if provided
         if (!empty($keyValueBindMap)) {
-            foreach ($keyValueBindMap as $key => $value) {
+            foreach ($keyValueBindMap as $key => &$value) {
                 $stmt->bindParam($key, $value);
             }
         }
