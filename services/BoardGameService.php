@@ -119,10 +119,10 @@ function updateBoardGame(BoardGame $boardGame): bool {
         UPDATE BOARD_GAMES
         SET
             GameName = :gameName
-            GameDescription = :gameDesc
-            QuantityAvailable = :quantityAvailable
-            GameCategory = :gameCategory
-            GameStatus = :gameStatus
+            AND GameDescription = :gameDesc
+            AND QuantityAvailable = :quantityAvailable
+            AND GameCategory = :gameCategory
+            AND GameStatus = :gameStatus
         WHERE
             GameID = :gameId
         ",
