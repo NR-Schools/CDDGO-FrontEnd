@@ -47,6 +47,7 @@ BasicSQL($PDOConnection,
         InquiryTitle VARCHAR(50),
         InquiryDescription VARCHAR(255),
         isInquirySeen BOOLEAN,
+        isFromAdmin BOOLEAN,
         FOREIGN KEY (Inquirer) REFERENCES STUDENTS(StudID),
         FOREIGN KEY (RepliedInquiry) REFERENCES INQUIRIES(InquiryID)
     );

@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS INQUIRIES (
     RepliedInquiry INT,
     InquiryTitle VARCHAR(50),
     InquiryDescription VARCHAR(255),
+    isFromAdmin BOOLEAN,
     isInquirySeen BOOLEAN,
     FOREIGN KEY (Inquirer) REFERENCES STUDENTS(StudID),
     FOREIGN KEY (RepliedInquiry) REFERENCES INQUIRIES(InquiryID)
