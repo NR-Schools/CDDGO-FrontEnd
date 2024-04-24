@@ -12,26 +12,6 @@ class Student
     public bool $isVerified;
 
     function __construct() {}
-
-    function createFullDetails(
-        $StudID,
-        $StudNo,
-        $FirstName,
-        $LastName,
-        $Program,
-        $Email,
-        $Password,
-        $isVerified
-    ) {
-        $this->StudID = $StudID;
-        $this->StudNo = $StudNo;
-        $this->FirstName = $FirstName;
-        $this->LastName = $LastName;
-        $this->Program = $Program;
-        $this->Email = $Email;
-        $this->Password = $Password;
-        $this->isVerified = $isVerified;
-    }
 }
 
 
