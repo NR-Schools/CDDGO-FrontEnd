@@ -6,7 +6,7 @@ require_once ("models/EventModel.php");
 
 class EventRepository
 {
-    function addNewEvent(Event $event): bool
+    static function addNewEvent(Event $event): bool
     {
         global $PDOConnection;
 
@@ -26,7 +26,7 @@ class EventRepository
         );
     }
 
-    function getAllEvents(): array
+    static function getAllEvents(): array
     {
         global $PDOConnection;
 
@@ -53,7 +53,7 @@ class EventRepository
         return $eventList;
     }
 
-    function updateEvent(Event $event): bool
+    static function updateEvent(Event $event): bool
     {
         global $PDOConnection;
 
