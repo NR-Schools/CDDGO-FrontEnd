@@ -23,16 +23,18 @@ try {
 
 
 // Utility functions for Common Database Actions
-function BasicSQL(PDO $connection, string $query): void
+function BasicSQL(PDO $connection, string $query): bool
 {
     try {
         // Execute the query
         $connection->exec($query);
+        return true;
     } catch (PDOException $e) {
+        return false;
     }
 }
 
-function SQLwithoutFetch(PDO $connection, string $query, array $keyValueBindMap = [])
+function SQLwithoutFetch(PDO $connection, string $query, array $keyValueBindMap = []): bool
 {
     try {
         // Prepare the statement
@@ -54,7 +56,7 @@ function SQLwithoutFetch(PDO $connection, string $query, array $keyValueBindMap 
     }
 }
 
-function SQLwithFetch(PDO $connection, string $query, array $keyValueBindMap = [])
+function SQLwithFetch(PDO $connection, string $query, array $keyValueBindMap = []): array
 {
     try {
         // Prepare the statement
@@ -73,7 +75,7 @@ function SQLwithFetch(PDO $connection, string $query, array $keyValueBindMap = [
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e) {
-        return false; // Indicate failure
+        return [];
     }
 }
 
