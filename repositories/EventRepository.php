@@ -1,7 +1,7 @@
 <?php
 
-require_once ("database/DatabaseConfig.php");
-require_once ("models/EventModel.php");
+require_once "database/DatabaseConfig.php";
+require_once "models/EventModel.php";
 
 
 class EventRepository
@@ -10,7 +10,7 @@ class EventRepository
     {
         global $PDOConnection;
 
-        return SQLwithoutFetch(
+        return Database::SQLwithoutFetch(
             $PDOConnection,
             "
             INSERT INTO EVENTS
@@ -30,7 +30,7 @@ class EventRepository
     {
         global $PDOConnection;
 
-        $queryResult = SQLwithFetch(
+        $queryResult = Database::SQLwithFetch(
             $PDOConnection,
             "
             SELECT * FROM EVENTS
@@ -57,7 +57,7 @@ class EventRepository
     {
         global $PDOConnection;
 
-        return SQLwithoutFetch(
+        return Database::SQLwithoutFetch(
             $PDOConnection,
             "
             UPDATE EVENTS

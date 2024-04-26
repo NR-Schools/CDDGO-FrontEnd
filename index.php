@@ -1,12 +1,8 @@
 <!-- Initialization -->
 <?php
 
-// Initialize Database
-require_once("database/DatabaseInit.php");
-
-signup($student);
-
+// Redirect to Main Page
+header("Location: /templates");
 
 ?>
 
-<!-- Start HTML -->

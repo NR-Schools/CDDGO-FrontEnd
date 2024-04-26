@@ -1,7 +1,7 @@
 <?php
 
-require_once ("database/DatabaseConfig.php");
-require_once ("models/BoardGameModel.php");
+require_once "database/DatabaseConfig.php";
+require_once "models/BoardGameModel.php";
 
 
 class BoardGameRepository
@@ -10,7 +10,7 @@ class BoardGameRepository
     {
         global $PDOConnection;
 
-        $queryResult = SQLwithFetch(
+        $queryResult = Database::SQLwithFetch(
             $PDOConnection,
             "
         SELECT * FROM BOARD_GAMES;
@@ -39,7 +39,7 @@ class BoardGameRepository
     {
         global $PDOConnection;
 
-        $result = SQLwithFetch(
+        $result = Database::SQLwithFetch(
             $PDOConnection,
             "
         SELECT * FROM STUDENTS
@@ -69,7 +69,7 @@ class BoardGameRepository
     {
         global $PDOConnection;
 
-        $queryResult = SQLwithFetch(
+        $queryResult = Database::SQLwithFetch(
             $PDOConnection,
             "
         SELECT * FROM BOARD_GAMES WHERE GameID = :gameId
@@ -97,7 +97,7 @@ class BoardGameRepository
         global $PDOConnection;
 
         // Create Board Game
-        return SQLwithoutFetch(
+        return Database::SQLwithoutFetch(
             $PDOConnection,
             "
         INSERT INTO BOARD_GAMES
@@ -118,7 +118,7 @@ class BoardGameRepository
         global $PDOConnection;
 
         // Create Board Game
-        return SQLwithoutFetch(
+        return Database::SQLwithoutFetch(
             $PDOConnection,
             "
         UPDATE BOARD_GAMES

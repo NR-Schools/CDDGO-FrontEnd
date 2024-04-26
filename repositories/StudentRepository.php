@@ -1,15 +1,13 @@
 <?php
 
-require_once ("database/DatabaseConfig.php");
+require_once "database/DatabaseConfig.php";
 
 
 class StudentRepository
 {
     static function addNewStudent(Student $student): bool {
-        global $PDOConnection;
-
-        return SQLwithoutFetch(
-            $PDOConnection,
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
             "
             INSERT INTO STUDENTS
             VALUES (
@@ -36,10 +34,8 @@ class StudentRepository
 
     static function getStudentByEmail(string $email): Student|null
     {
-        global $PDOConnection;
-
-        $students = SQLwithFetch(
-            $PDOConnection,
+        $students = Database::SQLwithFetch(
+            Database::getPDO(),
             "
         SELECT * FROM STUDENTS WHERE Email = :email
         ",

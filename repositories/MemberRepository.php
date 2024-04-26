@@ -1,16 +1,14 @@
 <?php
 
-require_once ("database/DatabaseConfig.php");
-require_once ("models/MemberModel.php");
+require_once "database/DatabaseConfig.php";
+require_once "models/MemberModel.php";
 
 class MemberRepository
 {
     static function createMember(int $studentId, Member $member): bool
     {
-        global $PDOConnection;
-
-        return SQLwithoutFetch(
-            $PDOConnection,
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
             "
             INSERT INTO MEMBERS VALUES (:studentId, :position, :yearJoined);
             ",
@@ -24,10 +22,8 @@ class MemberRepository
 
     static function getAllMembers(): array
     {
-        global $PDOConnection;
-
-        $queryResult = SQLwithFetch(
-            $PDOConnection,
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
             "
             SELECT * FROM MEMBERS
                 INNER JOIN STUDENTS
@@ -62,10 +58,8 @@ class MemberRepository
 
     static function updateMember(Member $member): bool
     {
-        global $PDOConnection;
-
-        return SQLwithoutFetch(
-            $PDOConnection,
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
             "
             UPDATE MEMBERS
             SET

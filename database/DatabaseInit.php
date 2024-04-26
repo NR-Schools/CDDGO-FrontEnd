@@ -2,7 +2,8 @@
 
 require_once("DatabaseConfig.php");
 
-BasicSQL($PDOConnection, 
+Database::BasicSQL(
+    Database::getPDO(), 
     "
     CREATE TABLE IF NOT EXISTS EVENTS (
         EventID INT PRIMARY KEY AUTO_INCREMENT,
