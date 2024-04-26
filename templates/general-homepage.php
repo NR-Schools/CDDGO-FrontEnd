@@ -2,10 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
-if (!AuthGuard::guard_route(Role::ADMIN)) {
-    // Return to root
-    header("Location: /");
-}
 
 ?>
 
@@ -19,12 +15,17 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    
     <style>
 
     </style>
 </head>
 <body>
-    
+    <!-- Include Header -->
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
+    ?>
+
+    <!--Content Start -->
+    <div
 </body>
 </html>
