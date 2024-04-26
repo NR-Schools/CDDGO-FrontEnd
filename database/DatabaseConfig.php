@@ -1,7 +1,7 @@
 <?php
 
 // Require ConfigGuard for Config Files
-require_once $_SERVER['DOCUMENT_ROOT'] . '/config/ConfigGuard.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/ConfigGuard.php';
 
 class Database
 {

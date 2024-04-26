@@ -29,7 +29,7 @@
             <div>
                 <span>1</span>
                 <span>2021103749</span>
-                <span>Manigga</span>
+                <span>SAMPLE</span>
                 <span>April 30, 2024</span>
                 <span>P 300</span>
             </div>
@@ -42,7 +42,7 @@
             <div>
                 <span>2</span>
                 <span>2021103749</span>
-                <span>Maniggssssssa</span>
+                <span>SAMPLE</span>
                 <span>April 30, 2024</span>
                 <span>P 300</span>
             </div>
