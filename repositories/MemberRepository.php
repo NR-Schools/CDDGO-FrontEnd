@@ -1,7 +1,7 @@
 <?php
 
-require_once "database/DatabaseConfig.php";
-require_once "models/MemberModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseConfig.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/MemberModel.php";
 
 class MemberRepository
 {

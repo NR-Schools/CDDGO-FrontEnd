@@ -1,8 +1,8 @@
 <?php
 
 // Build Paths From Root
-require_once "models/StudentModel.php";
-require_once "repositories/StudentRepository.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 
 class AuthService
 {

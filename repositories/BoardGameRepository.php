@@ -1,7 +1,7 @@
 <?php
 
-require_once "database/DatabaseConfig.php";
-require_once "models/BoardGameModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseConfig.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/BoardGameModel.php";
 
 
 class BoardGameRepository

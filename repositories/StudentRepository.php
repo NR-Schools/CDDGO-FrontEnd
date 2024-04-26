@@ -1,6 +1,6 @@
 <?php
 
-require_once "database/DatabaseConfig.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseConfig.php";
 
 
 class StudentRepository
