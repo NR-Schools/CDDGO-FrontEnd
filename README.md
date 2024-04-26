@@ -7,13 +7,13 @@ This is our IT135-8L Php Project for MTG Organization
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_HOST` = <your database host>
+`DATABASE_HOST` = your database host
 
-`DATABASE_NAME` = <name of the database to be used>
+`DATABASE_NAME` = name of the database to be used
 
-`DATABASE_USERNAME` = <username, typically root>
+`DATABASE_USERNAME` = username, typically root
 
-`DATABASE_PASSWORD` = <your password>
+`DATABASE_PASSWORD` = your password
 
 ## Deployment
 
