@@ -1,5 +1,7 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
+
 // Start Session
 if (session_status() == PHP_SESSION_NONE)
     session_start();
@@ -12,8 +14,8 @@ if (session_status() == PHP_SESSION_NONE)
 
             <?php
 
-            switch (getSessionAuth()) {
-                case "PUBLIC":
+            switch (AuthGuard::get_session_role()) {
+                case Role::PUBLIC:
                     // This is for Public Header
                     echo <<<EOD
                     <div class="col-md-3 mb-2 mb-md-0">
@@ -32,7 +34,7 @@ if (session_status() == PHP_SESSION_NONE)
                     </div>
                     EOD;
                     break;
-                case "USER":
+                case Role::USER:
                     // This is for User Header
                     echo <<<EOD
                     <div class="col-md-3 mb-2 mb-md-0">
@@ -65,7 +67,7 @@ if (session_status() == PHP_SESSION_NONE)
                     </div>
                     EOD;
                     break;
-                case "ADMIN":
+                case Role::ADMIN:
                     // This is for Admin Header
                     echo <<<EOD
                     <div>
@@ -84,24 +86,3 @@ if (session_status() == PHP_SESSION_NONE)
         </div>
     </div>
 </header>
-
-
-<?php
-
-function getSessionAuth(): string
-{
-    $email = !isset($_SESSION['email']);
-    $authority = !isset($_SESSION['authority']);
-
-    $no_auth = $email || $authority;
-
-    if ($no_auth) {
-        // This is a Public User (No Accounts Signed In)
-        return "PUBLIC";
-    }
-
-    return $_SESSION['authority'];
-
-}
-
-?>
