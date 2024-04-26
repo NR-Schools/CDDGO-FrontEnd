@@ -44,13 +44,13 @@ class AuthGuard
         return Role::PUBLIC;
     }
 
-    static function guard_route(Role $role): bool
+    static function guard_route(Role $expected_role): bool
     {
 
         // Get Current Role
         $session_role = AuthGuard::get_session_role();
 
-        if ($session_role === $role)
+        if ($session_role === $expected_role)
             return true;
         return false;
     }
