@@ -26,6 +26,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
     ?>
 
     <!--Content Start -->
-    <div
+    <div class="banner">
+        
+    </div>
+    <div class="home-content">
+        
+    </div>
 </body>
 </html>
