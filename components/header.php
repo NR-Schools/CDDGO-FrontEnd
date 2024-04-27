@@ -25,9 +25,9 @@ if (session_status() == PHP_SESSION_NONE)
                     </div>
 
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2">LOGIN</a></li>
-                        <li><a href="#" class="nav-link px-2">REGISTER</a></li>
-                        <li><a href="#" class="nav-link px-2">ABOUT</a></li>
+                        <li><a href="../templates/sign-in.php" class="nav-link px-2">LOGIN</a></li>
+                        <li><a href="../templates/sign-up.php" class="nav-link px-2">REGISTER</a></li>
+                        <li><a href="../templates/about-us.php" class="nav-link px-2">ABOUT</a></li>
                     </ul>
 
                     <div class="col-md-3 text-end">
@@ -44,11 +44,11 @@ if (session_status() == PHP_SESSION_NONE)
                     </div>
         
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2">HOME</a></li>
-                        <li><a href="#" class="nav-link px-2">BOARD GAMES</a></li>
-                        <li><a href="#" class="nav-link px-2">EVENTS</a></li>
-                        <li><a href="#" class="nav-link px-2">INQUIRIES</a></li>
-                        <li><a href="#" class="nav-link px-2">LOGOUT</a></li>
+                        <li><a href=../templates/user-homepage.php" class="nav-link px-2">HOME</a></li>
+                        <li><a href="../templates/user-board_games.php" class="nav-link px-2">BOARD GAMES</a></li>
+                        <li><a href="../templates/user-events.php" class="nav-link px-2">EVENTS</a></li>
+                        <li><a href="../templates/user-inquiries.php" class="nav-link px-2">INQUIRIES</a></li>
+                        <li><a href="../templates/general-homepage.php" class="nav-link px-2">LOGOUT</a></li>
                     </ul>
         
                     <div class="col-md-3 text-end">
@@ -75,8 +75,8 @@ if (session_status() == PHP_SESSION_NONE)
                     </div>
         
                     <div class="nav">
-                        <li><a href="#" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
-                        <li><a href="#" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
+                        <li><a href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
+                        <li><a href="../templates/general-homepage.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
                     </div>
                     EOD;
                     break;
