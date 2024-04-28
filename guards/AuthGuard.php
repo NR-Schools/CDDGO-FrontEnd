@@ -19,6 +19,16 @@ enum Role: string
 
 class AuthGuard
 {
+    static function set_session(string $email, Role $role): void
+    {
+        // Set session
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['email'] = $email;
+        $_SESSION['role'] = $role->value;
+    }
 
     static function get_session_role(): Role
     {
