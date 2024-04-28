@@ -86,6 +86,31 @@ class BoardGameRepository
         return $resultBoardGame;
     }
 
+    static function getBoardGameByName(string $boardGameName): BoardGame|null
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM BOARD_GAMES WHERE GameName = :gameName
+            ",
+            [":gameName" => $boardGameName]
+        );
+
+        $resultBoardGame = null;
+        foreach ($queryResult as $boardGame) {
+            $resultBoardGame = new BoardGame();
+            $resultBoardGame->GameID = $boardGame['GameID'];
+            $resultBoardGame->GameName = $boardGame['GameName'];
+            $resultBoardGame->GameDescription = $boardGame['GameDescription'];
+            $resultBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
+            $resultBoardGame->GameCategory = $boardGame['GameCategory'];
+            $resultBoardGame->GameStatus = $boardGame['GameStatus'];
+            break;
+        }
+
+        return $resultBoardGame;
+    }
+
     static function addNewBoardGame(BoardGame $boardGame): bool
     {
         // Create Board Game
@@ -129,6 +154,18 @@ class BoardGameRepository
                 ":gameCategory" => $boardGame->GameCategory,
                 ":gameStatus" => $boardGame->GameStatus
             ]
+        );
+    }
+
+    static function deleteBoardGame(int $boardGameId): bool
+    {
+        // Delete Board Game
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM BOARD_GAMES WHERE GameID = :gameId
+            ",
+            [ ":gameId" => $boardGameId ]
         );
     }
 }
