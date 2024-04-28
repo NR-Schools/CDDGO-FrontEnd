@@ -1,0 +1,160 @@
+.banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    align-items: center;
+    margin: 20px;
+}
+
+.banner-content {
+    flex: 1; 
+    padding-left: 30px; 
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    color: #32064e;
+}
+
+.banner-image {
+    flex: 1;
+    padding: 5%;
+    opacity: 0; /* Initially hide the image */
+    animation: flyInBanner 1s forwards; /* Apply animation */
+}
+
+@keyframes flyInBanner {
+    from {
+        opacity: 0; /* Start with opacity 0 */
+        transform: translateX(-100%); /* Start position outside the viewport */
+    }
+    
+    to {
+        opacity: 1; /* End with opacity 1 */
+        transform: translateX(0); /* End position */
+    }
+}
+
+.banner-image img {
+    max-width: 100%; 
+}
+
+.banner-button {
+    display: inline-block;
+    margin: 20px auto; /* Center the button horizontally with auto margins */
+    padding: 10px 20px;
+    background-color: #9e0671; 
+    color: #ffffff; 
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    transition:background-color 0.5s, border-style 0.5s,color 0.5s;
+    border-style: solid;
+    border-color: #9e0671;
+}
+
+.banner-button:hover {
+    background-color: #ffffff;
+    color: #9e0671;
+
+}
+
+.mtg-logo {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    opacity: 0;
+    animation: flyInLogo 1s forwards; /* Apply animation */
+}
+
+@keyframes flyInLogo {
+    from {
+        opacity: 0; /* Start with opacity 0 */
+        transform: translateX(0); /* Start position outside the viewport */
+    }
+    
+    to {
+        opacity: 1; /* End with opacity 1 */
+        transform: translateX(-10%); /* End position */
+    }
+}
+
+.mtg-logo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 100%;
+}
+
+.mtg-bg {
+    margin-top: 20px;
+    margin-left: 20px;
+    color: #ffffff;
+    text-align: justify;
+    padding: 5%;
+    font-family: Helvetica, sans-serif; 
+}
+
+.mtg-bg p {
+    font-size: 20px;
+}
+
+.home-content{
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: #32064e;
+    padding: 40px;
+    margin-bottom: 56px;
+}
+
+.divider{
+    border-right-width:5px;
+    border-right-style: solid;
+    border-right-color: #FFFFFF;
+    display: none; 
+}
+
+.learn-button {
+    display: inline-block;
+    margin: 0 auto; /* Center the button horizontally with auto margins */
+    padding: 10px 20px;
+    background-color: #9e0671; 
+    color: #ffffff; 
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    border-style: solid;
+    border-color: #9e0671;
+    transition:background-color 0.5s, border-style 0.5s,color 0.5s;
+}
+
+.learn-button:hover {
+    background-color: #32064e;
+    color: #FFFFFF;
+    
+}
+
+@media (min-width: 768px) {
+    .banner-content {
+        flex: 0 0 50%;
+        text-align: left;
+    }
+    .banner-image {
+        flex: 0 0 50%;
+    }
+    .home-content {
+        grid-template-columns: 30% 1% 60%;
+    }
+    .divider {
+        display: block;
+    }
+    .mtg-logo {
+        margin-bottom: 0; 
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-image {
+        display: none
+    }
+}
