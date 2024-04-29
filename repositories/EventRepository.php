@@ -49,6 +49,30 @@ class EventRepository
         return $eventList;
     }
 
+    static function getEventById(int $eventId): Event
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM EVENTS WHERE EventID = :eventId
+            ",
+            [ ":eventId" => $eventId ]
+        );
+
+        $event = new Event();
+        foreach ($queryResult as $eventRecord) {
+            $event->EventID = $eventRecord['EventID'];
+            $event->EventName = $eventRecord['EventName'];
+            $event->EventDescription = $eventRecord['EventDescription'];
+            $event->EventDate = $eventRecord['EventDate'];
+            $event->EventLocation = $eventRecord['EventLocation'];
+            $event->DatePosted = $eventRecord['DatePosted'];
+            break;
+        }
+
+        return $event;
+    }
+
     static function updateEvent(Event $event): bool
     {
         return Database::SQLwithoutFetch(
