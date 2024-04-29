@@ -10,6 +10,8 @@ class Reservation {
     public string $ReservedDate;
     public bool $isPaid;
     public int $ReservationFee;
+
+    function __construct() {}
 }
 
 ?>

@@ -10,6 +10,8 @@ class Testimonial {
     public BoardGame $boardGame;
     public string $Statement;
     public int $Rating;
+
+    function __construct() {}
 }
 
 ?>
