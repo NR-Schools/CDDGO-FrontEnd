@@ -13,6 +13,9 @@ class AuthService
         if ($studentCheck !== null)
             return false;
 
+        // Hash the student's password
+        $student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
+
         // Create New Student
         return StudentRepository::addNewStudent($student);
     }
@@ -25,7 +28,7 @@ class AuthService
             return false;
 
         // Compare Passwords
-        if ($studentCheck->Password !== $password)
+        if (password_verify($password, $studentCheck->Password))
             return false;
 
         return true;

@@ -8,10 +8,8 @@ class EventRepository
 {
     static function addNewEvent(Event $event): bool
     {
-        global $PDOConnection;
-
         return Database::SQLwithoutFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
             INSERT INTO EVENTS
             VALUES (null, :eventName, :eventDesc, :eventDate, :eventLoc, :datePosted)
@@ -28,10 +26,8 @@ class EventRepository
 
     static function getAllEvents(): array
     {
-        global $PDOConnection;
-
         $queryResult = Database::SQLwithFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
             SELECT * FROM EVENTS
             ",
@@ -53,12 +49,34 @@ class EventRepository
         return $eventList;
     }
 
+    static function getEventById(int $eventId): Event
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM EVENTS WHERE EventID = :eventId
+            ",
+            [ ":eventId" => $eventId ]
+        );
+
+        $event = new Event();
+        foreach ($queryResult as $eventRecord) {
+            $event->EventID = $eventRecord['EventID'];
+            $event->EventName = $eventRecord['EventName'];
+            $event->EventDescription = $eventRecord['EventDescription'];
+            $event->EventDate = $eventRecord['EventDate'];
+            $event->EventLocation = $eventRecord['EventLocation'];
+            $event->DatePosted = $eventRecord['DatePosted'];
+            break;
+        }
+
+        return $event;
+    }
+
     static function updateEvent(Event $event): bool
     {
-        global $PDOConnection;
-
         return Database::SQLwithoutFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
             UPDATE EVENTS
             SET

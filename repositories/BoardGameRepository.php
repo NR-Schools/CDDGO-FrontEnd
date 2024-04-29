@@ -8,13 +8,11 @@ class BoardGameRepository
 {
     static function getAllBoardGames(): array
     {
-        global $PDOConnection;
-
         $queryResult = Database::SQLwithFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
-        SELECT * FROM BOARD_GAMES;
-        ",
+            SELECT * FROM BOARD_GAMES;
+            ",
             []
         );
 
@@ -37,16 +35,14 @@ class BoardGameRepository
 
     static function getCurrentlyRentedBoardGame(string $email): BoardGame|null
     {
-        global $PDOConnection;
-
         $result = Database::SQLwithFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
-        SELECT * FROM STUDENTS
-            INNER JOIN RENTALS
-                ON STUDENTS.StudID = RENTALS.StudID
-            WHERE Email = :email;
-        ",
+            SELECT * FROM STUDENTS
+                INNER JOIN RENTALS
+                    ON STUDENTS.StudID = RENTALS.StudID
+                WHERE Email = :email;
+            ",
             [":email" => $email]
         );
 
@@ -67,14 +63,37 @@ class BoardGameRepository
 
     static function getBoardGameById(int $boardGameId): BoardGame|null
     {
-        global $PDOConnection;
-
         $queryResult = Database::SQLwithFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
-        SELECT * FROM BOARD_GAMES WHERE GameID = :gameId
-        ",
+            SELECT * FROM BOARD_GAMES WHERE GameID = :gameId
+            ",
             [":gameId" => $boardGameId]
+        );
+
+        $resultBoardGame = null;
+        foreach ($queryResult as $boardGame) {
+            $resultBoardGame = new BoardGame();
+            $resultBoardGame->GameID = $boardGame['GameID'];
+            $resultBoardGame->GameName = $boardGame['GameName'];
+            $resultBoardGame->GameDescription = $boardGame['GameDescription'];
+            $resultBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
+            $resultBoardGame->GameCategory = $boardGame['GameCategory'];
+            $resultBoardGame->GameStatus = $boardGame['GameStatus'];
+            break;
+        }
+
+        return $resultBoardGame;
+    }
+
+    static function getBoardGameByName(string $boardGameName): BoardGame|null
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM BOARD_GAMES WHERE GameName = :gameName
+            ",
+            [":gameName" => $boardGameName]
         );
 
         $resultBoardGame = null;
@@ -94,15 +113,13 @@ class BoardGameRepository
 
     static function addNewBoardGame(BoardGame $boardGame): bool
     {
-        global $PDOConnection;
-
         // Create Board Game
         return Database::SQLwithoutFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
-        INSERT INTO BOARD_GAMES
-        VALUES (null, :gameName, :gameDesc, :quantityAvailable, :gameCategory, :gameStatus)
-        ",
+            INSERT INTO BOARD_GAMES
+            VALUES (null, :gameName, :gameDesc, :quantityAvailable, :gameCategory, :gameStatus)
+            ",
             [
                 ":gameName" => $boardGame->GameName,
                 ":gameDesc" => $boardGame->GameDescription,
@@ -115,22 +132,20 @@ class BoardGameRepository
 
     static function updateBoardGame(BoardGame $boardGame): bool
     {
-        global $PDOConnection;
-
-        // Create Board Game
+        // Update Board Game
         return Database::SQLwithoutFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
-        UPDATE BOARD_GAMES
-        SET
-            GameName = :gameName
-            AND GameDescription = :gameDesc
-            AND QuantityAvailable = :quantityAvailable
-            AND GameCategory = :gameCategory
-            AND GameStatus = :gameStatus
-        WHERE
-            GameID = :gameId
-        ",
+            UPDATE BOARD_GAMES
+            SET
+                GameName = :gameName
+                AND GameDescription = :gameDesc
+                AND QuantityAvailable = :quantityAvailable
+                AND GameCategory = :gameCategory
+                AND GameStatus = :gameStatus
+            WHERE
+                GameID = :gameId
+            ",
             [
                 ":gameId" => $boardGame->GameID,
                 ":gameName" => $boardGame->GameName,
@@ -139,6 +154,18 @@ class BoardGameRepository
                 ":gameCategory" => $boardGame->GameCategory,
                 ":gameStatus" => $boardGame->GameStatus
             ]
+        );
+    }
+
+    static function deleteBoardGame(int $boardGameId): bool
+    {
+        // Delete Board Game
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM BOARD_GAMES WHERE GameID = :gameId
+            ",
+            [ ":gameId" => $boardGameId ]
         );
     }
 }

@@ -1,8 +1,5 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 // Regenerate Session ID to protect against Session ID interception ;
 //session_regenerate_id();
 
@@ -19,6 +16,27 @@ enum Role: string
 
 class AuthGuard
 {
+    static function set_session(string $email, Role $role): void
+    {
+        // Set session
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['email'] = $email;
+        $_SESSION['role'] = $role->value;
+    }
+
+    static function clear_session(): void
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION = array();
+
+        session_destroy();
+    }
 
     static function get_session_role(): Role
     {
@@ -46,7 +64,6 @@ class AuthGuard
 
     static function guard_route(Role $expected_role): bool
     {
-
         // Get Current Role
         $session_role = AuthGuard::get_session_role();
 

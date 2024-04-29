@@ -7,10 +7,8 @@ class InquiryRepository
 {
     static function createInquiry(Inquiry $inquiry): bool
     {
-        global $PDOConnection;
-
         return Database::SQLwithoutFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
             INSERT INTO INQUIRIES
             VALUES (null, :studentId, null, :inquiryTitle, :inquiryDesc, FALSE, FALSE);
@@ -25,10 +23,8 @@ class InquiryRepository
 
     static function getAllInquiries(): array
     {
-        global $PDOConnection;
-
         $queryResult = Database::SQLwithFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
             SELECT * FROM INQUIRIES
                 INNER JOIN STUDENTS
@@ -65,16 +61,14 @@ class InquiryRepository
         return $inquiryList;
     }
 
-    static function replyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry, bool $isAdminReplying)
+    static function replyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry, bool $isAdminReplying): bool
     {
-        global $PDOConnection;
-
         return Database::SQLwithoutFetch(
-            $PDOConnection,
+            Database::getPDO(),
             "
-        INSERT INTO INQUIRIES
-        VALUES (null, :studentId, :inquiryReplyingTo, :inquiryTitle, :inquiryDesc, FALSE, :isFromAdmin)
-        ",
+            INSERT INTO INQUIRIES
+            VALUES (null, :studentId, :inquiryReplyingTo, :inquiryTitle, :inquiryDesc, FALSE, :isFromAdmin)
+            ",
             [
                 ":studentId" => $newInquiry->Inquirer->StudID,
                 ":inquiryReplyingTo" => $inquiryReplyingTo,

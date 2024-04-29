@@ -2,10 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
-// Start Session
-if (session_status() == PHP_SESSION_NONE)
-    session_start();
-
 ?>
 
 <header class="p-2 border-bottom">
@@ -48,7 +44,7 @@ if (session_status() == PHP_SESSION_NONE)
                         <li><a href="../templates/user-board_games.php" class="nav-link px-2">BOARD GAMES</a></li>
                         <li><a href="../templates/user-events.php" class="nav-link px-2">EVENTS</a></li>
                         <li><a href="../templates/user-inquiries.php" class="nav-link px-2">INQUIRIES</a></li>
-                        <li><a href="../templates/general-homepage.php" class="nav-link px-2">LOGOUT</a></li>
+                        <li><a href="../templates/logout.php" class="nav-link px-2">LOGOUT</a></li>
                     </ul>
         
                     <div class="col-md-3 text-end">
@@ -76,7 +72,7 @@ if (session_status() == PHP_SESSION_NONE)
         
                     <div class="nav">
                         <li><a href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
-                        <li><a href="../templates/general-homepage.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
+                        <li><a href="../templates/logout.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
                     </div>
                     EOD;
                     break;
