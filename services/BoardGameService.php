@@ -13,9 +13,9 @@ class BoardGameService
     {
 
         // Check if board game is unique
-        //$boardGameCheck = BoardGameRepository::getBoardGameByName($boardGame->GameName);
-        //if ($boardGameCheck !== null)
-         //   return false;
+        $boardGameCheck = BoardGameRepository::getBoardGameByName($boardGame->GameName);
+        if ($boardGameCheck !== null)
+            return false;
 
         // Create board game
         return BoardGameRepository::addNewBoardGame($boardGame);

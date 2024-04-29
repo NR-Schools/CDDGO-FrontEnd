@@ -51,7 +51,7 @@
     {
         $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
         $image_encoded = base64_encode($game_image);
-        $status = "Available";
+        $status = "Available"; //by default available
 
         $boardgame = new BoardGame();
 
