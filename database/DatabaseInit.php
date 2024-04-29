@@ -35,7 +35,7 @@ Database::BasicSQL(
     CREATE TABLE IF NOT EXISTS BOARD_GAMES (
         GameID INT PRIMARY KEY AUTO_INCREMENT,
         GameName VARCHAR(50),
-        GameImage LARGEBLOB,
+        GameImage LONGBLOB,
         GameDescription VARCHAR(255),
         QuantityAvailable INT,
         GameCategory VARCHAR(255),
