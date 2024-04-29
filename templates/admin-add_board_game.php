@@ -1,4 +1,6 @@
-<?php 
+<?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +19,13 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
     ?>
 
-    <!-- Content start -->
+    <!-- Front End start -->
+    <form>
+
+    </form>
+
+    <!-- Backend Start -->
+
     
     
 </body>
