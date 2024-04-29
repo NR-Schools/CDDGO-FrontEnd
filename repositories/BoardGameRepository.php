@@ -22,6 +22,7 @@ class BoardGameRepository
 
             $resultboardGame->GameID = $boardGame['GameID'];
             $resultboardGame->GameName = $boardGame['GameName'];
+            $resultboardGame->GameImage = $boardGame['GameImage'];
             $resultboardGame->GameDescription = $boardGame['GameDescription'];
             $resultboardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
             $resultboardGame->GameCategory = $boardGame['GameCategory'];
@@ -51,6 +52,7 @@ class BoardGameRepository
             $currentlyRentedBoardGame = new BoardGame();
             $currentlyRentedBoardGame->GameID = $boardGame['GameID'];
             $currentlyRentedBoardGame->GameName = $boardGame['GameName'];
+            $currentlyRentedBoardGame->GameImage = $boardGame['GameImage'];
             $currentlyRentedBoardGame->GameDescription = $boardGame['GameDescription'];
             $currentlyRentedBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
             $currentlyRentedBoardGame->GameCategory = $boardGame['GameCategory'];
@@ -76,6 +78,7 @@ class BoardGameRepository
             $resultBoardGame = new BoardGame();
             $resultBoardGame->GameID = $boardGame['GameID'];
             $resultBoardGame->GameName = $boardGame['GameName'];
+            $resultBoardGame->GameImage = $boardGame['GameImage'];
             $resultBoardGame->GameDescription = $boardGame['GameDescription'];
             $resultBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
             $resultBoardGame->GameCategory = $boardGame['GameCategory'];
@@ -101,6 +104,7 @@ class BoardGameRepository
             $resultBoardGame = new BoardGame();
             $resultBoardGame->GameID = $boardGame['GameID'];
             $resultBoardGame->GameName = $boardGame['GameName'];
+            $resultBoardGame->GameImage = $boardGame['GameImage'];
             $resultBoardGame->GameDescription = $boardGame['GameDescription'];
             $resultBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
             $resultBoardGame->GameCategory = $boardGame['GameCategory'];
@@ -118,10 +122,11 @@ class BoardGameRepository
             Database::getPDO(),
             "
             INSERT INTO BOARD_GAMES
-            VALUES (null, :gameName, :gameDesc, :quantityAvailable, :gameCategory, :gameStatus)
+            VALUES (null, :gameName, :gameImage :gameDesc, :quantityAvailable, :gameCategory, :gameStatus)
             ",
             [
                 ":gameName" => $boardGame->GameName,
+                ":gameImage" => $boardGame->GameImage,
                 ":gameDesc" => $boardGame->GameDescription,
                 ":quantityAvailable" => $boardGame->QuantityAvailable,
                 ":gameCategory" => $boardGame->GameCategory,
@@ -139,6 +144,7 @@ class BoardGameRepository
             UPDATE BOARD_GAMES
             SET
                 GameName = :gameName
+                AND GameImage = :gameImage
                 AND GameDescription = :gameDesc
                 AND QuantityAvailable = :quantityAvailable
                 AND GameCategory = :gameCategory
@@ -148,6 +154,7 @@ class BoardGameRepository
             ",
             [
                 ":gameId" => $boardGame->GameID,
+                ":gameImage" => $boardGame->GameImage,
                 ":gameName" => $boardGame->GameName,
                 ":gameDesc" => $boardGame->GameDescription,
                 ":quantityAvailable" => $boardGame->QuantityAvailable,
