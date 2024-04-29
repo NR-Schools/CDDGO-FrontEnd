@@ -63,8 +63,8 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         </div>
 
         <div class="button-container">
-            <button type="button" class="btn hayst">Add New User</button>
-            <button type="button" class="btn hayst">Cancel</button>
+            <button type="button" class="btn">Add New User</button>
+            <button type="button" class="btn">Cancel</button>
         </div>
 
     </div>
