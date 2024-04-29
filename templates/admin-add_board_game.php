@@ -51,6 +51,7 @@
     {
         $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
         $image_encoded = base64_encode($game_image);
+        $status = "Available";
 
         $boardgame = new BoardGame();
 
@@ -59,6 +60,7 @@
         $boardgame->GameImage = $image_encoded;
         $boardgame->QuantityAvailable = $_POST['quantity_avail'];
         $boardgame->GameCategory = $_POST['game_category'];
+        $boardgame->GameStatus = $status;
         #
 
         

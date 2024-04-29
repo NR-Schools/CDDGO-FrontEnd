@@ -66,7 +66,9 @@ class Database
             return true;
 
         } catch (PDOException $e) {
+            echo $e->getMessage();
             return false; // Indicate failure
+            
         }
     }
 
