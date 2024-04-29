@@ -122,7 +122,7 @@ class BoardGameRepository
             Database::getPDO(),
             "
             INSERT INTO BOARD_GAMES
-            VALUES (null, :gameName, :gameImage :gameDesc, :quantityAvailable, :gameCategory, :gameStatus)
+            VALUES (null, :gameName, :gameImage, :gameDesc, :quantityAvailable, :gameCategory, :gameStatus)
             ",
             [
                 ":gameName" => $boardGame->GameName,
