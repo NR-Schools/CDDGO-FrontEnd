@@ -61,7 +61,7 @@ class InquiryRepository
         return $inquiryList;
     }
 
-    static function replyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry, bool $isAdminReplying)
+    static function replyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry, bool $isAdminReplying): bool
     {
         return Database::SQLwithoutFetch(
             Database::getPDO(),
