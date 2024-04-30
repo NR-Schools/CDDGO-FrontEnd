@@ -75,6 +75,18 @@ class MemberRepository
             ]
         );
     }
+
+    static function deleteMember(int $memberId): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM MEMBERS
+            WHERE MemberID = :memberId
+            ",
+            [ ":memberId" => $memberId ]
+        );
+    }
 }
 
 ?>
