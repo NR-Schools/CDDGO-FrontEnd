@@ -33,39 +33,38 @@
         <p>EVENT NAME</p>
         <hr />
 
-        <!-- Loop This Shit -->
         <div class="fields-container">
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label text-white" for="editTitle">Event Title</label>
-                <div class="input-group">
-                    <div class="input-group-text">Edit Icon</div>
-                    <input type="text" class="form-control" id="editTitle">
+            <form class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label text-white" for="editTitle">Event Title</label>
+                    <div class="input-group">
+                        <div class="input-group-text">Edit Icon</div>
+                        <input type="text" class="form-control" id="editTitle">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label text-white" for="editLocation">Edit Location</label>
-                <div class="input-group">
-                    <div class="input-group-text">Edit Icon</div>
-                    <input type="text" class="form-control" id="editLocation">
+                <div class="col-md-6">
+                    <label class="form-label text-white" for="editLocation">Edit Location</label>
+                    <div class="input-group">
+                        <div class="input-group-text">Edit Icon</div>
+                        <input type="text" class="form-control" id="editLocation">
+                    </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <label class="form-label text-white" for="editDate">Event Date</label>
-                <div class="input-group">
-                    <div class="input-group-text">Edit Icon</div>
-                    <input type="text" class="form-control" id="editDate">
+                <div class="col-6">
+                    <label class="form-label text-white" for="editDate">Event Date</label>
+                    <div class="input-group">
+                        <div class="input-group-text">Edit Icon</div>
+                        <input type="text" class="form-control" id="editDate">
+                    </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <label for="editDescription" class="form-label text-white">Description</label>
-                <div class="input-group">
-                    <div class="input-group-text">Edit Icon</div>
-                    <textarea class="form-control" id="editDescription" rows="8"></textarea>
+                <div class="col-12">
+                    <label for="editDescription" class="form-label text-white">Description</label>
+                    <div class="input-group">
+                        <div class="input-group-text">Edit Icon</div>
+                        <textarea class="form-control" id="editDescription" rows="8"></textarea>
+                    </div>
+                    
                 </div>
-                
-            </div>
-        </form>
+            </form>
         </div>
 
         <hr />

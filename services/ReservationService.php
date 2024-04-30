@@ -19,7 +19,10 @@ class ReservationService
         return ReservationRepository::getAllReservations();
     }
 
-    // Add More Service Actions
+    static function deleteReservation(int $reservationId)
+    {
+        return ReservationRepository::deleteReservation($reservationId);
+    }
 }
 
 

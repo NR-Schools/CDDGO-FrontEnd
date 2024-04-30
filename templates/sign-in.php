@@ -1,6 +1,27 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+require_once ($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
+require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+?>
+
+
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    [$status, $error] =  AuthService::login($email, $password);
+
+    if (!$status) {
+        echo <<<EOD
+        <script>
+            alert("{$error}");
+        </script>
+        EOD;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -11,14 +32,16 @@
     <link rel="stylesheet" href="../css/sign-in.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <title>Document</title>
 </head>
+
 <body>
     <!-- Include Header and Footer-->
-    <?php 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
     ?>
     <div class="main-container">
         <div class="login-container">
@@ -35,17 +58,17 @@
                 </div>
             </div>
 
-            <div class="login-components">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" class="login-components">
                 <div class="login-title">
                     LOGIN ACCOUNT
                 </div>
                 <div>
                     <label class="cred-username" for="">Username</label>
-                    <input class="cred-input" type="text">
+                    <input class="cred-input" type="text" name="email" id="email">
                 </div>
                 <div>
                     <label class="cred-password" for="">Password</label>
-                    <input class="cred-input" type="text">
+                    <input class="cred-input" type="password" name="password" id="password">
                 </div>
                 <div class="fPassword-Button">
                     <button class="fPassword-styling">Forgot Password?</button>
@@ -57,10 +80,11 @@
                     Not registered?
                 </div>
                 <div>
-                    <button class="sign-up-button">Sign-up</button>
+                    <input type="submit" class="sign-up-button" value="Delete">
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>

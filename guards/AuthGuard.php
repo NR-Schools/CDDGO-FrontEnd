@@ -26,6 +26,15 @@ class AuthGuard
         $_SESSION['role'] = $role->value;
     }
 
+    static function get_session(): array
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        return [ $_SESSION['email'], AuthGuard::get_session_role() ];
+    }
+
     static function clear_session(): void
     {
         if (session_status() == PHP_SESSION_NONE) {
