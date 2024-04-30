@@ -2,6 +2,8 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseConfig.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/TestimonialModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/BoardGameModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 
 
 class TestimonialRepository

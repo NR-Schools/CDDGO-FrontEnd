@@ -2,6 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseConfig.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/MemberModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 
 class MemberRepository
 {
