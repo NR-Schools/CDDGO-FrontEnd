@@ -11,25 +11,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
             <?php
 
             switch (AuthGuard::get_session_role()) {
-                case Role::PUBLIC:
-                    // This is for Public Header
-                    echo <<<EOD
-                    <div class="col-md-3 mb-2 mb-md-0">
-                        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                            <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
-                        </a>
-                    </div>
-
-                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="../templates/sign-in.php" class="nav-link px-2">LOGIN</a></li>
-                        <li><a href="../templates/sign-up.php" class="nav-link px-2">REGISTER</a></li>
-                        <li><a href="../templates/about-us.php" class="nav-link px-2">ABOUT</a></li>
-                    </ul>
-
-                    <div class="col-md-3 text-end">
-                    </div>
-                    EOD;
-                    break;
                 case Role::USER:
                     // This is for User Header
                     echo <<<EOD
@@ -73,6 +54,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
                     <div class="nav">
                         <li><a href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
                         <li><a href="../templates/logout.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
+                    </div>
+                    EOD;
+                    break;
+                default:
+                    echo <<<EOD
+                    <div class="col-md-3 mb-2 mb-md-0">
+                        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                        </a>
+                    </div>
+
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="../templates/sign-in.php" class="nav-link px-2">LOGIN</a></li>
+                        <li><a href="../templates/sign-up.php" class="nav-link px-2">REGISTER</a></li>
+                        <li><a href="../templates/about-us.php" class="nav-link px-2">ABOUT</a></li>
+                    </ul>
+
+                    <div class="col-md-3 text-end">
                     </div>
                     EOD;
                     break;
