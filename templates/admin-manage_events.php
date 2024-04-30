@@ -40,7 +40,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         foreach ($events as $event) {
             assert($event instanceof Event);
 
-            $editLink = "/admin-edit_event.php?eventId=" . $event->EventID;
+            $editLink = "/templates/admin-edit_event.php?eventId=" . $event->EventID;
 
             echo <<<EOD
             <div class="event-entry">

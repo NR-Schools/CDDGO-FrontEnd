@@ -1,5 +1,6 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/ReservationService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
@@ -33,13 +34,21 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
         <?php
 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/services/ReservationService.php";
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $actionType = $_POST['actionType'];
+            $reservationId = $_POST['reservationId'];
+
+            if ($actionType === "DELETE") {
+                ReservationService::deleteReservation($reservationId);
+            }
+        }
 
         // Get all rentals
         $reservations = ReservationService::getAllReservations();
 
         foreach ($reservations as $reservation) {
             assert($reservation instanceof Reservation);
+            $selfLink = htmlentities($_SERVER['PHP_SELF']);
 
             echo <<<EOD
             <div class="reservation-entry">
@@ -51,10 +60,14 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
                     </div>
                     <span> {$reservation->boardGame->GameName} </span>
                     <span> {$reservation->ReservedDate} </span>
-                    <span>P {$reservation->ReservationFee}</span>
+                    <span> P{$reservation->ReservationFee} </span>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <form action="{$selfLink}" method="post">
+                        <input type="hidden" name="actionType" value="DELETE">
+                        <input type="hidden" name="reservationId" value="{$reservation->ReservationID}">
+                        <input type="submit" value="Delete">
+                    </form>
                 </div>
             </div>
             EOD;
