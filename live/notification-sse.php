@@ -3,33 +3,33 @@
 date_default_timezone_set("America/New_York");
 header("Cache-Control: no-store");
 header("Content-Type: text/event-stream");
+set_time_limit(0);
+
 
 $counter = rand(1, 10);
 while (true) {
-  // Every second, send a "ping" event.
+	// Every second, send a "ping" event
+	echo "event: ping\n";
+	$curDate = date(DATE_ISO8601);
+	echo 'data: {"time": "' . $curDate . '"}';
+	echo "\n\n";
 
-  echo "event: ping\n";
-  $curDate = date(DATE_ISO8601);
-  echo 'data: {"time": "' . $curDate . '"}';
-  echo "\n\n";
+	// Send a simple message at random intervals.
+	$counter--;
+	if (!$counter) {
+		echo 'data: This is a message at time ' . $curDate . "\n\n";
+		$counter = rand(1, 10);
+	}
 
-  // Send a simple message at random intervals.
+	ob_end_flush();
+	flush();
 
-  $counter--;
+	// Break the loop if the client aborted the connection (closed the page)
 
-  if (!$counter) {
-    echo 'data: This is a message at time ' . $curDate . "\n\n";
-    $counter = rand(1, 10);
-  }
+	if (connection_aborted())
+		break;
 
-  ob_end_flush();
-  flush();
-
-  // Break the loop if the client aborted the connection (closed the page)
-
-  if (connection_aborted()) break;
-
-  sleep(1);
+	sleep(1);
 }
 
 
