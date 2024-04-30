@@ -7,6 +7,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
 
 class AuthService
 {
+    static function getCurrentlyLoggedIn(): array
+    {
+        return AuthGuard::get_session();
+    }
+
     static function signup(Student $student): bool
     {
         // Check if email already exists
