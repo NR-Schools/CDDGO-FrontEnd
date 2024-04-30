@@ -61,10 +61,7 @@
         $boardgame->QuantityAvailable = $_POST['quantity_avail'];
         $boardgame->GameCategory = $_POST['game_category'];
         $boardgame->GameStatus = $status;
-        #
-
         
-
         BoardGameService::addNewBoardGame($boardgame);
     }
     ?>
