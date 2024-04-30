@@ -12,6 +12,10 @@ class Student
     public bool $isVerified;
 
     function __construct() {}
+
+    function getFullName(): string {
+        return $this->FirstName . " " . $this->LastName;
+    }
 }
 
 

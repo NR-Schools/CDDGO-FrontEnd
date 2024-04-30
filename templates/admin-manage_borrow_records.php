@@ -15,13 +15,8 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Manage Borrow Records</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_borrow_records.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -35,32 +30,34 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         <p>ACTIVE TRANSACTIONS</p>
         <hr />
 
-        <!-- Loop This Shit -->
-        <div class="borrow-record-entry">
-            <div>
-                <span>1</span>
-                <span>2021103749</span>
-                <span>SAMPLE</span>
-                <span>April 30, 2024</span>
-                <span>P 300</span>
-            </div>
-            <div>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
 
-        <div class="borrow-record-entry">
-            <div>
-                <span>2</span>
-                <span>2021103749</span>
-                <span>SAMPLE</span>
-                <span>April 30, 2024</span>
-                <span>P 300</span>
+        <?php
+
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/services/RentalService.php";
+
+        // Get all rentals
+        $rentals = RentalService::getAllRentals();
+
+        foreach ($rentals as $rental) {
+            assert($rental instanceof Rental);
+
+            echo <<<EOD
+            <div class="borrow-record-entry">
+                <div>
+                    <span> {$rental->RentalID} </span>
+                    <span> {$rental->student->StudNo} </span>
+                    <span> {$rental->boardGame->GameName} </span>
+                    <span> {$rental->BorrowDate} </span>
+                    <span> P {$rental->Rent} </span>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
             </div>
-            <div>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
+            EOD;
+        }
+
+        ?>
 
     </div>
 </body>

@@ -5,8 +5,8 @@ require_once("models/BoardGameModel.php");
 
 class Reservation {
     public int $ReservationID;
-    public Student $ReservedStudent;
-    public BoardGame $ReservedGame;
+    public Student $student;
+    public BoardGame $boardGame;
     public string $ReservedDate;
     public bool $isPaid;
     public int $ReservationFee;

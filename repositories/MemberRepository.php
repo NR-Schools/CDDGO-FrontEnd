@@ -2,6 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DatabaseConfig.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/MemberModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 
 class MemberRepository
 {
@@ -63,8 +64,8 @@ class MemberRepository
             "
             UPDATE MEMBERS
             SET
-                Position = :position
-                AND YearJoined = :yearJoined
+                Position = :position,
+                YearJoined = :yearJoined
             WHERE MemberID = :studentId;
             ",
             [
@@ -72,6 +73,18 @@ class MemberRepository
                 ":position" => $member->Position,
                 ":yearJoined" => $member->YearJoined
             ]
+        );
+    }
+
+    static function deleteMember(int $memberId): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM MEMBERS
+            WHERE MemberID = :memberId
+            ",
+            [ ":memberId" => $memberId ]
         );
     }
 }
