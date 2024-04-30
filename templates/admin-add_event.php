@@ -46,7 +46,7 @@
             </div>
             <div class="col-6">
                 <label for="inputDate" class="form-label text-white">Event Date</label>
-                <input type="text" class="form-control" id="inputDatae">
+                <input type="text" class="form-control" id="inputDate">
             </div>
             <div class="col-12">
                 <label for="inputDescription" class="form-label text-white">Description</label>
