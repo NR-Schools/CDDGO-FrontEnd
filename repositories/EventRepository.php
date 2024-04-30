@@ -80,11 +80,11 @@ class EventRepository
             "
             UPDATE EVENTS
             SET
-                EventName = :eventName
-                AND EventDescription = :eventDesc
-                AND EventDate = :eventDate
-                AND EventLocation = :eventLoc
-                AND DatePosted = :datePosted
+                EventName = :eventName,
+                EventDescription = :eventDesc,
+                EventDate = :eventDate,
+                EventLocation = :eventLoc,
+                DatePosted = :datePosted
             WHERE
                 EventID = :eventId
             ",

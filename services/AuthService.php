@@ -23,6 +23,12 @@ class AuthService
 
     static function login(string $email, string $password): array
     {
+        // Check if admin
+        $role = Role::USER;
+        if ($email === "admin@email.com" && $password === "Admin123_") {
+            $role = Role::ADMIN;
+        } 
+
         // Check if email already exists
         $studentCheck = StudentRepository::getStudentByEmail($email);
         if ($studentCheck === null)
@@ -32,11 +38,6 @@ class AuthService
         if (password_verify($password, $studentCheck->Password))
             return [false, "Incorrect Password"];
 
-        // Determine Role from email
-        // Admin email will be hardcoded
-        $role = Role::USER;
-        if ($email === "Admin")
-            $role = Role::ADMIN;
 
         // Set Session
         AuthGuard::set_session($email, $role);
