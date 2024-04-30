@@ -22,28 +22,42 @@
 
     <!--Get Board Game Details-->
     <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $gameID = $_POST['gameID'];
-            $game = BoardGameService::getBoardGameById($gameID);
-            if ($game == null)
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            if(isset($_POST["edit"])) 
             {
-                echo "No game.";
+                $gameID = $_POST['gameID'];
+                $game = BoardGameService::getBoardGameById($gameID);
+                if ($game == null)
+                {
+                    echo "No game.";
+                }
+
+                $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
+                $image_encoded = base64_encode($game_image);
+
+                $game->GameName = htmlspecialchars($_POST['game_name']);
+                $game->GameDescription = htmlspecialchars($_POST['description']);
+                $game->GameImage = $image_encoded;
+                $game->QuantityAvailable = $_POST['quantity_avail'];
+                $game->GameCategory = htmlspecialchars($_POST['game_category']);
+
+                BoardGameService::updateExistingBoardGame($game);
+
+                echo "<script> alert('Board Game Updated');
+                    document.location.href = 'admin-manage_board_games.php';
+                    </script>";
             }
-            
-            $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
-            $image_encoded = base64_encode($game_image);
 
-            $game->GameName = htmlspecialchars($_POST['game_name']);
-            $game->GameDescription = htmlspecialchars($_POST['description']);
-            $game->GameImage = $image_encoded;
-            $game->QuantityAvailable = $_POST['quantity_avail'];
-            $game->GameCategory = htmlspecialchars($_POST['game_category']);
+            if (isset($_POST["delete"]))
+            {
+                $gameID = $_POST['gameID'];
+                BoardGameService::deleteExistingBoardGame($gameID);
 
-            BoardGameService::updateExistingBoardGame($game);
-
-            echo "<script> alert('Board Game Updated');
+                echo "<script> alert('Board Game Deleted');
                 document.location.href = 'admin-manage_board_games.php';
                 </script>";
+            }
         }
             
     if(isset($_GET["gameId"]))
@@ -122,14 +136,13 @@
 
             <!--Submit Button-->
             <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <button type="submit">Edit Board Game</button>
+            <button type="submit" name="edit" value="edit">Edit Board Game</button>
+            <button type="submit" name="delete" value="delete">Delete Board Game</button>
         </form>
 
-        <!--Cancel Button-->
-        <a href="admin-manage_board_games.php">
-            <button>Cancel</button>
-        </a>
+;
     </div>
+
 
 </body>
 <html>
