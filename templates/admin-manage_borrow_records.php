@@ -35,32 +35,34 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         <p>ACTIVE TRANSACTIONS</p>
         <hr />
 
-        <!-- Loop This Shit -->
-        <div class="borrow-record-entry">
-            <div>
-                <span>1</span>
-                <span>2021103749</span>
-                <span>SAMPLE</span>
-                <span>April 30, 2024</span>
-                <span>P 300</span>
-            </div>
-            <div>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
 
-        <div class="borrow-record-entry">
-            <div>
-                <span>2</span>
-                <span>2021103749</span>
-                <span>SAMPLE</span>
-                <span>April 30, 2024</span>
-                <span>P 300</span>
+        <?php
+
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/services/RentalService.php";
+
+        // Get all rentals
+        $rentals = RentalService::getAllRentals();
+
+        foreach ($rentals as $rental) {
+            assert($rental instanceof Rental);
+
+            echo <<<EOD
+            <div class="borrow-record-entry">
+                <div>
+                    <span> {$rental->RentalID} </span>
+                    <span> {$rental->student->StudNo} </span>
+                    <span> {$rental->boardGame->GameName} </span>
+                    <span> {$rental->BorrowDate} </span>
+                    <span> P {$rental->Rent} </span>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
             </div>
-            <div>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
+            EOD;
+        }
+
+        ?>
 
     </div>
 </body>
