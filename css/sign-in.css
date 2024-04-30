@@ -8,6 +8,8 @@
 .image-styling{
     width: 200px;
     border-radius: 100%;
+    border-color: white;
+    border-style: solid;
 }
 
 .login-container{
@@ -91,6 +93,7 @@
     font-size: 13px;
     color: #9e0671;
     display: block;
+    margin-top: 15px;
 }
 
 .cred-input{
@@ -99,6 +102,7 @@
     border-radius: 10px;
     min-height: 39px;
     min-width: 246px;
+    border-color: #9e0671;
 }
 
 .fPassword-Button{
@@ -110,6 +114,20 @@
 .fPassword-styling{
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
+    font-size: 13px;
+    color: #9e0671;
+    border: none;
+    background-color: transparent;
+}
+
+
+.not-registered-button{
+    margin-top: 30px;
+}
+
+.sign-up-button{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
     font-size: 13px;
     color: #9e0671;
     border: none;
@@ -129,20 +147,6 @@
     border-radius: 5px;
     margin-bottom:50px;
     transition: color 0.5s, background-color 0.5s;
-}
-
-
-.not-registered-button{
-    margin-top: 30px;
-}
-
-.sign-up-button{
-    font-family: "Merriweather Sans", sans-serif;
-    font-weight: 800;
-    font-size: 13px;
-    color: #9e0671;
-    border: none;
-    background-color: transparent;
 }
 
 .login-styling:hover{
