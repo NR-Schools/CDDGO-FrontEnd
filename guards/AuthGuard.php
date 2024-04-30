@@ -9,7 +9,6 @@
 
 enum Role: string
 {
-    case PUBLIC = "PUBLIC";
     case USER = "USER";
     case ADMIN = "ADMIN";
 }
@@ -38,7 +37,7 @@ class AuthGuard
         session_destroy();
     }
 
-    static function get_session_role(): Role
+    static function get_session_role(): Role|null
     {
         $session_email = !isset($_SESSION['email']);
         $session_role = !isset($_SESSION['role']);
@@ -47,7 +46,7 @@ class AuthGuard
 
         if ($no_auth) {
             // This is a Public User (No Accounts Signed In)
-            return Role::PUBLIC;
+            return null;
         }
 
         // Get Role (USER or ADMIN)
@@ -58,8 +57,7 @@ class AuthGuard
         if ($assumed_role === "ADMIN")
             return Role::ADMIN;
 
-        // If not matching to anything, assume public
-        return Role::PUBLIC;
+        return null;
     }
 
     static function guard_route(Role $expected_role): bool

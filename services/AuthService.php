@@ -3,6 +3,7 @@
 // Build Paths From Root
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
 
 class AuthService
 {
@@ -20,18 +21,31 @@ class AuthService
         return StudentRepository::addNewStudent($student);
     }
 
-    static function login(string $email, string $password): bool
+    static function login(string $email, string $password): array
     {
         // Check if email already exists
         $studentCheck = StudentRepository::getStudentByEmail($email);
         if ($studentCheck === null)
-            return false;
+            return [false, "Student Does Not Exist"];
 
         // Compare Passwords
         if (password_verify($password, $studentCheck->Password))
-            return false;
+            return [false, "Incorrect Password"];
 
-        return true;
+        // Determine Role from email
+        // Admin email will be hardcoded
+        $role = Role::USER;
+        if ($email === "Admin")
+            $role = Role::ADMIN;
+
+        // Set Session
+        AuthGuard::set_session($email, $role);
+
+        return [true, ""];
+    }
+
+    static function logout(): void {
+        AuthGuard::clear_session();
     }
 }
 
