@@ -83,11 +83,11 @@ class ReservationRepository
             "
             UPDATE RESERVATIONS
             SET
-                ReservedStudent = :reservedStudId
-                AND ReservedGame = :reservedGameId
-                AND ReservedDate = :reservedDate
-                AND isPaid = :isPaid
-                AND ReservationFee = :reservationFee
+                ReservedStudent = :reservedStudId,
+                ReservedGame = :reservedGameId,
+                ReservedDate = :reservedDate,
+                isPaid = :isPaid,
+                ReservationFee = :reservationFee
             WHERE ReservationID = :reservationId;
             ",
             [

@@ -64,8 +64,8 @@ class MemberRepository
             "
             UPDATE MEMBERS
             SET
-                Position = :position
-                AND YearJoined = :yearJoined
+                Position = :position,
+                YearJoined = :yearJoined
             WHERE MemberID = :studentId;
             ",
             [
