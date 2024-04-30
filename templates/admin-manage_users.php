@@ -1,12 +1,10 @@
 <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
-
-if (!AuthGuard::guard_route(Role::ADMIN)) {
-    // Return to root
-    // header("Location: /");
-}
-
+    if (!AuthGuard::guard_route(Role::ADMIN)) {
+        // Return to root
+        // header("Location: /");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +25,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 <body>
     <!-- Include Header -->
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
     ?>
 
     <!-- Start Body -->
