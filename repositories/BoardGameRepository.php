@@ -143,12 +143,12 @@ class BoardGameRepository
             "
             UPDATE BOARD_GAMES
             SET
-                GameName = :gameName
-                AND GameImage = :gameImage
-                AND GameDescription = :gameDesc
-                AND QuantityAvailable = :quantityAvailable
-                AND GameCategory = :gameCategory
-                AND GameStatus = :gameStatus
+                GameName = :gameName,
+                GameImage = :gameImage,
+                GameDescription = :gameDesc,
+                QuantityAvailable = :quantityAvailable,
+                GameCategory = :gameCategory,
+                GameStatus = :gameStatus
             WHERE
                 GameID = :gameId
             ",

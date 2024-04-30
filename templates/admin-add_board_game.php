@@ -96,32 +96,24 @@
 
         //create board games 
         $boardgame = new BoardGame();
-
-        $boardgame->GameName = $_POST['game_name'];
-        $boardgame->GameDescription = $_POST['description'];
+        
+        $boardgame->GameName = htmlspecialchars($_POST['game_name']);
+        $boardgame->GameDescription = htmlspecialchars($_POST['description']);
         $boardgame->GameImage = $image_encoded;
         $boardgame->QuantityAvailable = $_POST['quantity_avail'];
-        $boardgame->GameCategory = $_POST['game_category'];
+        $boardgame->GameCategory = htmlspecialchars($_POST['game_category']);
         $boardgame->GameStatus = $status;
         
-        try{
-            BoardGameService::addNewBoardGame($boardgame);
 
-            echo "<script> alert('Board Game Added');
+        BoardGameService::addNewBoardGame($boardgame);
+
+        echo "<script> alert('Board Game Added');
             document.location.href = 'admin-manage_board_games.php';
             </script>";
-        }
 
-        catch (PDOExceptionException $e){
-            echo $e->getMessage();
-            echo "<script>
-            alert('Failed to add BoardGame');
-            document.location.href = 'admin-add_board_game.php';
-            </script>
-            ";
 
-        }
     }
+
     ?>
 
     

@@ -33,8 +33,7 @@
 
         foreach ($games as $game) {
             assert($game instanceof BoardGame);
-
-            $editLink = "/admin-edit_board_game.php?eventId=" . $game->GameID;
+            $editLink = "/templates/admin-edit_board_game.php?gameId=" . $game->GameID;
 
             echo <<<EOD
             <div class="event-entry">
