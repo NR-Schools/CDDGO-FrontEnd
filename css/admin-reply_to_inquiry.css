@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+}
+.box {
+    margin-top: 20px;
+}
+textarea {
+    width: 80%;
+    height: 200px;
+    margin: 20px auto;
+    display: block;
+    resize: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #32064e;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 16px;
+}
+.btn.reply {
+    margin-right: 5px;
+}
+.btn.cancel {
+    background-color: #f44336;
+}

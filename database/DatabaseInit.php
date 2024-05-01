@@ -42,16 +42,16 @@ Database::BasicSQL(
         GameStatus VARCHAR(50)
     );
 
-    CREATE TABLE IF NOT EXISTS INQUIRIES (
-        InquiryID INT PRIMARY KEY AUTO_INCREMENT,
-        Inquirer INT,
-        RepliedInquiry INT,
-        InquiryTitle VARCHAR(50),
-        InquiryDescription VARCHAR(255),
+    CREATE TABLE IF NOT EXISTS INQUIRIES(
+        InquiryID INT NOT NULL AUTO_INCREMENT,
+        InquiryStudID INT NOT NULL,
+        InquiryTitle VARCHAR(255) NOT NULL,
+        InquiryDesc TEXT NOT NULL,
+        InquiryTime DATETIME NOT NULL,
         isInquirySeen BOOLEAN,
-        isFromAdmin BOOLEAN,
-        FOREIGN KEY (Inquirer) REFERENCES STUDENTS(StudID),
-        FOREIGN KEY (RepliedInquiry) REFERENCES INQUIRIES(InquiryID)
+        InquiryReply TEXT NULL,
+        PRIMARY KEY (InquiryID),
+        FOREIGN KEY (InquiryStudID) REFERENCES STUDENTS(StudID)
     );
     
     CREATE TABLE IF NOT EXISTS TESTIMONIALS (
