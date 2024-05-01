@@ -2,6 +2,7 @@
 
 class Event {
     public int $EventID;
+    public string $EventImage;
     public string $EventName;
     public string $EventDescription;
     public string $EventDate;
@@ -9,6 +10,8 @@ class Event {
     public string $DatePosted;
 
     function __construct() {}
+
+    
 }
 
 ?>

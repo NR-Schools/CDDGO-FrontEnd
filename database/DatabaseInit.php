@@ -7,6 +7,7 @@ Database::BasicSQL(
     "
     CREATE TABLE IF NOT EXISTS EVENTS (
         EventID INT PRIMARY KEY AUTO_INCREMENT,
+        EventImage LONGBLOB,
         EventName VARCHAR(255),
         EventDescription VARCHAR(255),
         EventDate DATETIME,

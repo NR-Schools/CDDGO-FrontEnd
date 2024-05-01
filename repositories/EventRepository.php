@@ -12,9 +12,10 @@ class EventRepository
             Database::getPDO(),
             "
             INSERT INTO EVENTS
-            VALUES (null, :eventName, :eventDesc, :eventDate, :eventLoc, :datePosted)
+            VALUES (null, :eventImage, :eventName, :eventDesc, :eventDate, :eventLoc, :datePosted)
             ",
             [
+                ":eventImage" => $event->EventImage,
                 ":eventName" => $event->EventName,
                 ":eventDesc" => $event->EventDescription,
                 ":eventDate" => $event->EventDate,
@@ -38,6 +39,7 @@ class EventRepository
         foreach ($queryResult as $eventRecord) {
             $event = new Event();
             $event->EventID = $eventRecord['EventID'];
+            $event->EventImage = $eventRecord['EventImage'];
             $event->EventName = $eventRecord['EventName'];
             $event->EventDescription = $eventRecord['EventDescription'];
             $event->EventDate = $eventRecord['EventDate'];
@@ -62,6 +64,7 @@ class EventRepository
         $event = new Event();
         foreach ($queryResult as $eventRecord) {
             $event->EventID = $eventRecord['EventID'];
+            $event->EventImage = $eventRecord['EventImage'];
             $event->EventName = $eventRecord['EventName'];
             $event->EventDescription = $eventRecord['EventDescription'];
             $event->EventDate = $eventRecord['EventDate'];
@@ -80,6 +83,7 @@ class EventRepository
             "
             UPDATE EVENTS
             SET
+                EventImage = :eventImage,
                 EventName = :eventName,
                 EventDescription = :eventDesc,
                 EventDate = :eventDate,
@@ -90,6 +94,7 @@ class EventRepository
             ",
             [
                 ":eventId" => $event->EventID,
+                ":eventImage" => $event->EventImage,
                 ":eventName" => $event->EventName,
                 ":eventDesc" => $event->EventDescription,
                 ":eventDate" => $event->EventDate,
