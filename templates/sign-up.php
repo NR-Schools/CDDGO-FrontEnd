@@ -49,11 +49,11 @@
                 <div class="divider"></div>
                 <div class="content-container">
                     <div>
-                        <label class="label-styling" for="">First Name</label>
+                        <label class="label-styling" for="">Student Number</label>
                         <input class="input-styling" type="text">
                     </div>
                     <div>
-                        <label class="label-styling"f or="">Last Name</label>
+                        <label class="label-styling"f or="">Progam</label>
                         <input class="input-styling" type="text">
                     </div>
                 </div>
@@ -64,11 +64,11 @@
                 <div class="divider"></div>
                 <div class="content-container">
                     <div>
-                        <label class="label-styling" for="">Student Number</label>
+                        <label class="label-styling" for="">Username</label>
                         <input class="input-styling" type="text">
                     </div>
                     <div>
-                        <label class="label-styling" for="">Program</label>
+                        <label class="label-styling" for="">Password</label>
                         <input class="input-styling" type="text">
                     </div>
                 </div>
