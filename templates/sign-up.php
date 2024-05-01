@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     AuthService::signup($student);
 
     // Redirect to sign in page
-    header("Location: /sign-in.php");
+    header("Location: /templates/sign-in.php");
 }
 
 ?>

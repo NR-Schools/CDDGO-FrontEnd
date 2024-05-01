@@ -96,10 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
     if ($role === Role::ADMIN) {
-        header("Location: /admin-homepage.php");
+        header("Location: /templates/admin-homepage.php");
     }
     else {
-        header("Location: /user-homepage.php");
+        header("Location: /templates/user-homepage.php");
     }
 }
 
