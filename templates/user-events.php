@@ -1,4 +1,5 @@
 <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/services/EventService.php";
     require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
     if (!AuthGuard::guard_route(Role::ADMIN)) {
@@ -33,28 +34,30 @@
         <p>ALL EVENTS</p>
         <hr />
 
-        <div class="card mb-3">
-            <img src="../assets/banner-pic.jpg" class="card-img-top custom-card-img" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Sapakan sa Jeep</h5>
-                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p class="card-text">Location: Sa Jeep</p>
-                <p class="card-text">Event Date: 5/20/2024</p>
-                <p class="card-text date-posted"><small class="text-body-secondary">Date Posted: 5/01/2024</small></p>
-            </div>
-        </div>
+        <?php
 
-        <!-- Sample 2 -->
-        <div class="card mb-3">
-            <img src="../assets/banner-pic.jpg" class="card-img-top custom-card-img" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Sapakan sa Jeep</h5>
-                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <p class="card-text">Location: Sa Jeep</p>
-                <p class="card-text">Event Date: 5/20/2024</p>
-                <p class="card-text date-posted"><small class="text-body-secondary">Date Posted: 5/01/2024</small></p>
+        // Get all events
+        $events = EventService::getAllEvents();
+
+        foreach ($events as $event) {
+            assert($event instanceof Event);
+
+            echo <<<EOD
+
+            <div class="card mb-3">
+                <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{$event->EventName}</h5>
+                    <p class="card-text">{$event->EventDescription}</p>
+                    <p class="card-text">Location: {$event->EventLocation}</p>
+                    <p class="card-text">Event Date: {$event->EventDate}</p>
+                    <p class="card-text date-posted"><small class="text-body-secondary">Date Posted: {$event->DatePosted}</small></p>
+                </div>
             </div>
-        </div>
+            EOD;
+        }
+
+        ?>
 
     </div>
 </body>

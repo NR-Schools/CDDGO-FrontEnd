@@ -56,6 +56,14 @@
                         <input type="text" class="form-control" id="editDate">
                     </div>
                 </div>
+
+                <div class="col-6">
+                    <label class="form-label text-white" for="editImage">Event Date</label>
+                    <div class="input-group">
+                        <div class="input-group-text">Edit Icon</div>
+                        <input class="form-control" type="file" id="editImage">
+                    </div>
+                </div>
                 <div class="col-12">
                     <label for="editDescription" class="form-label text-white">Description</label>
                     <div class="input-group">
