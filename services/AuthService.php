@@ -30,18 +30,23 @@ class AuthService
     {
         // Check if admin
         $role = Role::USER;
-        if ($email === "admin@email.com" && $password === "Admin123_") {
+        if ($email === "admin@email.com") {
+
+            if ($password !== "Admin123_") {
+                return [false, "Incorrect Password for Admin!!"];
+            }
+
             $role = Role::ADMIN;
-        } 
+        } else {
+            // Check if email already exists
+            $studentCheck = StudentRepository::getStudentByEmail($email);
+            if ($studentCheck === null)
+                return [false, "Student Does Not Exist!!"];
 
-        // Check if email already exists
-        $studentCheck = StudentRepository::getStudentByEmail($email);
-        if ($studentCheck === null)
-            return [false, "Student Does Not Exist"];
-
-        // Compare Passwords
-        if (password_verify($password, $studentCheck->Password))
-            return [false, "Incorrect Password"];
+            // Compare Passwords
+            if (password_verify($password, $studentCheck->Password))
+                return [false, "Incorrect Password for User !!"];
+        }
 
 
         // Set Session
@@ -50,7 +55,8 @@ class AuthService
         return [true, ""];
     }
 
-    static function logout(): void {
+    static function logout(): void
+    {
         AuthGuard::clear_session();
     }
 }
