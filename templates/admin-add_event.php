@@ -70,7 +70,7 @@
 
                 <div class="button-container text-center">
                     <button type="submit" class="btn">ADD EVENT</button>
-                    <button type="cancel" class="btn">CANCEL</button>
+                    <button onclick="window.location.href='admin-manage_events.php'" type="button" class="btn">CANCEL</button>
                 </div>
             </form>
         </div>
