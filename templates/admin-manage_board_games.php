@@ -16,71 +16,7 @@
     <title>Manage Board Games</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+zEK5owl9aBMsoeixa0lsFbGCIjXoRSJo3I+NMm" crossorigin="anonymous">
-    <style>
-
-        .game-card-pic {
-            width: 100%;
-            height: 300px; 
-            object-fit: cover; 
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-
-        .game-card-body {
-            padding: 20px;
-            text-align: justify;
-        }
-
-        .game-card-title {
-            margin-top: 0;
-        }
-
-        .game-card-text {
-            margin-bottom: 15px;
-        }
-
-
-        .game-item-title {
-            font-family: 'Alice',sans-serif;
-            text-align: center;
-            color: #1EA36D;
-        }
-
-        .game-card-container {
-            margin: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 40px;
-            padding: 50px; 
-        }
-
-        .game-card {
-            border: 1px solid #ccc;
-            padding: 20px;
-            transition: transform 1s;
-        }
-
-        .game-card:hover {
-            box-shadow: 0 0 5px #9e0671;
-            transform: scale(1.05,1.05);
-        }
-
-
-        .game-btn {
-            background-color: #9e0671; 
-            color: white;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .game-btn:hover {
-            background-color: #9e0671; 
-            color: white;
-            padding: 10px;
-        }
-
-
-    </style>
+    <link type="text/css" rel="stylesheet" href="../css/admin-manage_board_games.css">
 </head>
 <body>
     <!-- Include Header and Footer-->
