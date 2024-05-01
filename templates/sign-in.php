@@ -3,27 +3,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
 require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
 ?>
 
-
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
-{
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    [$status, $error] =  AuthService::login($email, $password);
-
-    if (!$status) {
-        echo <<<EOD
-        <script>
-            alert("{$error}");
-        </script>
-        EOD;
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,3 +67,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 </body>
 
 </html>
+
+
+
+<?php
+
+// When trying to log in, load the html first before checking log in
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    [$status, $error] =  AuthService::login($email, $password);
+
+    if (!$status) {
+        echo <<<EOD
+        <script>
+            alert("{$error}");
+        </script>
+        EOD;
+        return;
+    }
+
+    // redirect to correct home page based on role
+    [$email, $role] = AuthService::getCurrentlyLoggedIn();
+    assert($role instanceof Role);
+
+
+    if ($role === Role::ADMIN) {
+        header("Location: /admin-homepage.php");
+    }
+    else {
+        header("Location: /user-homepage.php");
+    }
+}
+
+?>
