@@ -6,8 +6,9 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             font-family: Helvetica, sans-serif;
+            border: solid #9e0671;
         }
-
+        
         .add-board-title {
             text-align: center;
             margin-bottom: 20px;
@@ -45,7 +46,7 @@
             display: inline-block;
             background-color: #9e0671; 
             color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             border: solid #9e0671;
             padding: 10px;
             transition:background-color 0.5s, border-style 0.5s, color 0.5s;
@@ -57,7 +58,7 @@
             color: #333;
             text-decoration: none;
             color: #9e0671;
-            border-radius: 12px;
+            border-radius: 8px;
             border: solid ;
             padding: 10px;
             transition:background-color 0.5s, border-style 0.5s, color 0.5s;
