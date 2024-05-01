@@ -1,0 +1,124 @@
+.title-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #9e0671;
+}
+
+.divider{
+    border-top-style:solid;
+    border-top-width: 5px;
+    width: 100%;
+    border-top-color:#9e0671
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 682px;
+    height:795px;
+}
+
+.img-container{
+    margin-top: 15px;
+}
+.game-image{
+    width: 679px;
+    height: 296px;
+}
+
+.name-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color:rgb(50, 6, 78);
+    
+}
+
+.price-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color:rgb(50, 6, 78);
+}
+
+.label-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color:rgb(50, 6, 78);
+}
+
+.reserve-game-button{
+    height: 58px;
+    width: 356.68px;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    background-color: #9e0671;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+.reserve-game-button:hover{
+    background-color: transparent;
+    border-style: solid;
+    border-color: #9e0671;
+    border-width: 3px;
+    color:#9e0671;
+
+}
+
+.reserve-game-button:focus{
+    outline: none;
+}
+
+
+.cancel-button{
+    height: 58px;
+    width: 234px;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #9e0671;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color:#9e0671;
+    border-style: solid;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 91px;
+}
+
+.date-container{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.date-input{
+    width: 246px;
+    height: 39px;
+    border-style: solid;
+    border-color:rgb(50, 6, 78);
+    border-width: 1px;
+    border-radius: 10px;
+    background-color: transparent;
+    color:rgb(50, 6, 78);
+}
