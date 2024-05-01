@@ -16,6 +16,7 @@
     <title>Edit Board Game</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="../css/admin-add_board_game.css"> 
 </head>
 <body>
     <!-- Include Header and Footer-->
@@ -88,24 +89,33 @@
     ?>
 
     <!--Form-->
-    <div class= "page-container">
+    <div class= "content-container">
         <div class="add-board-title">
             EDIT BOARD GAME
         </div>
         <form action="admin-edit_board_game.php" method="POST" enctype="multipart/form-data">
             <!--Board Game Name-->
-            <label for="game_name">Board Game Name</label>
-            <input type="text" name="game_name" id="game_name" value="<?php echo $game->GameName?>">
-
+            <div class="form-group">
+                <label for="game_name">Board Game Name</label>
+                <input type="text" name="game_name" id="game_name" value="<?php echo $game->GameName?>">
+            </div>
+            
             <!--Board Game Image-->
-            <label for="game_img">Board Game Image</label>
-            <input type="file" id="game_img" name="game_img" class="form-control" onchange="onFileSelected(event)" style="height: 45px;" accept="image/*">
+            <div class="form-group">
+                <label for="game_img">Board Game Image</label>
+                <input type="file" id="game_img" name="game_img" class="form-control" onchange="onFileSelected(event)" style="height: 45px;" accept="image/*">
+            </div>
+            
 
             <!--Description-->
-            <label for="game_desc">Description</label><br>
-            <textarea type="text" name="description" id="description" class="form-control" style="height: 200px;"><?php echo htmlspecialchars($game->GameDescription); ?></textarea>
+            <div class="form-group">
+                <label for="game_desc">Description</label><br>
+                <textarea type="text" name="description" id="description" class="form-control" style="height: 200px;"><?php echo htmlspecialchars($game->GameDescription); ?></textarea>
+            </div>
+            
 
             <!--Category-->
+            <div class="form-group">
             <label for="game_category">Category</label>
             <select name="game_category">
                 <option value="No Category" <?php echo ($game->GameCategory == 'No Category') ? 'selected' : ''; ?>>Select Category</option>
@@ -134,15 +144,20 @@
                 <option value="Word" <?php echo ($game->GameCategory == 'Word') ? 'selected' : ''; ?>>Word</option>
                 <option value="Worker Placement" <?php echo ($game->GameCategory == 'Worker Placement') ? 'selected' : ''; ?>>Worker Placement</option>
             </select>
-
+            </div>
+            
             <!--Quantity Available-->
-            <label for="quantity_avail">Quantity Available</label>
-            <input type="number" name="quantity_avail" id="quantity_avail" value="<?php echo $game->QuantityAvailable?>">
-
-            <!--Submit Button-->
-            <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-            <button type="submit" name="edit" value="edit">Edit Board Game</button>
-            <button type="submit" name="delete" value="delete">Delete Board Game</button>
+            <div class="form-group">
+                <label for="quantity_avail">Quantity Available</label>
+                <input type="number" name="quantity_avail" id="quantity_avail" value="<?php echo $game->QuantityAvailable?>">
+            </div>
+          
+            <!--Submit and Delete Button-->
+            <div class="form-group">
+            <input type="hidden" name="gameID" value="<?php echo $gameID; ?>"> 
+            <button type="submit" class="btn-submit" name="edit" value="edit">Edit Board Game</button>
+            <button type="submit" class="btn-cancel" name="delete" value="delete">Delete Board Game</button>
+            </div>
         </form>
 
 ;
