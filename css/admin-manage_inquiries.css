@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.box {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: calc(100vh - 180px);
+    margin-bottom: 60px;
+}
+.hrline{
+    display: flex; 
+    justify-content: center;
+}
+hr{
+    width:50%;
+    height:3px;
+    background-color:black;
+    border:none;
+}
+h3 {
+    text-align: center;
+}
+.inquiry {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.inquiry .details {
+    margin-bottom: 10px;
+}
+.inquiry .actions {
+    text-align: right;
+}
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #32064e;
+    color: #fff;
+    cursor: pointer;
+}
+.btn.reply {
+    margin-right: 5px;
+}
+.btn.delete {
+    background-color: #dc3545;
+}
