@@ -1,0 +1,124 @@
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
+    padding-bottom: 150px;
+}
+
+.img-styling{
+    width: 260px;
+}
+
+.about-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1058px;
+}
+
+.title-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #9e0671;
+    text-align: center;
+}
+
+.divider{
+    border-top-style: solid;
+    border-top-width: 5px;
+    border-color: #9e0671;
+    width: 100%;
+}
+
+.org-content-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap:42px;
+    text-align: justify;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.content-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+    text-align: justify;
+}
+
+
+.content-styling-mission{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+    text-align: justify;
+    border-color: #9e0671;
+    border-style: solid;
+    border-width: 1px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -25px;
+}
+
+.content-styling-vision{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+    text-align: justify;
+    border-color: #9e0671;
+    border-style: solid;
+    border-width: 1px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -25px;
+}
+
+.mission-vision-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 42px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.officer-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 42px;
+    row-gap: 30px;
+    margin-top: 30px;
+}
+
+.officer-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.officer-name{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.contact{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.info{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+
+}
+
+.officer-info{
+ margin-left: 10px;
+}
