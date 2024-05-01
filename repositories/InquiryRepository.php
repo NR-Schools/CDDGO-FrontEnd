@@ -12,12 +12,13 @@ class InquiryRepository
             Database::getPDO(),
             "
             INSERT INTO INQUIRIES
-            VALUES (null, :studentId, null, :inquiryTitle, :inquiryDesc, FALSE, FALSE);
+            VALUES (null, :studentId, null, :inquiryTitle, :inquiryDesc, :inquiryTime, FALSE, FALSE);
             ",
             [
                 ":studentId" => $inquiry->Inquirer->StudID,
                 ":inquiryTitle" => $inquiry->InquiryTitle,
-                ":inquiryDesc" => $inquiry->InquiryDescription
+                ":inquiryDesc" => $inquiry->InquiryDescription,
+                ":inquiryTime" => $inquiry->InquiryTime
             ]
         );
     }
@@ -53,6 +54,7 @@ class InquiryRepository
             $inquiry->RepliedInquiry = $inquiryRecord['RepliedInquiry'];
             $inquiry->InquiryTitle = $inquiryRecord['InquiryTitle'];
             $inquiry->InquiryDescription = $inquiryRecord['InquiryDescription'];
+            $inquiry->InquiryTime = $inquiryRecord['InquiryTime'];
             $inquiry->isInquirySeen = $inquiryRecord['isInquirySeen'];
             $inquiry->isFromAdmin = $inquiryRecord['isFromAdmin'];
 
@@ -68,13 +70,14 @@ class InquiryRepository
             Database::getPDO(),
             "
             INSERT INTO INQUIRIES
-            VALUES (null, :studentId, :inquiryReplyingTo, :inquiryTitle, :inquiryDesc, FALSE, :isFromAdmin)
+            VALUES (null, :studentId, :inquiryReplyingTo, :inquiryTitle, :inquiryDesc, :inquiryTime, FALSE, :isFromAdmin)
             ",
             [
                 ":studentId" => $newInquiry->Inquirer->StudID,
                 ":inquiryReplyingTo" => $inquiryReplyingTo,
                 ":inquiryTitle" => $newInquiry->InquiryTitle,
                 ":inquiryDesc" => $newInquiry->InquiryDescription,
+                ":inquiryTime" => $newInquiry->InquiryTime,
                 ":isFromAdmin" => $isAdminReplying
             ]
         );

@@ -8,6 +8,7 @@ class Inquiry {
     public int $RepliedInquiryID;
     public string $InquiryTitle;
     public string $InquiryDescription;
+    public string $InquiryTime;
     public bool $isInquirySeen;
     public bool $isFromAdmin;
 
