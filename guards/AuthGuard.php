@@ -32,7 +32,7 @@ class AuthGuard
             session_start();
         }
 
-        return [ $_SESSION['email'], AuthGuard::get_session_role() ];
+        return [$_SESSION['email'], AuthGuard::get_session_role()];
     }
 
     static function clear_session(): void
@@ -48,6 +48,10 @@ class AuthGuard
 
     static function get_session_role(): Role|null
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $session_email = !isset($_SESSION['email']);
         $session_role = !isset($_SESSION['role']);
 
@@ -61,12 +65,7 @@ class AuthGuard
         // Get Role (USER or ADMIN)
         $assumed_role = $_SESSION['role'];
 
-        if ($assumed_role === "USER")
-            return Role::USER;
-        if ($assumed_role === "ADMIN")
-            return Role::ADMIN;
-
-        return null;
+        return Role::tryFrom($assumed_role);
     }
 
     static function guard_route(Role $expected_role): bool
