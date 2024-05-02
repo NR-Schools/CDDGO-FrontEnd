@@ -51,7 +51,7 @@
                     <p class="card-text">{$event->EventDescription}</p>
                     <p class="card-text">Location: {$event->EventLocation}</p>
                     <p class="card-text">Event Date: {$event->EventDate}</p>
-                    <p class="card-text date-posted"><small class="text-body-secondary">Date Posted: {$event->DatePosted}</small></p>
+                    <p class="card-text date-posted"><small class="text-body-secondary">Last Updated: {$event->DatePosted}</small></p>
                 </div>
             </div>
             EOD;
