@@ -154,3 +154,23 @@ INSERT INTO BOARD_GAMES VALUES (null, "GameName", "GameDesc", 1, "AVAILABLE");
 -- UPDATE BOARD_GAMES SET WHERE
 
 -- -- Add and Edit Events
+
+
+
+
+
+
+
+
+WITH RECURSIVE hierarchy AS (
+  SELECT *
+  FROM DUMMY_INQ
+  WHERE InquiryID = 1 -- Replace 1 with the desired root inquiry ID
+
+  UNION ALL
+
+  SELECT t.*
+  FROM DUMMY_INQ t
+  INNER JOIN hierarchy h ON t.RepliedInquiry = h.InquiryID
+)
+SELECT * FROM hierarchy;
