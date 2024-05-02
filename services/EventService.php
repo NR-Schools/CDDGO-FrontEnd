@@ -24,6 +24,11 @@ class EventService
     {
         return EventRepository::updateEvent($event);
     }
+
+    static function deleteEvent(int $eventId): bool
+    {
+        return EventRepository::deleteEvent($eventId);
+    }
 }
 
 ?>
