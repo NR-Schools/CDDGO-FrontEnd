@@ -58,7 +58,7 @@ class EventRepository
             "
             SELECT * FROM EVENTS WHERE EventID = :eventId
             ",
-            [ ":eventId" => $eventId ]
+            [":eventId" => $eventId]
         );
 
         $event = new Event();
@@ -101,6 +101,17 @@ class EventRepository
                 ":eventLoc" => $event->EventLocation,
                 ":datePosted" => $event->DatePosted
             ]
+        );
+    }
+
+    static function deleteEvent(int $eventId): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM EVENTS WHERE EventID = :eventId
+            ",
+            [ ":eventId" => $eventId ]
         );
     }
 }
