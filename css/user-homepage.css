@@ -1,0 +1,158 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1000px;
+    border: none;
+}
+
+.game-content-container{
+    display: flex;
+    flex-direction: column;
+    width: 1366px;
+    height: 769px;
+}
+
+.divider{
+    border-top-style: solid;
+    border-top-width: 5px;
+    border-color: #9e0671;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.title-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #9e0671;
+}
+
+.game-content-container{
+    display: flex;
+    flex-direction: row;
+    gap: 37px;
+    width: 100%;
+}
+.img-styling{
+    height: 479px;
+    width: 644px;
+}
+.event-content-container{
+    width: 100%;
+    height: 412px;
+}
+
+.game-name-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: rgb(50, 6, 78);
+}
+
+.date-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(50, 6, 78);
+}
+
+.button-styling{
+    width: 137px;
+    height: 38px;
+    background-color: #9e0671;
+    border-radius: 5px;
+    border-style: solid;
+    border-color:#9e0671;
+    color: white;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    position: absolute;
+    right: 0;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.view-button{
+    width: 137px;
+    height: 38px;
+    background-color: #9e0671;
+    border-radius: 5px;
+    border-style: solid;
+    border-color:#9e0671;
+    color: white;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.button-container{
+    position: relative;
+}
+
+.view-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:right;
+    margin-bottom: 10px;
+    
+}
+
+.view-button:hover{
+    color: #9e0671;
+    background-color: #F1EDE9;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+.view-button:focus{
+    outline: none;
+}
+
+.button-styling:hover{
+    color: #9e0671;
+    background-color: #F1EDE9;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+.button-styling:focus{
+    outline: none;
+}
+
+.event-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: #9e0671;
+    padding: 10px;
+
+}
+
+.name-styling{
+    color: rgb(50, 6, 78);
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.sub-name-styling{
+    color: rgb(50, 6, 78);
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+}
+.scroll {
+    overflow-y: auto; 
+    height: 412px;
+}

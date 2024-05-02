@@ -20,7 +20,7 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
     ?>
     <div class="main-container">
-        <div class="menu-container">
+        <div class="men-container">
             <div class="admin-title">ADMIN MENU</div>
             <div class="divider"></div>
             <div>
@@ -30,7 +30,13 @@
                 <button class="button-styling">MANAGE EVENTS</button>
             </div>
             <div>
+                <button class="button-styling">MANAGE RESERVATIONS</button>
+            </div>
+            <div>
                 <button class="button-styling">MANAGE BORROW RECORDS</button>
+            </div>
+            <div>
+                <button class="button-styling">MANAGE INQUIRIES</button>
             </div>
             <div>
                 <button class="button-styling">MANAGE USERS AND MEMBERS</button>
