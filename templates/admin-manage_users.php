@@ -59,12 +59,6 @@
                 <button type="button" class="btn">Delete</button>
             </div>
         </div>
-
-        <div class="button-container">
-            <button type="button" class="btn">Add New User</button>
-            <button type="button" class="btn">Cancel</button>
-        </div>
-
     </div>
 </body>
 </html>
