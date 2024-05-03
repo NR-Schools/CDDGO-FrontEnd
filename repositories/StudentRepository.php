@@ -37,14 +37,17 @@ class StudentRepository
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT * FROM STUDENTS WHERE Email = :email
+            SELECT * FROM STUDENTS
+            LEFT JOIN MEMBERS
+            ON STUDENTS.StudID = MEMBERS.MemberID
+            WHERE Email = :email
             ",
                 [":email" => $email]
         );
 
         $resultStudent = null;
         foreach ($queryResult as $studentResult) {
-            $resultStudent = self::queryResultToStudent($studentResult, false);
+            $resultStudent = self::queryResultToStudent($studentResult, true);
             break;
         }
 
