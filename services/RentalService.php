@@ -10,15 +10,34 @@ class RentalService
 {
     static function addUserRentsGame(Rental $rental): bool
     {
-        return RentalRepository::addNewRental($rental);
+        // Check if student has an existing rental record
+        // Check if game is available
+        // Check for reservations
+        // Add rental
     }
 
-    static function getAllRentals(): array
+    static function getAllConfirmedRentals(): array
     {
-        return RentalRepository::getAllRentals();
+        // Get all rentals (confirmed)
     }
 
-    // Add More Service Actions
+    static function getAllUnconfirmedRentals(): array
+    {
+        // Get all rentals (unconfirmed)
+    }
+
+    static function adminConfirmRental(int $rentalId): bool
+    {
+        // Update Rental, make it confirmed
+        // Remove unconfirmed rentals on the board game specified
+        // Reduce Board Game Qty Available
+    }
+
+    static function adminRemoveRental(): bool
+    {
+        // When returned, remove rental entry
+        // Add Board Game Qty
+    }
 }
 
 

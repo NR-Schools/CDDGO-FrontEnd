@@ -44,7 +44,7 @@ class AuthService
                 return [false, "Student Does Not Exist!!"];
 
             // Compare Passwords
-            if (password_verify($password, $studentCheck->Password))
+            if (!password_verify($password, $studentCheck->Password))
                 return [false, "Incorrect Password for User !!"];
         }
 
