@@ -8,14 +8,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 
 class InquiryService
 {
-    static function createInquiry(Inquiry $inquiry): bool
+
+    // For students
+    static function createStudentInquiry(Inquiry $inquiry): bool
     {
         return InquiryRepository::createInquiry($inquiry);
     }
 
-    static function getAllInquiries(): array
+    static function getInquiriesByStudent(int $studentId): array
     {
-        return InquiryRepository::getAllInquiries();
+        //
     }
 
     static function userReplyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry): bool
@@ -23,6 +25,12 @@ class InquiryService
         return InquiryRepository::replyToInquiry($inquiryReplyingTo, $newInquiry, false);
     }
 
+    // For admin
+    static function getAllInquiries(): array
+    {
+        //
+    }
+    
     static function adminReplyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry): bool
     {
         return InquiryRepository::replyToInquiry($inquiryReplyingTo, $newInquiry, true);
