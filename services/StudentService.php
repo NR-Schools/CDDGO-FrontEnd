@@ -3,10 +3,18 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/MemberModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/MemberRepository.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 
 
-class MemberService
+class StudentService
 {
+    // This is for students
+    static function getAllStudents(): array
+    {
+        return StudentRepository::getAllStudents();
+    }
+
+    // This is for members
     static function addMembers(int $studentId, Member $member): bool
     {
         return MemberRepository::createMember($studentId, $member);

@@ -35,7 +35,7 @@ class StudentRepository
 
     static function getStudentByEmail(string $email): Student|null
     {
-        $students = Database::SQLwithFetch(
+        $resultQuery = Database::SQLwithFetch(
             Database::getPDO(),
             "
         SELECT * FROM STUDENTS WHERE Email = :email
@@ -44,7 +44,7 @@ class StudentRepository
         );
 
         $resultStudent = null;
-        foreach ($students as $student) {
+        foreach ($resultQuery as $student) {
             $resultStudent = new Student();
             $resultStudent->StudID = $student['StudID'];
             $resultStudent->StudNo = $student['StudNo'];
@@ -58,6 +58,34 @@ class StudentRepository
         }
 
         return $resultStudent;
+    }
+
+    static function getAllStudents(): array
+    {
+        $resultQuery = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM STUDENTS
+            ",
+            []
+        );
+
+        $studentList = [];
+        foreach ($resultQuery as $student) {
+            $resultStudent = new Student();
+            $resultStudent->StudID = $student['StudID'];
+            $resultStudent->StudNo = $student['StudNo'];
+            $resultStudent->FirstName = $student['FirstName'];
+            $resultStudent->LastName = $student['LastName'];
+            $resultStudent->Program = $student['Program'];
+            $resultStudent->Email = $student['Email'];
+            $resultStudent->Password = $student['Password'];
+            $resultStudent->isVerified = $student['isVerified'];
+
+            $studentList[] = $resultStudent;
+        }
+
+        return $studentList;
     }
 }
 
