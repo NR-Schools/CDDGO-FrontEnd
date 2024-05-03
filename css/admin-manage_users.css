@@ -50,9 +50,10 @@
                 background-color: #9e0671; 
                 color: #ffffff; 
                 border-color: #9e0671;
-                width: 7em;
+                width: 6em;
                 border-width: 2px;
                 transition:background-color 0.5s, border-style 0.5s,color 0.5s;
+                margin-left: 10px;
             }
 
             .btn:hover {

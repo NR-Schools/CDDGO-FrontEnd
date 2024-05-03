@@ -87,6 +87,33 @@ class StudentRepository
 
         return $studentList;
     }
+
+    static function getStudentById(int $studId): Student
+    {
+        $resultQuery = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM STUDENTS WHERE StudID = :studId
+            ",
+            [":studId" => $studId]
+        );
+
+        $resultStudent = null;
+        foreach ($resultQuery as $student) {
+            $resultStudent = new Student();
+            $resultStudent->StudID = $student['StudID'];
+            $resultStudent->StudNo = $student['StudNo'];
+            $resultStudent->FirstName = $student['FirstName'];
+            $resultStudent->LastName = $student['LastName'];
+            $resultStudent->Program = $student['Program'];
+            $resultStudent->Email = $student['Email'];
+            $resultStudent->Password = $student['Password'];
+            $resultStudent->isVerified = $student['isVerified'];
+            break;
+        }
+
+        return $resultStudent;
+    }
 }
 
 ?>
