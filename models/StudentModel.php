@@ -1,5 +1,7 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/MemberModel.php';
+
 class Student
 {
     public int $StudID;
@@ -10,6 +12,7 @@ class Student
     public string $Email;
     public string $Password;
     public bool $isVerified;
+    public Member|null $member;
 
     function __construct() {}
 

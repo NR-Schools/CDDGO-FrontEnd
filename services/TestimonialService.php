@@ -10,15 +10,13 @@ class TestimonialService
 {
     static function addMemberTestimonial(Testimonial $testimonial): bool
     {
-        return TestimonialRepository::addNewTestimonial($testimonial);
+        // Check if student is member
+        // Add testimonial
     }
 
     static function getAllTestimonials(): array
     {
-        return TestimonialRepository::getAllTestimonials();
     }
-
-    // Add More Service Actions
 }
 
 

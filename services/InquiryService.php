@@ -15,7 +15,7 @@ class InquiryService
         return InquiryRepository::createInquiry($inquiry);
     }
 
-    static function getInquiriesByStudent(int $studentId): array
+    static function getInquiriesByStudent(string $email): array
     {
         //
     }

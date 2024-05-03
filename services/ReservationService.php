@@ -10,18 +10,28 @@ class ReservationService
 {
     static function addUserReservation(Reservation $reservation): bool
     {
-        // Add checks on reservation
-        return ReservationRepository::addNewReservation($reservation);
+        // Check if user already has reservation for that game
+        // Check if user already has reservations for that date
+        // Add Reservation by User
     }
 
-    static function getAllReservations(): array
+    static function getAllConfirmedReservations(): array
     {
-        return ReservationRepository::getAllReservations();
     }
 
-    static function deleteReservation(int $reservationId)
+    static function getAllUnconfirmedReservations(): array
     {
-        return ReservationRepository::deleteReservation($reservationId);
+    }
+
+    static function adminConfirmReservation(Reservation $reservation): bool
+    {
+        // Update Reservation, make it confirmed
+        // Remove unconfirmed reservations on the board game specified
+    }
+
+    static function adminRemoveReservation(int $reservationId): bool
+    {
+        // when returned, remove reservation entry
     }
 }
 
