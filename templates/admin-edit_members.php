@@ -15,13 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Users</title>
     <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="../css/admin-edit_members.css">
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Include Header -->
@@ -40,6 +34,36 @@
                 </script>";
             }
         }
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST['edit'])) {
+
+                $eventID = $_POST['eventID'];
+                $event = EventService::getEventById($eventID);
+ 
+                $newImage = file_get_contents($_FILES['newImage']['tmp_name']);
+                $newImageEncoded = base64_encode($newImage);
+
+                $dateposted = date('Y-m-d H:i:s');
+
+                $event->EventName = $_POST['newName'];
+                $event->EventLocation = $_POST['newLocation'];
+                $event->EventDate = $_POST['newDate'];
+                $event->EventImage = $newImageEncoded;
+                $event->EventDescription = $_POST['newDescription'];
+                $event->DatePosted = $dateposted;
+
+                EventService::updateEvent($event);
+
+                echo "<script> alert('Event Updated');
+                document.location.href = 'admin-manage_events.php';
+                </script>";
+            }
+            elseif(isset($_POST['cancel'])) {
+
+                echo "<script> document.location.href = 'admin-manage_users.php'; </script>";
+            }
+        }
         
     ?>
 
@@ -52,7 +76,7 @@
             
             <p class="text-white">EDIT USER</p>
 
-            <form class="row g-3">
+            <form class="row g-3" action="admin-edit_members.php" method="POST" enctype="multipart/form-data">
                 <!-- Personal Details -->
                 <p class="text-white">Personal Details</p>
                 <hr class="text-white">
@@ -119,8 +143,9 @@
                     <label class="form-check-label text-white" for="nonmemberRadio">Non-member</label>
                 </div>
                 <div class="button-container text-center">
-                    <button type="button" class="btn">APPLY CHANGES</button>
-                    <button type="button" class="btn">CANCEL</button>
+                    <input type="hidden" name="studID" id="studID" value="<?php echo $studId; ?>"> 
+                    <button type="submit" class="btn" name="edit" id="edit">APPLY CHANGES</button>
+                    <button type="submit" class="btn" name="cancel" id="cancel">CANCEL</button>
                 </div>
             </form>
         </div>
