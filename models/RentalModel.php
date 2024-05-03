@@ -10,6 +10,7 @@ class Rental
     public BoardGame $boardGame;
     public string $BorrowDate;
     public int $Rent;
+    public bool $RentConfirm;
 
     function __construct() {}
 }

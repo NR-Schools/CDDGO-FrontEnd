@@ -8,7 +8,7 @@ class Reservation {
     public Student $student;
     public BoardGame $boardGame;
     public string $ReservedDate;
-    public bool $isPaid;
+    public bool $isPaid; // will be also used as "confirmation"
     public int $ReservationFee;
 
     function __construct() {}

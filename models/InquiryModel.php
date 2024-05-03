@@ -2,17 +2,28 @@
 
 require_once("models/StudentModel.php");
 
+
 class Inquiry {
     public int $InquiryID;
-    public Student $Inquirer;
-    public int $RepliedInquiryID;
+    public Student $student;
     public string $InquiryTitle;
-    public string $InquiryDescription;
-    public string $InquiryTime;
-    public bool $isInquirySeen;
-    public bool $isFromAdmin;
+    public string $InquiryDesc;
+    public string $InquiryCreatedAt;
+    public array $InquiryResponses;
+
 
     function __construct() {}
 }
+
+
+class InquiryResponse {
+    public int $InquiryResponseID;
+    public int $RefInquiryID;
+    public string $ResponseText;
+    public string $ResponseCreatedAt;
+    public string $ResponseSource; // USER OR ADMIN
+    function __construct() {}
+}
+
 
 ?>
