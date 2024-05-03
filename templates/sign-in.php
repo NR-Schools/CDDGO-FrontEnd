@@ -59,7 +59,7 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
                     Not registered?
                 </div>
                 <div>
-                    <input type="submit" class="sign-up-button" value="Delete">
+                    <a  class="sign-up-button" href="../templates/sign-up.php">Sign-Up</a>    
                 </div>
             </form>
         </div>
@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         EOD;
         return;
     }
+
 
     // redirect to correct home page based on role
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
