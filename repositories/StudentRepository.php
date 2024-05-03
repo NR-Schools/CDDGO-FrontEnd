@@ -28,7 +28,7 @@ class StudentRepository
                 ":lastName" => $student->LastName,
                 ":program" => $student->Program,
                 ":email" => $student->Email,
-                ":password" => $student->Program
+                ":password" => $student->Password
             ]
         );
     }
