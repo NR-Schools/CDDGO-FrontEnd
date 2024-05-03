@@ -21,11 +21,6 @@ class BoardGameService
         return BoardGameRepository::addNewBoardGame($boardGame);
     }
 
-    static function getBoardGameRating(int $boardGameId): float
-    {
-        // summarize user rating from testimonials
-    }
-
     static function getAllBoardGames(): array
     {
         return BoardGameRepository::getAllBoardGames();

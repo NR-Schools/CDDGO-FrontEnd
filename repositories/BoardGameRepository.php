@@ -7,6 +7,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 
 class BoardGameRepository
 {
+
+    private static function queryResultToBoardGame(array $queryResult, bool $includeRating): BoardGame
+    {
+        $boardGame = new BoardGame();
+        $boardGame->GameID = $queryResult['GameID'];
+        $boardGame->GameName = $queryResult['GameName'];
+        $boardGame->GameImage = $queryResult['GameImage'];
+        $boardGame->GameDescription = $queryResult['GameDescription'];
+        $boardGame->QuantityAvailable = $queryResult['QuantityAvailable'];
+        $boardGame->GameCategory = $queryResult['GameCategory'];
+        $boardGame->GameStatus = $queryResult['GameStatus'];
+        if ($includeRating) {
+            $boardGame->GameRating = $queryResult['AverageRating'];
+        }
+        return $boardGame;
+    }
+
     static function getAllBoardGames(): array
     {
         $queryResult = Database::SQLwithFetch(
@@ -18,18 +35,8 @@ class BoardGameRepository
         );
 
         $boardGamesList = array();
-        foreach ($queryResult as $boardGame) {
-            $resultboardGame = new BoardGame();
-
-            $resultboardGame->GameID = $boardGame['GameID'];
-            $resultboardGame->GameName = $boardGame['GameName'];
-            $resultboardGame->GameImage = $boardGame['GameImage'];
-            $resultboardGame->GameDescription = $boardGame['GameDescription'];
-            $resultboardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
-            $resultboardGame->GameCategory = $boardGame['GameCategory'];
-            $resultboardGame->GameStatus = $boardGame['GameStatus'];
-
-            $boardGamesList[] = $resultboardGame;
+        foreach ($queryResult as $boardGameQR) {
+            $boardGamesList[] = self::queryResultToBoardGame($boardGameQR, false);
         }
 
         return $boardGamesList;
@@ -37,7 +44,7 @@ class BoardGameRepository
 
     static function getCurrentlyRentedBoardGame(string $email): BoardGame|null
     {
-        $result = Database::SQLwithFetch(
+        $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
             SELECT * FROM STUDENTS
@@ -49,15 +56,8 @@ class BoardGameRepository
         );
 
         $currentlyRentedBoardGame = null;
-        foreach ($result as $boardGame) {
-            $currentlyRentedBoardGame = new BoardGame();
-            $currentlyRentedBoardGame->GameID = $boardGame['GameID'];
-            $currentlyRentedBoardGame->GameName = $boardGame['GameName'];
-            $currentlyRentedBoardGame->GameImage = $boardGame['GameImage'];
-            $currentlyRentedBoardGame->GameDescription = $boardGame['GameDescription'];
-            $currentlyRentedBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
-            $currentlyRentedBoardGame->GameCategory = $boardGame['GameCategory'];
-            $currentlyRentedBoardGame->GameStatus = $boardGame['GameStatus'];
+        foreach ($queryResult as $boardGameQR) {
+            $currentlyRentedBoardGame = self::queryResultToBoardGame($boardGameQR, false);
             break;
         }
 
@@ -69,21 +69,17 @@ class BoardGameRepository
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT * FROM BOARD_GAMES WHERE GameID = :gameId
+            SELECT bg.*, AVG(t.Rating) AS AverageRating
+            FROM BOARD_GAMES bg
+            INNER JOIN TESTIMONIALS t ON bg.GameID = t.GameID
+            WHERE bg.GameID = :gameId;
             ",
             [":gameId" => $boardGameId]
         );
 
         $resultBoardGame = null;
-        foreach ($queryResult as $boardGame) {
-            $resultBoardGame = new BoardGame();
-            $resultBoardGame->GameID = $boardGame['GameID'];
-            $resultBoardGame->GameName = $boardGame['GameName'];
-            $resultBoardGame->GameImage = $boardGame['GameImage'];
-            $resultBoardGame->GameDescription = $boardGame['GameDescription'];
-            $resultBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
-            $resultBoardGame->GameCategory = $boardGame['GameCategory'];
-            $resultBoardGame->GameStatus = $boardGame['GameStatus'];
+        foreach ($queryResult as $boardGameQR) {
+            $resultBoardGame = self::queryResultToBoardGame($boardGameQR, true);
             break;
         }
 
@@ -101,15 +97,8 @@ class BoardGameRepository
         );
 
         $resultBoardGame = null;
-        foreach ($queryResult as $boardGame) {
-            $resultBoardGame = new BoardGame();
-            $resultBoardGame->GameID = $boardGame['GameID'];
-            $resultBoardGame->GameName = $boardGame['GameName'];
-            $resultBoardGame->GameImage = $boardGame['GameImage'];
-            $resultBoardGame->GameDescription = $boardGame['GameDescription'];
-            $resultBoardGame->QuantityAvailable = $boardGame['QuantityAvailable'];
-            $resultBoardGame->GameCategory = $boardGame['GameCategory'];
-            $resultBoardGame->GameStatus = $boardGame['GameStatus'];
+        foreach ($queryResult as $boardGameQR) {
+            $resultBoardGame = self::queryResultToBoardGame($boardGameQR, false);
             break;
         }
 
