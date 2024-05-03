@@ -7,17 +7,17 @@ Database::BasicSQL(
     "
     CREATE TABLE IF NOT EXISTS EVENTS (
         EventID INT PRIMARY KEY AUTO_INCREMENT,
-        EventImage LONGBLOB,
-        EventName VARCHAR(255),
-        EventDescription VARCHAR(255),
-        EventDate DATETIME,
-        EventLocation VARCHAR(255),
-        DatePosted DATETIME
+        EventImage LONGBLOB NOT NULL,
+        EventName VARCHAR(255) NOT NULL,
+        EventDescription VARCHAR(255) NOT NULL,
+        EventDate DATETIME NOT NULL,
+        EventLocation VARCHAR(255) NOT NULL,
+        DatePosted DATETIME NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS STUDENTS (
         StudID INT PRIMARY KEY AUTO_INCREMENT,
-        StudNo VARCHAR(20),
+        StudNo VARCHAR(12),
         FirstName VARCHAR(50),
         LastName VARCHAR(50),
         Program VARCHAR(20),
@@ -37,22 +37,29 @@ Database::BasicSQL(
         GameID INT PRIMARY KEY AUTO_INCREMENT,
         GameName VARCHAR(50),
         GameImage LONGBLOB,
-        GameDescription VARCHAR(255),
+        GameDescription VARCHAR(500),
         QuantityAvailable INT,
         GameCategory VARCHAR(255),
         GameStatus VARCHAR(50)
     );
 
     CREATE TABLE IF NOT EXISTS INQUIRIES(
-        InquiryID INT NOT NULL AUTO_INCREMENT,
+        InquiryID INT PRIMARY KEY AUTO_INCREMENT,
         InquiryStudID INT NOT NULL,
         InquiryTitle VARCHAR(255) NOT NULL,
         InquiryDesc TEXT NOT NULL,
-        InquiryTime DATETIME NOT NULL,
-        isInquirySeen BOOLEAN,
-        InquiryReply TEXT NULL,
+        InquiryCreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (InquiryID),
         FOREIGN KEY (InquiryStudID) REFERENCES STUDENTS(StudID)
+    );
+    
+    CREATE TABLE IF NOT EXISTS INQUIRY_RESPONSES (
+		InquiryResponseID INT PRIMARY KEY AUTO_INCREMENT,
+        RefInquiryID INT NOT NULL,
+        ResponseText VARCHAR(500) NOT NULL,
+        ResponseCreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        ResponseSource ENUM (\"STUDENT\", \"ADMIN\") NOT NULL,
+        FOREIGN KEY (RefInquiryID) REFERENCES INQUIRIES(InquiryID)
     );
     
     CREATE TABLE IF NOT EXISTS TESTIMONIALS (
@@ -70,7 +77,7 @@ Database::BasicSQL(
         ReservedStudent INT,
         ReservedGame INT,
         ReservedDate DATE,
-        isPaid BOOLEAN,
+        isPaid BOOLEAN,       -- This means that the reservation is final
         ReservationFee INT,
         FOREIGN KEY (ReservedStudent) REFERENCES STUDENTS(StudID),
         FOREIGN KEY (ReservedGame) REFERENCES BOARD_GAMES(GameID)
@@ -80,11 +87,13 @@ Database::BasicSQL(
         RentalID INT PRIMARY KEY AUTO_INCREMENT,
         StudID INT,
         GameID INT,
-        BorrowDate DATE,
+        BorrowDate DATE, -- as ref for reservation
         Rent INT,
+        RentConfirm BOOLEAN,
         FOREIGN KEY (StudID) REFERENCES STUDENTS(StudID),
         FOREIGN KEY (GameID) REFERENCES BOARD_GAMES(GameID)
     );
+    
     "
 );
 
