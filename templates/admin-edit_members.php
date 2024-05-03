@@ -1,4 +1,5 @@
 <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php";
     require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
     if (!AuthGuard::guard_route(Role::ADMIN)) {
@@ -28,13 +29,28 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
     ?>
 
+    <!-- Edit User -->
+    <?php
+
+        if(isset($_GET['studId'])) {
+            $studId = $_GET['studId'];
+            $student = StudentService::getStudentById($studId);
+            if($student == null){
+                echo "<script> alert('Invalid Student');
+                </script>";
+            }
+        }
+        
+    ?>
+
+
+
     <!-- Start Body -->
     <div class="main-body">
 
-        <!-- Loop This Shit -->
         <div class="main-container">
             
-            <p class="text-white">EDIT USERS</p>
+            <p class="text-white">EDIT USER</p>
 
             <form class="row g-3">
                 <!-- Personal Details -->
@@ -44,21 +60,21 @@
                     <label class="form-label text-white" for="editFirstname">First Name</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editFirstname">
+                        <input type="text" class="form-control" id="editFirstname" value="<?php echo $student->FirstName; ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label text-white" for="editLastname">Last Name</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editLastname">
+                        <input type="text" class="form-control" id="editLastname" value="<?php echo $student->LastName; ?>">
                     </div>
                 </div>
                 <div class="col-6">
                     <label class="form-label text-white" for="editEmail">Email</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="email" class="form-control" id="editEmail">
+                        <input type="email" class="form-control" id="editEmail" value="<?php echo $student->Email; ?>">
                     </div>
                 </div>
 
@@ -67,13 +83,13 @@
                 <hr class="text-white">
                 <div class="col-md-6">
                     <label class="form-label text-white" for="studentNumber">Student Number</label>
-                    <input type="text" class="form-control" id="studentNumber">
+                    <input type="text" class="form-control" id="studentNumber" value="<?php echo $student->StudNo; ?>" readonly>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label text-white" for="editProgram">Program</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editProgram">
+                        <input type="text" class="form-control" id="editProgram" value="<?php echo $student->Program; ?>">
                     </div>
                 </div>
 
@@ -91,14 +107,14 @@
                     <label class="form-label text-white" for="editPassword">Password</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="password" class="form-control" id="editPassword">
+                        <input type="password" class="form-control" id="editPassword" value="<?php echo $student->Password; ?>">
                     </div>
                 </div>
-                <div class="form-check col-md-2">
+                <div class="form-check col-md-3">
                     <input class="form-check-input" type="radio" name="radioButtons" id="memberRadio">
                     <label class="form-check-label text-white" for="memberRadio">Member</label>
                 </div>
-                <div class="form-check col-md-2">
+                <div class="form-check col-md-3">
                     <input class="form-check-input" type="radio" name="radioButtons" id="nonmemberRadio" checked>
                     <label class="form-check-label text-white" for="nonmemberRadio">Non-member</label>
                 </div>

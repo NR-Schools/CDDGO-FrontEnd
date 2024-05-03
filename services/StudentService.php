@@ -14,6 +14,11 @@ class StudentService
         return StudentRepository::getAllStudents();
     }
 
+    static function getStudentById(int $studId)
+    {
+        return StudentRepository::getStudentById($studId);
+    }
+
     // This is for members
     static function addMembers(int $studentId, Member $member): bool
     {

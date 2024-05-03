@@ -43,14 +43,14 @@
                 assert($student instanceof Student);
 
                 $membershipStatus = $student->isVerified ? "member" : "non-member";
-                $editLink = "/templates/admin-edit_members.php?studentId=" . $student->StudID;
+                $editLink = "/templates/admin-edit_members.php?studId=" . $student->StudID;
 
                 echo <<<EOD
 
                 <div class="borrow-record-entry">
                     <div>
                         <span>{$student->StudNo}</span>
-                        <span>{$student->FirstName} {$student->LastName}</span>
+                        <span>{$student->getFullName()}</span>
                         <span>{$student->Email}</span>
                         <span>{$student->Program}</span>
                         <span>{$membershipStatus}</span>
