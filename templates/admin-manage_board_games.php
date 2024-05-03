@@ -14,9 +14,45 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Board Games</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+zEK5owl9aBMsoeixa0lsFbGCIjXoRSJo3I+NMm" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_board_games.css">
+    <style>
+        .title-container 
+        {
+            overflow: hidden;
+        }
+
+        .title
+        {
+            display: inline-block; /* Display elements side by side */
+            vertical-align: top; /* Align them to the top */
+            margin-right: 800px;
+        }
+
+        .add-button
+        {
+            display: inline-block; /* Display elements side by side */
+            vertical-align: top; /* Align them to the top */
+            float: right;
+        }
+
+        .add-btn
+        {
+            display: inline-block;
+            background-color: #9e0671; 
+            color: white;
+            border-radius: 8px;
+            border: solid #9e0671;
+            padding: 10px;
+            transition:background-color 0.5s, border-style 0.5s, color 0.5s;
+        }
+
+        .add-btn:hover
+        {
+            background-color: #ffffff;
+            color: #9e0671;
+        }
+
+    </style>
 </head>
 <body>
     <!-- Include Header and Footer-->
@@ -26,6 +62,17 @@
     ?>
     
     <!-- Start Board Game Cards -->
+    <div class="title-container">
+        <div class="title">
+            <h3>ALL BOARD GAMES</h3>
+        </div>
+        <div class="add-button">
+        <a href="admin-add_board_game.php">
+        <button class="add-btn">Add Board Game </button>
+        </a>
+        </div>
+    </div>
+
     <div class="game-card-container">
 
     <?php
