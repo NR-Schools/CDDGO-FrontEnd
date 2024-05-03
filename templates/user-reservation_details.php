@@ -1,5 +1,27 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+
+    //get gameID
+        if(isset($_GET["gameId"]))
+        {
+            $gameID = $_GET["gameId"];
+    
+            $game = BoardGameService::getBoardGameById($gameID);
+            if ($game == null)
+            {
+                echo "No game.";
+            }
+            
+        }
+    
+        //get all students
+        [$email, $role] = AuthService::getCurrentlyLoggedIn();
+        echo $email;
+
+        //get all board games
+        $games = BoardGameService::getAllBoardGames();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,31 +41,56 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
     ?>
-    <div class="main-container">
-        <div class="reservation-container">
-            <div class="title-styling">
-                RESERVATION DETAILS
-            </div>
-            <div class="divider"></div>
-            <div>
-                <img class="game-image" src="../assets/img-placeholder.png" alt="">
-            </div>
-            <div class="name-styling">BOARD GAME NAME</div>
-            <div class="price-styling">TOTAL PRICE</div>
-            <div class="date-container">
-                <div class="label-styling">
-                    Select Date
+    <form action="user-reservation_details.php" method="POST">
+        <div class="main-container">
+            <div class="reservation-container">
+                <div class="title-styling">
+                    RESERVATION DETAILS
                 </div>
-                <div>
-                    <input class="date-input" type="date">
+                <div class="divider"></div>
+
+                <?php 
+                    echo<<<EOD
+                    <div>
+                        <img class="game-image" src="../assets/img-placeholder.png" alt="">
+                    </div>
+                    <div class="name-styling" name="gameName" id="gameName">{$game->GameName}</div>
+                    <div class="price-styling" name="reservePrice" id="reservePrice">TOTAL PRICE</div>
+                    EOD;
+                ?>
+                <div class="date-container">
+                    <div class="label-styling" name="date">
+                        Select Date
+                    </div>
+                    <div>
+                        <input class="date-input" type="date">
+                    </div>
                 </div>
-            </div>
-            <div class="divider"></div>
-            <div class="button-container">
-                <button class="reserve-game-button">RESERVE GAME</button>
-                <button class="cancel-button">CANCEL</button>
+                <div class="divider"></div>
+                <div class="button-container">
+                    <button class="reserve-game-button" name="reserve">RESERVE GAME</button>
+                    <button class="cancel-button" name="cancel">CANCEL</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+
+    <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            if(isset($_POST['reserve'])){
+                // Check if user already has reservation for that game
+                
+                // Check if user already has reservations for that date
+                // Add Reservation by User
+
+            }
+
+            if(isset($_POST['cancel']))
+            {
+                header("Location: /templates/user-board_game_details.php?gameId=' . $game->GameID . '");
+            }
+        }
+    ?>
 </body>
 </html>

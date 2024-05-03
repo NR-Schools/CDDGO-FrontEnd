@@ -3,6 +3,29 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
 ?>
 
+<?php
+
+// When trying to sign up, load the html first before checking sign up
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    $student = new Student();
+    $student->FirstName = $_POST['fname'];
+    $student->LastName = $_POST['lname'];
+    $student->Email = $_POST['email'];
+    $student->StudNo = $_POST['studentNumber'];
+    $student->Program = $_POST['program'];
+    $student->Password = $_POST['password'];
+
+
+    // Save Student
+    AuthService::signup($student);
+
+    // Redirect to sign in page
+    header("Location: ../templates/sign-in.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,15 +54,11 @@
                 <div class="content-container">
                     <div>
                         <label class="label-styling" for="">First Name</label>
-                        <input class="input-styling" type="text" name="fname" id="fname">
+                        <input required class="input-styling" type="text" name="fname" id="fname">
                     </div>
                     <div>
                         <label class="label-styling" for="">Last Name</label>
-                        <input class="input-styling" type="text" name="lname" id="lname">
-                    </div>
-                    <div>
-                        <label class="label-styling" for="">Email</label>
-                        <input class="input-styling" type="text" name="email" id="email">
+                        <input required class="input-styling" type="text" name="lname" id="lname">
                     </div>
                 </div>
             </div>
@@ -49,11 +68,11 @@
                 <div class="content-container">
                     <div>
                         <label class="label-styling" for="">Student Number</label>
-                        <input class="input-styling" type="text" name="studentNumber" id="studentNumber">
+                        <input required class="input-styling" type="text" name="studentNumber" id="studentNumber">
                     </div>
                     <div>
                         <label class="label-styling"f or="">Progam</label>
-                        <input class="input-styling" type="text" name="program" id="program">
+                        <input required class="input-styling" type="text" name="program" id="program">
                     </div>
                 </div>
             </div>
@@ -62,12 +81,12 @@
                 <div class="divider"></div>
                 <div class="content-container">
                     <div>
-                        <label class="label-styling" for="">Username</label>
-                        <input class="input-styling" type="text" name="username" id="username">
+                        <label class="label-styling" for="">Email</label>
+                        <input required class="input-styling" type="text" name="email" id="email">
                     </div>
                     <div>
                         <label class="label-styling" for="">Password</label>
-                        <input class="input-styling" type="password" name="password" id="password">
+                        <input required class="input-styling" type="password" name="password" id="password">
                     </div>
                 </div>
             </div>
@@ -79,27 +98,3 @@
 </body>
 </html>
 
-
-<?php
-
-// When trying to sign up, load the html first before checking sign up
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
-{
-    $student = new Student();
-    $student->FirstName = $_POST['fname'];
-    $student->LastName = $_POST['lname'];
-    $student->Email = $_POST['email'];
-    $student->StudNo = $_POST['studentNumber'];
-    $student->Program = $_POST['program'];
-    $student->Password = $_POST['password'];
-
-
-    // Save Student
-    AuthService::signup($student);
-
-    // Redirect to sign in page
-    header("Location: /templates/sign-in.php");
-}
-
-?>
