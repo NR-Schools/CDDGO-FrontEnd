@@ -8,6 +8,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 
 class InquiryService
 {
+    static function getInquiryResponses(int $inquiryId): array
+    {
+        return InquiryRepository::getAllInquiryResponses($inquiryId);
+    }
+
 
     // For students
     static function createStudentInquiry(string $email, Inquiry $inquiry): bool

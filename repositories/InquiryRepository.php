@@ -84,16 +84,19 @@ class InquiryRepository
         return $inquiryList;
     }
 
-    static function getAllInquiryResponses(): array
+    static function getAllInquiryResponses(int $inquiryId): array
     {
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
             SELECT res.* FROM INQUIRIES inq
             INNER JOIN INQUIRY_RESPONSES res
-            ON inq.InquiryID = res.RefInquiryID;
+            ON inq.InquiryID = res.RefInquiryID
+            WHERE res.RefInquiryID = :inquiryId;
             ",
-            []
+            [
+                ":inquiryId" => $inquiryId
+            ]
         );
 
         $inquiryResponseList = [];
