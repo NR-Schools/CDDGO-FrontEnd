@@ -13,9 +13,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manage Registrations</title>
     <!-- CSS -->
-    <link type="text/css" rel="stylesheet" href="../css/admin-manage_users.css">
+    <link type="text/css" rel="stylesheet" href="../css/admin-manage_registrations.css">
 </head>
 <body>
     <!-- Include Header -->
@@ -25,7 +25,7 @@
 
     <!-- Start Body -->
     <div class="main-body">
-        <p>USER MANAGEMENT</p>
+        <p>MANAGE REGISTRATIONS</p>
 
         <hr />
 
@@ -36,13 +36,8 @@
             foreach ($students as $student) {
                 assert($student instanceof Student);
 
-                // Check if the student is verified
-                if ($student->isVerified) {
-                    // Determine member status
-                    $memberStatus = ($student->member !== null) ? "member" : "non-member";
-
-                    $editLink = "/templates/admin-edit_members.php?studId=" . $student->StudID;
-
+                // Check if the student is not verified
+                if (!$student->isVerified) {
                     echo <<<EOD
 
                     <div class="borrow-record-entry">
@@ -51,11 +46,10 @@
                             <span>{$student->getFullName()}</span>
                             <span>{$student->Email}</span>
                             <span>{$student->Program}</span>
-                            <span>{$memberStatus}</span>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-danger" onclick="window.location.href='{$editLink}'">Edit</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger">Confirm</button>
+                            <button type="button" class="btn btn-danger">Reject</button>
                         </div>
                     </div>
                     EOD;
@@ -63,5 +57,6 @@
             }
         ?>
     </div>
+    
 </body>
 </html>
