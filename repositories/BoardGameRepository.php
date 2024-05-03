@@ -8,7 +8,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 class BoardGameRepository
 {
 
-    private static function queryResultToBoardGame(array $queryResult, bool $includeRating): BoardGame
+    private static function queryResultToBoardGame($queryResult, bool $includeRating): BoardGame
     {
         $boardGame = new BoardGame();
         $boardGame->GameID = $queryResult['GameID'];
@@ -69,14 +69,14 @@ class BoardGameRepository
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT bg.*, AVG(t.Rating) AS AverageRating
-            FROM BOARD_GAMES bg
-            INNER JOIN TESTIMONIALS t ON bg.GameID = t.GameID
-            WHERE bg.GameID = :gameId;
+            SELECT bg.*, COALESCE(AVG(t.Rating), 0) AS AverageRating FROM BOARD_GAMES bg 
+            LEFT JOIN TESTIMONIALS t ON bg.GameID = t.GameID 
+            WHERE bg.GameID = :gameId 
+            GROUP BY bg.GameName;
             ",
             [":gameId" => $boardGameId]
         );
-
+        
         $resultBoardGame = null;
         foreach ($queryResult as $boardGameQR) {
             $resultBoardGame = self::queryResultToBoardGame($boardGameQR, true);

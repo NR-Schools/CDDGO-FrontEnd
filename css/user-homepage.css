@@ -10,7 +10,8 @@
 
 .game-content-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 37px;
     width: 1366px;
     height: 769px;
 }
@@ -30,12 +31,6 @@
     color: #9e0671;
 }
 
-.game-content-container{
-    display: flex;
-    flex-direction: row;
-    gap: 37px;
-    width: 100%;
-}
 .img-styling{
     height: 479px;
     width: 644px;
