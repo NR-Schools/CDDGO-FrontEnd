@@ -19,6 +19,11 @@ class StudentService
         return StudentRepository::getStudentById($studId);
     }
 
+    static function getStudentByEmail(string $email): Student
+    {
+        return StudentRepository::getStudentByEmail($email);
+    }
+
     static function updateStudent(Student $student): bool
     {
         // For password checking (compare student on db)
