@@ -1,4 +1,5 @@
 <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php";
     require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
     if (!AuthGuard::guard_route(Role::ADMIN)) {
@@ -31,34 +32,38 @@
     <!-- Start Body -->
     <div class="main-body">
         <p>USER MANAGEMENT</p>
+
         <hr />
 
-        <!-- Loop This Shit -->
-        <div class="borrow-record-entry">
-            <div>
-                <span>STUDENT NUMBER</span>
-                <span>USERNAME</span>
-                <span>PASSWORD</span>
-                <span>MEMBERSHIP</span>
-            </div>
-            <div>
-                <button type="button" class="btn btn-danger">Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </div>
-        </div>
+        <?php
+            // Get all students
+            $students = StudentService::getAllStudents();
 
-        <div class="borrow-record-entry">
-            <div>
-                <span>STUDENT NUMBER</span>
-                <span>USERNAME</span>
-                <span>PASSWORD</span>
-                <span>MEMBERSHIP</span>
-            </div>
-            <div>
-                <button type="button" class="btn">Edit</button>
-                <button type="button" class="btn">Delete</button>
-            </div>
-        </div>
+            foreach ($students as $student) {
+                assert($student instanceof Student);
+
+                $membershipStatus = $student->isVerified ? "member" : "non-member";
+                $editLink = "/templates/admin-edit_members.php?studentId=" . $student->StudID;
+
+                echo <<<EOD
+
+                <div class="borrow-record-entry">
+                    <div>
+                        <span>{$student->StudNo}</span>
+                        <span>{$student->FirstName} {$student->LastName}</span>
+                        <span>{$student->Email}</span>
+                        <span>{$student->Program}</span>
+                        <span>{$membershipStatus}</span>
+                        
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-danger" onclick="window.location.href='{$editLink}'">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                EOD;
+            }
+        ?>
     </div>
 </body>
 </html>
