@@ -9,8 +9,6 @@ class Inquiry {
     public string $InquiryTitle;
     public string $InquiryDesc;
     public string $InquiryCreatedAt;
-    public array $InquiryResponses;
-
 
     function __construct() {}
 }
