@@ -1,29 +1,46 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
 
-    //get gameID
-        if(isset($_GET["gameId"]))
+    if(isset($_GET["gameId"]))
+    {
+        $gameID = $_GET["gameId"];
+
+        $game = BoardGameService::getBoardGameById($gameID);
+        if ($game == null)
         {
-            $gameID = $_GET["gameId"];
-    
-            $game = BoardGameService::getBoardGameById($gameID);
-            if ($game == null)
-            {
-                echo "No game.";
-            }
-            
+            echo "No game.";
         }
+        
+    }
+
+    //get all students
+    [$email, $role] = AuthService::getCurrentlyLoggedIn();
+    echo $email;
+
+    //get all board games
+    $games = BoardGameService::getAllBoardGames();
+
     
-        //get all students
-        [$email, $role] = AuthService::getCurrentlyLoggedIn();
-        echo $email;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        if(isset($_POST['reserve'])){
+            // Check if user already has reservation for that game
+            
+            // Check if user already has reservations for that date
+            // Add Reservation by User
 
-        //get all board games
-        $games = BoardGameService::getAllBoardGames();
+        }
 
+        if(isset($_POST['cancel']))
+        {
+            $id = $_POST["gameID"];
+            header("Location:../templates/user-board_game_details.php?gameId=". $id);
+        }
+    }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,29 +85,12 @@
                 </div>
                 <div class="divider"></div>
                 <div class="button-container">
+                    <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
                     <button class="reserve-game-button" name="reserve">RESERVE GAME</button>
                     <button class="cancel-button" name="cancel">CANCEL</button>
                 </div>
             </div>
         </div>
     </form>
-
-    <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            if(isset($_POST['reserve'])){
-                // Check if user already has reservation for that game
-                
-                // Check if user already has reservations for that date
-                // Add Reservation by User
-
-            }
-
-            if(isset($_POST['cancel']))
-            {
-                header("Location: /templates/user-board_game_details.php?gameId=' . $game->GameID . '");
-            }
-        }
-    ?>
 </body>
 </html>
