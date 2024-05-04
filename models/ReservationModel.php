@@ -1,7 +1,7 @@
 <?php
 
-require_once("models/StudentModel.php");
-require_once("models/BoardGameModel.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/BoardGameModel.php";
 
 class Reservation {
     public int $ReservationID;
