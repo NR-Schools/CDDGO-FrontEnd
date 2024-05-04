@@ -19,20 +19,30 @@ class StudentService
         return StudentRepository::getStudentById($studId);
     }
 
+    static function getStudentByEmail(string $email): Student
+    {
+        return StudentRepository::getStudentByEmail($email);
+    }
+
     static function updateStudent(Student $student): bool
     {
-        // For password checking (compare student on db)
-        // if password is modified, hash and store new password
+        // If password is changed, hash it
+        //$student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
+        return StudentRepository::updateStudent($student);
     }
 
     static function confirmStudentRegistration(int $studentId): bool
     {
-        // verify student account
+        $student = StudentRepository::getStudentById($studentId);
+        $student->isVerified = true;
+        return StudentRepository::updateStudent($student);
     }
 
     static function rejectStudentRegistration(int $studentId): bool
     {
-        // delete student account
+        $student = StudentRepository::getStudentById($studentId);
+        $student->isVerified = false;
+        return StudentRepository::updateStudent($student);
     }
 
     // This is for members

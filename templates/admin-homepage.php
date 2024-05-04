@@ -24,22 +24,22 @@
             <div class="admin-title">ADMIN MENU</div>
             <div class="divider"></div>
             <div>
-                <button class="button-styling">MANAGE BOARD GAMES</button>
+                <a href="../templates/admin-manage_board_games.php"><button class="button-styling">MANAGE BOARD GAMES</button></a>
             </div>
             <div>
-                <button class="button-styling">MANAGE EVENTS</button>
+                <a href="../templates/admin-manage_events.php"><button class="button-styling">MANAGE EVENTS</button></a>
             </div>
             <div>
-                <button class="button-styling">MANAGE RESERVATIONS</button>
+                <a href="../templates/admin-manage_reservations.php"><button class="button-styling">MANAGE RESERVATIONS</button></a>
             </div>
             <div>
-                <button class="button-styling">MANAGE BORROW RECORDS</button>
+                <a href="../templates/admin-manage_borrow_records.php"><button class="button-styling">MANAGE BORROW RECORDS</button></a>
             </div>
             <div>
-                <button class="button-styling">MANAGE INQUIRIES</button>
+                <a href="../templates/admin-manage_inquiries.php"><button class="button-styling">MANAGE INQUIRIES</button></a>
             </div>
             <div>
-                <button class="button-styling">MANAGE USERS AND MEMBERS</button>
+                <a href="../templates/admin-manage_users.php"><button class="button-styling">MANAGE USERS AND MEMBERS</button></a>
             </div>
             <div class="divider"></div>
         </div>

@@ -8,6 +8,7 @@ class BoardGame {
     public int $QuantityAvailable;
     public string $GameCategory;
     public string $GameStatus;
+    public float $GameRating;
 
     function __construct() {}
 }

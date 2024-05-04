@@ -23,7 +23,7 @@ class ReservationService
     {
     }
 
-    static function adminConfirmReservation(Reservation $reservation): bool
+    static function adminConfirmReservation(int $reservationId): bool
     {
         // Update Reservation, make it confirmed
         // Remove unconfirmed reservations on the board game specified
@@ -32,6 +32,13 @@ class ReservationService
     static function adminRemoveReservation(int $reservationId): bool
     {
         // when returned, remove reservation entry
+    }
+
+    static function adminMoveReservationSchedule(int $reservationId, string $newDate): bool
+    {
+        // Check if new date for reservation does not have the same game being reserved by any student
+        // Check if new date for reservation does not have the same user having a reservation record on that date
+        // Change reservation date
     }
 }
 

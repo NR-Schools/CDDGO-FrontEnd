@@ -42,7 +42,7 @@
                         echo '<p class="game-card-text"> Quantity Available: ' . $game->QuantityAvailable . '</p>';
                         echo '<p class="game-card-text"> Overview: ' . $game->GameDescription . '</p>';
                         echo '<a href="/templates/user-board_game_details.php?gameId=' . $game->GameID . '" class="game-btn">Rent</a>';
-                        echo '<a href="/templates/user-board_game_details.php?gameId=' . $game->GameID . '" class="game-btn">Reserve</a>';
+                        echo '<a href="/templates/user-reservation_details.php?gameId=' . $game->GameID . '" class="game-btn">Reserve</a>';
                         echo '<a href="/templates/user-board_game_details.php?gameId=' . $game->GameID . '" class="game-btn">Back</a>';
                         echo '</div>';
                         echo '</div>';

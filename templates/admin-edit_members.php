@@ -38,29 +38,23 @@
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if(isset($_POST['edit'])) {
 
-                $eventID = $_POST['eventID'];
-                $event = EventService::getEventById($eventID);
- 
-                $newImage = file_get_contents($_FILES['newImage']['tmp_name']);
-                $newImageEncoded = base64_encode($newImage);
+                // $studID = $_POST['studID'];
+                // $student = EventService::getEventById($studID);
 
-                $dateposted = date('Y-m-d H:i:s');
+                // $event->EventName = $_POST['newName'];
+                // $event->EventLocation = $_POST['newLocation'];
+                // $event->EventDate = $_POST['newDate'];
+                // $event->EventImage = $newImageEncoded;
+                // $event->EventDescription = $_POST['newDescription'];
+                // $event->DatePosted = $dateposted;
 
-                $event->EventName = $_POST['newName'];
-                $event->EventLocation = $_POST['newLocation'];
-                $event->EventDate = $_POST['newDate'];
-                $event->EventImage = $newImageEncoded;
-                $event->EventDescription = $_POST['newDescription'];
-                $event->DatePosted = $dateposted;
+                // EventService::updateEvent($event);
 
-                EventService::updateEvent($event);
-
-                echo "<script> alert('Event Updated');
-                document.location.href = 'admin-manage_events.php';
+                echo "<script> alert('User Updated');
+                document.location.href = 'admin-manage_users.php';
                 </script>";
             }
             elseif(isset($_POST['cancel'])) {
-
                 echo "<script> document.location.href = 'admin-manage_users.php'; </script>";
             }
         }

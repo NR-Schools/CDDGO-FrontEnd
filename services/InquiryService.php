@@ -8,32 +8,47 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 
 class InquiryService
 {
+    static function getInquiryResponses(int $inquiryId): array
+    {
+        return InquiryRepository::getAllInquiryResponses($inquiryId);
+    }
+
 
     // For students
-    static function createStudentInquiry(Inquiry $inquiry): bool
+    static function createStudentInquiry(string $email, Inquiry $inquiry): bool
     {
-        return InquiryRepository::createInquiry($inquiry);
+        // Get Student from email
+        $student = StudentRepository::getStudentByEmail($email);
+
+        return InquiryRepository::createInquiry($student->StudID, $inquiry);
     }
 
     static function getInquiriesByStudent(string $email): array
     {
-        //
+        // Get Student from email
+        $student = StudentRepository::getStudentByEmail($email);
+
+        // Get Student Id
+        return InquiryRepository::getInquiriesByStudent($student->StudID);
     }
 
-    static function userReplyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry): bool
+    static function userReplyToInquiry(InquiryResponse $inquiryResponse): bool
     {
-        return InquiryRepository::replyToInquiry($inquiryReplyingTo, $newInquiry, false);
+        // Get Student from email
+        $inquiryResponse->ResponseSource = "USER";
+        return InquiryRepository::createResponseToInquiry($inquiryResponse);
     }
 
     // For admin
     static function getAllInquiries(): array
     {
-        //
+        return InquiryRepository::getAllInquiries();
     }
     
-    static function adminReplyToInquiry(int $inquiryReplyingTo, Inquiry $newInquiry): bool
+    static function adminReplyToInquiry(InquiryResponse $inquiryResponse): bool
     {
-        return InquiryRepository::replyToInquiry($inquiryReplyingTo, $newInquiry, true);
+        $inquiryResponse->ResponseSource = "ADMIN";
+        return InquiryRepository::createResponseToInquiry($inquiryResponse);
     }
 }
 
