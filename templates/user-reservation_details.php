@@ -34,8 +34,10 @@
             $notPaid = 0;
             $fee = 50;
 
-            $checkReservation = "SELECT ReservedStudent, ReservedGame, ReservedDate FROM reservations WHERE ReservedStudent = $studID AND ReservedGame = $gameID AND ReservedDate = $date";
+            $checkReservation = "SELECT ReservedStudent, ReservedGame, ReservedDate FROM reservations WHERE ReservedStudent = $studID AND ReservedGame = $gameID AND ReservedDate = '$date'";
             $getReservation = Database::SQLwithFetch(Database::getPDO(),$checkReservation);
+
+            echo "Query:" . $checkReservation;
 
             if(!empty($getReservation))
             {
