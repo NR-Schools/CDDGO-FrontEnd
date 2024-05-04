@@ -8,18 +8,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/ReservationRepository.ph
 
 class ReservationService
 {
-    static function addUserReservation(Reservation $reservation): bool
+    static function addUserReservation(Reservation $reservation): array
     {
-        // Check if user already has reservation for that game and date
-        if (ReservationRepository::isReservationAttemptValid(
+        // Check if user ($user) has already reserved this game for the specified date ($date)
+        // Check if game (max qty) has been reached for the specified date ($date)        
+        $attemptStatus = ReservationRepository::isReservationAttemptValid(
             $reservation->student->StudID,
             $reservation->boardGame->GameID,
             $reservation->ReservedDate
-        )) return false;
+        );
+
+        if ($attemptStatus !== "AVAILABLE")
+            return [false, $attemptStatus];
 
         // Add Reservation by User
         ReservationRepository::addNewReservation($reservation);
-        return true;
+        return [true, "SUCCESS"];
     }
 
     static function getAllConfirmedReservations(): array

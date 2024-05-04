@@ -155,6 +155,7 @@ class ReservationRepository
             WHERE ReservedGame = :gameId
                 AND ReservedStudent != :studId
                 AND ReservedDate = :date
+                AND isPaid = FALSE;
             ",
             [
                 ":gameId" => $boardGameId,
@@ -165,16 +166,29 @@ class ReservationRepository
     }
 
 
-    static function isReservationAttemptValid(int $studId, int $gameId, string $date)
+    static function isReservationAttemptValid(int $studId, int $gameId, string $date): string
     {
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT ReservedStudent, ReservedGame, ReservedDate
-                FROM reservations
-            WHERE ReservedStudent = :studId
-                AND ReservedGame = :gameId
-                AND ReservedDate = :reserveDate
+            SELECT 
+                CASE 
+                WHEN EXISTS (
+                    SELECT * 
+                    FROM RESERVATIONS 
+                    WHERE ReservedStudent = :studId
+                    AND ReservedGame = :gameId
+                    AND ReservedDate = :reserveDate
+                ) THEN 'DUPLICATE_RESERVATION'
+                WHEN (SELECT COUNT(*) 
+                        FROM RESERVATIONS 
+                        WHERE ReservedGame = :gameId
+                        AND ReservedDate = :reserveDate) >= ( SELECT QuantityAvailable 
+                                                        FROM BOARD_GAMES 
+                                                        WHERE GameID = :gameId ) 
+                    THEN 'MAX_RESERVE_GAME'
+                ELSE 'AVAILABLE' 
+            END AS ReservationStatus;
             ",
             [
                 ":studId" => $studId,
@@ -183,8 +197,12 @@ class ReservationRepository
             ]
         );
 
+        $result = "";
+        foreach($queryResult as $reservationResult) {
+            $result = $reservationResult['ReservationStatus'];
+        }
 
-        return empty($queryResult);
+        return $result;
     }
 }
 
