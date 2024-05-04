@@ -52,14 +52,14 @@
                     $position = $_POST['memberPosition'];
                     $yearJoined = $_POST['memberYearJoined'];
                     
-                    // Create Member object
-                    $member = new Member();
-                    $member->student = $student;
-                    $member->Position = $position;
-                    $member->YearJoined = $yearJoined;
+                    if ($student->member == null) {
+                        $student->member = new Member();
+                    }
                     
-                    // Assign member to student
-                    $student->member = $member;
+                    $student->member->student = $student;
+                    $student->member->Position = $position;
+                    $student->member->YearJoined = $yearJoined;
+                    
                 } else {
                     // If not a member, set member property to null
                     $student->member = null;
