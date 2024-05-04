@@ -136,7 +136,7 @@ class StudentRepository
                 Program = :program,
                 Email = :email,
                 Password = :password,
-                isVerified = isVerified
+                isVerified = :isVerified
             WHERE
                 StudID = :studId
             ",
