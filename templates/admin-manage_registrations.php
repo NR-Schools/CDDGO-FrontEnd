@@ -39,7 +39,7 @@
                     echo $studentId;
                     // Confirm student registration
                     StudentService::confirmStudentRegistration($studentId);
-                    //header("Location: admin-manage_users.php");
+                    header("Location: admin-manage_users.php");
                 }
             }
 
@@ -60,14 +60,17 @@
                             <span>{$student->Email}</span>
                             <span>{$student->Program}</span>
                         </div>
-                        <div>
+
                         <form action="admin-manage_registrations.php" enctype="multipart/form-data" method="POST">
                             <!-- Hidden input field to store student ID -->
                             <input type="hidden" name="studentId" value="{$student->StudID}">
-                            <button type="submit" class="btn btn-danger" name="confirm" value="confirm">Confirm</button>
-                            <button type="button" class="btn btn-danger">Reject</button>
+
+                            <div class="button-container" text-center>
+                                <button type="submit" class="btn" name="confirm" value="confirm">Confirm</button>
+                                <button type="button" class="btn">Reject</button>
+                            </div>
+                            
                         </form>
-                        </div>
                     </div>
                     EOD;
                 }
