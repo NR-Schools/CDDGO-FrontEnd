@@ -183,6 +183,7 @@ class ReservationRepository
                 WHEN (SELECT COUNT(*) 
                         FROM RESERVATIONS 
                         WHERE ReservedGame = :gameId
+                        AND isPaid = TRUE
                         AND ReservedDate = :reserveDate) >= ( SELECT QuantityAvailable 
                                                         FROM BOARD_GAMES 
                                                         WHERE GameID = :gameId ) 
