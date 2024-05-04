@@ -69,7 +69,7 @@ class RentalRepository
                     ON RENTALS.GameID = BOARD_GAMES.GameID
                 WHERE RentConfirm = :rentConfirm;
             ",
-            [ ":rentConfirm" => $rentConfirm ]
+            [":rentConfirm" => $rentConfirm]
         );
 
         $rentals = [];
@@ -92,7 +92,7 @@ class RentalRepository
                     ON RENTALS.GameID = BOARD_GAMES.GameID
                 WHERE RentalID = :rentalId;
             ",
-            [ ":rentalId" => $rentId ]
+            [":rentalId" => $rentId]
         );
 
         $rental = null;
@@ -114,7 +114,7 @@ class RentalRepository
             WHERE r.StudID = :studId
             AND r.RentConfirm = TRUE
             ",
-            [ ":studId" => $studentId ]
+            [":studId" => $studentId]
         );
 
         $rental = null;
@@ -126,6 +126,23 @@ class RentalRepository
         return $rental;
     }
 
+    static function confirmRental(Rental $rental): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            UPDATE RENTALS
+            SET
+                RentConfirm = TRUE
+            WHERE
+                RentalID = :rentalId;
+            ",
+            [
+                ":rentalId" => $rental->RentalID
+            ]
+        );
+    }
+
     static function deleteRentalById(int $rentalId): bool
     {
         return Database::SQLwithoutFetch(
@@ -133,7 +150,7 @@ class RentalRepository
             "
             DELETE FROM RENTALS WHERE RentalID = :rentalId
             ",
-            [ ":rentalId" => $rentalId ]
+            [":rentalId" => $rentalId]
         );
     }
 
@@ -144,13 +161,98 @@ class RentalRepository
             "
             DELETE FROM RENTALS
             WHERE ReservedGame = :gameId
-                AND ReservedStudent != :studId;
+                AND ReservedStudent != :studId
+                AND RentConfirm = FALSE;
             ",
             [
                 ":gameId" => $boardGameId,
                 ":studId" => $studentId
             ]
         );
+    }
+
+    static function isRentalAttemptValid(int $studId, int $gameId): string
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT 
+                CASE 
+                    WHEN EXISTS (
+                        SELECT * 
+                        FROM RENTALS 
+                        WHERE StudID = :studId
+                    ) THEN 'ALREADY_RENTED'
+                    WHEN (
+                        SELECT COUNT(*) 
+                        FROM RESERVATIONS 
+                        WHERE ReservedGame = :gameId
+                        AND ReservedDate = CURDATE()
+                        AND isPaid = TRUE
+                    ) + (
+                        SELECT COUNT(*) 
+                        FROM RENTALS 
+                        WHERE GameID = :gameId
+                        AND RentConfirm = TRUE
+                        AND BorrowDate = CURDATE()
+                    ) >= (
+                        SELECT QuantityAvailable 
+                        FROM BOARD_GAMES 
+                        WHERE GameID = :gameId
+                    ) THEN 'MAX_RENTED_GAME'
+                ELSE 'AVAILABLE'
+            END AS RentalStatus;
+            ",
+            [
+                ":studId" => $studId,
+                ":gameId" => $gameId
+            ]
+        );
+
+        $result = "";
+        foreach ($queryResult as $rentalResult) {
+            $result = $rentalResult['RentalStatus'];
+        }
+
+        return $result;
+    }
+
+    static function checkGameAvailability(int $gameId): bool
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT 
+                IF(
+                    (
+                        (SELECT COUNT(*) FROM RESERVATIONS 
+                        WHERE ReservedGame = :gameId
+                        AND ReservedDate = CURDATE()
+                        AND isPaid = TRUE)
+                    +
+                        (SELECT COUNT(*) FROM RENTALS 
+                        WHERE GameID = :gameId
+                        AND RentConfirm = TRUE
+                        AND BorrowDate = CURDATE())
+                    ) >= (
+                        SELECT QuantityAvailable 
+                        FROM BOARD_GAMES 
+                        WHERE GameID = :gameId
+                    ),
+                    TRUE,
+                    FALSE
+                )
+            AS Available;
+            ",
+            [":gameId" => $gameId]
+        );
+
+        $isAvailable = null;
+        foreach ($queryResult as $rentalResult) {
+            $isAvailable = $rentalResult['Available'];
+        }
+
+        return $isAvailable;
     }
 }
 

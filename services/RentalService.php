@@ -10,16 +10,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/BoardGameRepository.php"
 
 class RentalService
 {
-    static function addUserRentsGame(Rental $rental): bool
+    static function addUserRentsGame(Rental $rental): array
     {
         // Check if student has an existing rental record
         // Check if game is available
         // Check for reservations by other users
+        $attemptStatus = RentalRepository::isRentalAttemptValid(
+            $rental->student->StudID,
+            $rental->boardGame->GameID
+        );
 
-        // Add rental
+        if ($attemptStatus !== "AVAILABLE")
+            return [false, $attemptStatus];
+
+        // Add Rental by User
         RentalRepository::addNewRental($rental);
-
-        return true;
+        return [true, "SUCCESS"];
     }
 
     static function getAllConfirmedRentals(): array
@@ -40,12 +46,17 @@ class RentalService
 
         // Update Rental, make it confirmed
         $rental->RentConfirm = true;
+        RentalRepository::confirmRental($rental);
 
-        // Remove unconfirmed rentals on the board game specified
-        RentalRepository::deleteRentalByGameExceptStudent(
-            $rental->boardGame->GameID,
-            $rental->student->StudID
-        );
+        // Check if space for new rentals exists
+        $isGameOpen = RentalRepository::checkGameAvailability($rental->boardGame->GameID);
+        if (!$isGameOpen) {
+            // Remove unconfirmed rentals on the board game specified
+            RentalRepository::deleteRentalByGameExceptStudent(
+                $rental->boardGame->GameID,
+                $rental->student->StudID
+            );
+        }
 
         return true;
     }
