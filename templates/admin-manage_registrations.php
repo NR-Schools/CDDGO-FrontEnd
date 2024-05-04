@@ -30,6 +30,19 @@
         <hr />
 
         <?php
+
+            // Check if the form is submitted
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['confirm'])) {
+                    
+                    $studentId = $_POST['studentId'];
+                    echo $studentId;
+                    // Confirm student registration
+                    StudentService::confirmStudentRegistration($studentId);
+                    //header("Location: admin-manage_users.php");
+                }
+            }
+
             // Get all students
             $students = StudentService::getAllStudents();
 
@@ -48,8 +61,12 @@
                             <span>{$student->Program}</span>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-danger">Confirm</button>
+                        <form action="admin-manage_registrations.php" enctype="multipart/form-data" method="POST">
+                            <!-- Hidden input field to store student ID -->
+                            <input type="hidden" name="studentId" value="{$student->StudID}">
+                            <button type="submit" class="btn btn-danger" name="confirm" value="confirm">Confirm</button>
                             <button type="button" class="btn btn-danger">Reject</button>
+                        </form>
                         </div>
                     </div>
                     EOD;

@@ -37,18 +37,16 @@
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if(isset($_POST['edit'])) {
+                $studID = $_POST['studID'];
+                $student = StudentService::getStudentById($studID);
 
-                // $studID = $_POST['studID'];
-                // $student = EventService::getEventById($studID);
+                $student->FirstName = $_POST['editFirstname'];
+                $student->LastName = $_POST['editLastname'];
+                $student->Email = $_POST['editEmail'];
+                $student->Program = $_POST['editProgram'];
+                $student->Password = $_POST['editPassword'];
 
-                // $event->EventName = $_POST['newName'];
-                // $event->EventLocation = $_POST['newLocation'];
-                // $event->EventDate = $_POST['newDate'];
-                // $event->EventImage = $newImageEncoded;
-                // $event->EventDescription = $_POST['newDescription'];
-                // $event->DatePosted = $dateposted;
-
-                // EventService::updateEvent($event);
+                StudentService::updateStudent($student);
 
                 echo "<script> alert('User Updated');
                 document.location.href = 'admin-manage_users.php';
@@ -78,21 +76,21 @@
                     <label class="form-label text-white" for="editFirstname">First Name</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editFirstname" value="<?php echo $student->FirstName; ?>">
+                        <input type="text" class="form-control" id="editFirstname" name="editFirstname" value="<?php echo $student->FirstName; ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label text-white" for="editLastname">Last Name</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editLastname" value="<?php echo $student->LastName; ?>">
+                        <input type="text" class="form-control" id="editLastname" name="editLastname" value="<?php echo $student->LastName; ?>">
                     </div>
                 </div>
                 <div class="col-6">
                     <label class="form-label text-white" for="editEmail">Email</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="email" class="form-control" id="editEmail" value="<?php echo $student->Email; ?>">
+                        <input type="email" class="form-control" id="editEmail" name="editEmail" value="<?php echo $student->Email; ?>">
                     </div>
                 </div>
 
@@ -107,7 +105,7 @@
                     <label class="form-label text-white" for="editProgram">Program</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editProgram" value="<?php echo $student->Program; ?>">
+                        <input type="text" class="form-control" id="editProgram" name="editProgram" value="<?php echo $student->Program; ?>">
                     </div>
                 </div>
 
@@ -115,20 +113,13 @@
                 <p class="text-white">Account Details</p>
                 <hr class="text-white">
                 <div class="col-md-6">
-                    <label class="form-label text-white" for="editUsername">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editUsername">
-                    </div>
-                </div>
-                <div class="col-md-6">
                     <label class="form-label text-white" for="editPassword">Password</label>
                     <div class="input-group">
                         <div class="input-group-text">Edit Icon</div>
-                        <input type="password" class="form-control" id="editPassword" value="<?php echo $student->Password; ?>">
+                        <input type="password" class="form-control" id="editPassword" name="editPassword" value="<?php echo $student->Password; ?>">
                     </div>
                 </div>
-                <div class="form-check col-md-3">
+                <div class="form-check col-md-2">
                     <input class="form-check-input" type="radio" name="radioButtons" id="memberRadio">
                     <label class="form-check-label text-white" for="memberRadio">Member</label>
                 </div>
