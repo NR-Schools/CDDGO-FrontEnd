@@ -136,7 +136,7 @@ class StudentRepository
                 Program = :program,
                 Email = :email,
                 Password = :password,
-                isVerified = isVerified
+                isVerified = :isVerified
             WHERE
                 StudID = :studId
             ",
@@ -150,6 +150,17 @@ class StudentRepository
                 ":password" => $student->Password,
                 ":isVerified" => $student->isVerified
             ]
+        );
+    }
+
+    static function deleteStudent(int $studentId): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM STUDENTS WHERE StudID = :studId
+            ",
+            [ ":studId" => $studentId ]
         );
     }
 }

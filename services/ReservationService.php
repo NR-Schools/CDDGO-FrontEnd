@@ -8,30 +8,58 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/ReservationRepository.ph
 
 class ReservationService
 {
-    static function addUserReservation(Reservation $reservation): bool
+    static function addUserReservation(Reservation $reservation): array
     {
-        // Check if user already has reservation for that game
-        // Check if user already has reservations for that date
+        // Check if user ($user) has already reserved this game for the specified date ($date)
+        // Check if game (max qty) has been reached for the specified date ($date)        
+        $attemptStatus = ReservationRepository::isReservationAttemptValid(
+            $reservation->student->StudID,
+            $reservation->boardGame->GameID,
+            $reservation->ReservedDate
+        );
+
+        if ($attemptStatus !== "AVAILABLE")
+            return [false, $attemptStatus];
+
         // Add Reservation by User
+        ReservationRepository::addNewReservation($reservation);
+        return [true, "SUCCESS"];
     }
 
     static function getAllConfirmedReservations(): array
     {
+        return ReservationRepository::getAllReservations(true);
     }
 
     static function getAllUnconfirmedReservations(): array
     {
+        return ReservationRepository::getAllReservations(false);
     }
 
     static function adminConfirmReservation(int $reservationId): bool
     {
-        // Update Reservation, make it confirmed
-        // Remove unconfirmed reservations on the board game specified
-    }
+        $reservation = ReservationRepository::getReservationById($reservationId);
 
-    static function adminRemoveReservation(int $reservationId): bool
-    {
-        // when returned, remove reservation entry
+        // Update Reservation, make it confirmed
+        $reservation->isPaid = true;
+        ReservationRepository::updateReservation($reservation);
+
+
+        // Check if space for new rentals exists
+        $isGameOpen = ReservationRepository::checkGameAvailability(
+            $reservation->boardGame->GameID,
+            $reservation->ReservedDate
+        );
+        if (!$isGameOpen) {
+            // Remove unconfirmed reservations on the board game specified
+            ReservationRepository::deleteReservationByGameExceptStudent(
+                $reservation->boardGame->GameID,
+                $reservation->student->StudID,
+                $reservation->ReservedDate
+            );
+        }
+
+        return true;
     }
 
     static function adminMoveReservationSchedule(int $reservationId, string $newDate): bool
@@ -39,6 +67,8 @@ class ReservationService
         // Check if new date for reservation does not have the same game being reserved by any student
         // Check if new date for reservation does not have the same user having a reservation record on that date
         // Change reservation date
+
+        // WILL REMAIN TO BE UNIMPLEMENTED UNTIL FURTHER NOTICE
     }
 }
 

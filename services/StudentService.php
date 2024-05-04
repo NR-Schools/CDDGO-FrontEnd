@@ -40,9 +40,8 @@ class StudentService
 
     static function rejectStudentRegistration(int $studentId): bool
     {
-        $student = StudentRepository::getStudentById($studentId);
-        $student->isVerified = false;
-        return StudentRepository::updateStudent($student);
+        // Delete Student
+        return StudentRepository::deleteStudent($studentId);
     }
 
     // This is for members
