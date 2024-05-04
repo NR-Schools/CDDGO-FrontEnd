@@ -4,6 +4,8 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php");
 
+
+
     if(isset($_GET["gameId"]))
     {
         $gameID =(int)$_GET["gameId"];
@@ -13,14 +15,6 @@
         {
             echo "No game.";
         }
-        
-        //get logged student
-        [$email, $role] = AuthService::getCurrentlyLoggedIn();
-        echo $email;
-        $currentUser = StudentService::getStudentByEmail($email);
-
-        //get board game by ID
-        $gameSelected = BoardGameService::getBoardGameById($gameID);
     }
 
     
@@ -29,31 +23,26 @@
         if(isset($_POST['reserve'])){
             // Check if user is making a duplicate reservation
             $gameID = $_POST["gameID"];
-            $studID = $_POST["studID"];
             $date = $_POST["date"];
-            $notPaid = 0;
             $fee = 50;
 
-            $checkReservation = "SELECT ReservedStudent, ReservedGame, ReservedDate FROM reservations WHERE ReservedStudent = $studID AND ReservedGame = $gameID AND ReservedDate = '$date'";
-            $getReservation = Database::SQLwithFetch(Database::getPDO(),$checkReservation);
+            // Get logged student
+            [$email, $role] = AuthService::getCurrentlyLoggedIn();
+            $currentUser = StudentService::getStudentByEmail($email);
 
-            echo "Query:" . $checkReservation;
+            $reservation = new Reservation();
+            $reservation->ReservationFee = $fee;
+            $reservation->ReservedDate = $date;
+            $reservation->createOnlyStudentId($currentUser->StudID);
+            $reservation->createOnlyBoardGameId($gameID);
 
-            if(!empty($getReservation))
-            {
-                echo "Exists";
-                header("Location:../templates/user-board_games.php");
+            $result = ReservationService::addUserReservation($reservation);
+
+            if (!$result) {
+                // Reservation Failed!
             }
 
-            // Add Reservation by User
-            else
-            {
-                $addReservation = "INSERT INTO reservations (ReservedStudent, ReservedGame, ReservedDate, isPaid, ReservationFee)
-                VALUES ('$studID', '$gameID', '$date', '$notPaid', '$fee')";
-                Database::SQLwithFetch(Database::getPDO(),$addReservation);
-                header("Location:../templates/user-board_game_details.php?gameId=". $gameID);
-            }
-
+            // Reservation Success!
         }
 
         if(isset($_POST['cancel']))
@@ -109,7 +98,6 @@
                 <div class="divider"></div>
                 <div class="button-container">
                     <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-                    <input type="hidden" name="studID" value="<?php echo $currentUser->StudID; ?>">
                     <button class="reserve-game-button" name="reserve">RESERVE GAME</button>
                     <button class="cancel-button" name="cancel">CANCEL</button>
                 </div>
