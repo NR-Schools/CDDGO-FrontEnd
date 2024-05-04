@@ -1,10 +1,35 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/RentalService.php";
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
-    header("Location: /");
+    //header("Location: /");
+}
+
+?>
+
+
+<?php
+
+if($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    if(isset($_POST['remove']))
+    {
+        $rentalId = $_POST['rentalId'];
+
+        // Remove Rental
+        RentalService::adminRemoveRental($rentalId);
+    }
+
+    else if (isset($_POST['confirm']))
+    {
+        $rentalId = $_POST['rentalId'];
+
+        // Confirm Rental
+        RentalService::adminConfirmRental($rentalId);
+    }
 }
 
 ?>
@@ -27,37 +52,86 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
     <!-- Start Body -->
     <div class="main-body">
-        <p>ACTIVE TRANSACTIONS</p>
+        <p>ACTIVE RENTALS</p>
         <hr />
 
 
-        <?php
+        <div class="rentals-container">
+            <p>Confirmed Rentals</p>
+            <div class="rentals-list-container">
 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/services/RentalService.php";
-
-        // Get all rentals
-        $rentals = RentalService::getAllRentals();
-
-        foreach ($rentals as $rental) {
-            assert($rental instanceof Rental);
-
-            echo <<<EOD
-            <div class="borrow-record-entry">
-                <div>
-                    <span> {$rental->RentalID} </span>
-                    <span> {$rental->student->StudNo} </span>
-                    <span> {$rental->boardGame->GameName} </span>
-                    <span> {$rental->BorrowDate} </span>
-                    <span> P {$rental->Rent} </span>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </div>
+                <?php
+                // Get all rentals
+                $rentals = RentalService::getAllConfirmedRentals();
+                foreach ($rentals as $rental) {
+                    assert($rental instanceof Rental);
+                    echo <<<EOD
+                    <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
+                        <div>
+                            <div>
+                                <span> ID: {$rental->RentalID} </span>
+                                <span> {$rental->student->StudID} </span>
+                            </div>
+                            <div>
+                                <span> {$rental->boardGame->GameName} </span>
+                            </div>
+                            <div>
+                                <span> Date: {$rental->BorrowDate} </span>
+                                <span> Fee: P {$rental->Rent} </span>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
+                            <button type="button" name="remove" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                    EOD;
+                }
+                ?>
+                
             </div>
-            EOD;
-        }
+        </div>
 
-        ?>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="rentals-container">
+            <p>Unconfirmed Rentals</p>
+            <div class="rentals-list-container">
+
+            <?php
+                // Get all rentals
+                $rentals = RentalService::getAllUnconfirmedRentals();
+                foreach ($rentals as $rental) {
+                    assert($rental instanceof Rental);
+                    echo <<<EOD
+                    <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
+                    <div>
+                        <div>
+                            <span> ID: {$rental->RentalID} </span>
+                            <span> {$rental->student->StudID} </span>
+                        </div>
+                        <div>
+                            <span> {$rental->boardGame->GameName} </span>
+                        </div>
+                        <div>
+                            <span> Date: {$rental->BorrowDate} </span>
+                            <span> Fee: P {$rental->Rent} </span>
+                        </div>
+                    </div>
+                        <div>
+                            <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
+                            <button type="button" name="confirm" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </form>
+                    EOD;
+                }
+                ?>
+
+            </div>
+        </div>
 
     </div>
 </body>
