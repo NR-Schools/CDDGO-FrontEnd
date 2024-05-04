@@ -36,6 +36,11 @@ class ReservationService
         return ReservationRepository::getAllReservations(false);
     }
 
+    static function getAllReservationsByStudent(int $studentId): array
+    {
+        return ReservationRepository::getAllReservationsByStudent($studentId);
+    }
+
     static function adminConfirmReservation(int $reservationId): bool
     {
         $reservation = ReservationRepository::getReservationById($reservationId);

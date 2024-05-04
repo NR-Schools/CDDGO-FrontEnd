@@ -83,6 +83,31 @@ class ReservationRepository
         return $reservations;
     }
 
+    static function getAllReservationsByStudent(int $studentId): array
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM RESERVATIONS
+                INNER JOIN STUDENTS
+                    ON RESERVATIONS.ReservedStudent = STUDENTS.StudID
+                INNER JOIN BOARD_GAMES
+                    ON RESERVATIONS.ReservedGame = BOARD_GAMES.GameID
+                WHERE ReservedStudent = :studentId;
+            ",
+            [
+                ":studentId" => $studentId
+            ]
+        );
+
+        $reservations = [];
+        foreach ($queryResult as $reservationEntry) {
+            $reservations[] = self::queryResultsToReservation($reservationEntry);
+        }
+
+        return $reservations;
+    }
+
     static function getReservationById(int $reservationId): Reservation
     {
         $queryResult = Database::SQLwithFetch(
