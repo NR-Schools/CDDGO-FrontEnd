@@ -173,14 +173,15 @@ class ReservationRepository
             "
             SELECT 
                 CASE 
-                WHEN EXISTS (
-                    SELECT * 
-                    FROM RESERVATIONS 
-                    WHERE ReservedStudent = :studId
-                    AND ReservedGame = :gameId
-                    AND ReservedDate = :reserveDate
-                ) THEN 'DUPLICATE_RESERVATION'
-                WHEN (SELECT COUNT(*) 
+                    WHEN EXISTS (
+                        SELECT * 
+                        FROM RESERVATIONS 
+                        WHERE ReservedStudent = :studId
+                        AND ReservedGame = :gameId
+                        AND ReservedDate = :reserveDate
+                    ) THEN 'DUPLICATE_RESERVATION'
+                    WHEN (
+                        SELECT COUNT(*) 
                         FROM RESERVATIONS 
                         WHERE ReservedGame = :gameId
                         AND isPaid = TRUE
@@ -199,11 +200,46 @@ class ReservationRepository
         );
 
         $result = "";
-        foreach($queryResult as $reservationResult) {
+        foreach ($queryResult as $reservationResult) {
             $result = $reservationResult['ReservationStatus'];
         }
 
         return $result;
+    }
+
+    static function checkGameAvailability(int $gameId, string $reserveDate): bool
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT 
+                IF(
+                        (SELECT COUNT(*) 
+                        FROM RESERVATIONS 
+                        WHERE ReservedGame = :gameId
+                        AND isPaid = TRUE
+                        AND ReservedDate = :reserveDate)
+                        >=
+                        (SELECT QuantityAvailable 
+                        FROM BOARD_GAMES 
+                        WHERE GameID = :gameId),
+                    TRUE,
+                    FALSE
+                )
+            AS Available;
+            ",
+            [
+                ":gameId" => $gameId,
+                ":reserveDate" => $reserveDate
+            ]
+        );
+
+        $isAvailable = null;
+        foreach ($queryResult as $reservationResult) {
+            $isAvailable = $reservationResult['Available'];
+        }
+
+        return $isAvailable;
     }
 }
 

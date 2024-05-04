@@ -44,12 +44,21 @@ class ReservationService
         $reservation->isPaid = true;
         ReservationRepository::updateReservation($reservation);
 
-        // Remove unconfirmed reservations on the board game specified
-        ReservationRepository::deleteReservationByGameExceptStudent(
+
+        // Check if space for new rentals exists
+        $isGameOpen = ReservationRepository::checkGameAvailability(
             $reservation->boardGame->GameID,
-            $reservation->student->StudID,
             $reservation->ReservedDate
         );
+        if (!$isGameOpen) {
+            // Remove unconfirmed reservations on the board game specified
+            ReservationRepository::deleteReservationByGameExceptStudent(
+                $reservation->boardGame->GameID,
+                $reservation->student->StudID,
+                $reservation->ReservedDate
+            );
+        }
+
         return true;
     }
 
