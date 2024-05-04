@@ -43,7 +43,8 @@ class ReservationService
         // Remove unconfirmed reservations on the board game specified
         ReservationRepository::deleteReservationByGameExceptStudent(
             $reservation->boardGame->GameID,
-            $reservation->student->StudID
+            $reservation->student->StudID,
+            $reservation->ReservedDate
         );
         return true;
     }

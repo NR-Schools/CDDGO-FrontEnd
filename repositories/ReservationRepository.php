@@ -146,18 +146,20 @@ class ReservationRepository
         );
     }
 
-    static function deleteReservationByGameExceptStudent(int $boardGameId, int $studentId): bool
+    static function deleteReservationByGameExceptStudent(int $boardGameId, int $studentId, string $date): bool
     {
         return Database::SQLwithoutFetch(
             Database::getPDO(),
             "
             DELETE FROM RESERVATIONS
             WHERE ReservedGame = :gameId
-                AND ReservedStudent != :studId;
+                AND ReservedStudent != :studId
+                AND ReservedDate = :date
             ",
             [
                 ":gameId" => $boardGameId,
-                ":studId" => $studentId
+                ":studId" => $studentId,
+                ":date" => $date
             ]
         );
     }
