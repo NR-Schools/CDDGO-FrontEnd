@@ -152,6 +152,17 @@ class StudentRepository
             ]
         );
     }
+
+    static function deleteStudent(int $studentId): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM STUDENTS WHERE StudID = :studId
+            ",
+            [ ":studId" => $studentId ]
+        );
+    }
 }
 
 ?>
