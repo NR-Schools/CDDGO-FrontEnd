@@ -48,7 +48,7 @@
 
                 // Check if the student is being made a member
                 if(isset($_POST['radioButtons']) && $_POST['radioButtons'] == "memberRadio") {
-                    // Handle membership fields
+                    // Handle membership fields                
                     $position = $_POST['memberPosition'];
                     $yearJoined = $_POST['memberYearJoined'];
                     
@@ -138,11 +138,11 @@
                     </div>
                 </div>
                 <div class="form-check col-md-2">
-                    <input class="form-check-input" type="radio" name="radioButtons" id="memberRadio" onclick="showMembershipFields()">
+                    <input class="form-check-input" type="radio" name="radioButtons" value="memberRadio" id="memberRadio" onclick="showMembershipFields()">
                     <label class="form-check-label text-white" for="memberRadio">Member</label>
                 </div>
                 <div class="form-check col-md-3">
-                    <input class="form-check-input" type="radio" name="radioButtons" id="nonmemberRadio" checked onclick="hideMembershipFields()">
+                    <input class="form-check-input" type="radio" name="radioButtons" value="nonmemberRadio id="nonmemberRadio" checked onclick="hideMembershipFields()">
                     <label class="form-check-label text-white" for="nonmemberRadio">Non-member</label>
                 </div>
 
