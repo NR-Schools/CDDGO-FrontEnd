@@ -26,9 +26,25 @@ class StudentService
 
     static function updateStudent(Student $student): bool
     {
+        $dbStudent = StudentRepository::getStudentById($student->StudID);
+
         // If password is changed, hash it
         //$student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
-        return StudentRepository::updateStudent($student);
+        StudentRepository::updateStudent($student);
+
+        // Call MemberRepository to update member assoc with student
+        if ($dbStudent->member == null && $student->member != null) {
+            // Add New Member Info
+            MemberRepository::createMember($student->StudID, $student->member);
+        }
+        else if ($dbStudent->member != null && $student->member == null) {
+            MemberRepository::deleteMember($student->StudID);
+        }
+        else if ($dbStudent->member != null && $student->member != null) {
+            MemberRepository::updateMember($student->member);
+        }
+
+        return true;
     }
 
     static function confirmStudentRegistration(int $studentId): bool

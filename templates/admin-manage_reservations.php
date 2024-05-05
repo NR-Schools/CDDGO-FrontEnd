@@ -10,6 +10,31 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
 ?>
 
+
+<?php
+
+if($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+    if(isset($_POST['Remove']))
+    {
+        $reservationId = $_POST['reservationId'];
+
+        // Remove Reservation
+        ReservationService::adminRemoveReservation($reservationId);
+    }
+
+    else if (isset($_POST['Confirm']))
+    {
+        $reservationId = $_POST['reservationId'];
+
+        // Confirm Reservation
+        ReservationService::adminConfirmReservation($reservationId);
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,48 +57,93 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         <hr />
 
 
-        <?php
+        <div class="reservations-container">
+            <p>Confirmed Reservations</p>
+            <div class="reservations-list-container">
 
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $actionType = $_POST['actionType'];
-            $reservationId = $_POST['reservationId'];
+                <?php
 
-            if ($actionType === "DELETE") {
-                ReservationService::deleteReservation($reservationId);
-            }
-        }
-
-        // Get all rentals
-        $reservations = ReservationService::getAllReservations();
-
-        foreach ($reservations as $reservation) {
-            assert($reservation instanceof Reservation);
-            $selfLink = htmlentities($_SERVER['PHP_SELF']);
-
-            echo <<<EOD
-            <div class="reservation-entry">
-                <div>
-                    <span> {$reservation->ReservationID} </span>
+                $confirmedReservations = ReservationService::getAllConfirmedReservations();
+                foreach ($confirmedReservations as $confirmedReservation) {
+                    assert($confirmedReservation instanceof Reservation);
+                    echo <<<EOD
+                <div class="reservation-entry">
                     <div>
-                        <span> {$reservation->student->getFullName()} </span>
-                        <span> {$reservation->student->StudNo} </span>
+                        <div>
+                            <span> {$confirmedReservation->ReservationID} </span>
+                        </div>
+                        <div>
+                            <span> {$confirmedReservation->student->getFullName()} </span>
+                            <span> {$confirmedReservation->student->StudNo} </span>
+                        </div>
+                        <div>
+                            <span> {$confirmedReservation->boardGame->GameName} </span>
+                        </div>
+                        <div>
+                            <span> Date: {$confirmedReservation->ReservedDate} </span>
+                            <span> Fee: P {$confirmedReservation->ReservationFee} </span>
+                        </div>
                     </div>
-                    <span> {$reservation->boardGame->GameName} </span>
-                    <span> {$reservation->ReservedDate} </span>
-                    <span> P{$reservation->ReservationFee} </span>
+                    <div>
+                        <form action="admin-manage_reservations.php" method="post">
+                            <input type="hidden" name="reservationId" value="{$confirmedReservation->ReservationID}">
+                            <input type="submit" name="Remove" value="Remove" class="btn btn-danger">
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <form action="{$selfLink}" method="post">
-                        <input type="hidden" name="actionType" value="DELETE">
-                        <input type="hidden" name="reservationId" value="{$reservation->ReservationID}">
-                        <input type="submit" value="Delete">
-                    </form>
-                </div>
-            </div>
-            EOD;
-        }
+                EOD;
+                }
 
-        ?>
+                ?>
+
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="reservations-container">
+            <p>Unconfirmed Reservations</p>
+            <div class="reservations-list-container">
+
+                <?php
+
+                $unconfirmedReservations = ReservationService::getAllUnconfirmedReservations();
+                foreach ($unconfirmedReservations as $unconfirmedReservation) {
+                    assert($unconfirmedReservation instanceof Reservation);
+                    echo <<<EOD
+                    <div class="reservation-entry">
+                        <div>
+                            <div>
+                                <span> {$unconfirmedReservation->ReservationID} </span>
+                            </div>
+                            <div>
+                                <span> {$unconfirmedReservation->student->getFullName()} </span>
+                                <span> {$unconfirmedReservation->student->StudNo} </span>
+                            </div>
+                            <div>
+                                <span> {$unconfirmedReservation->boardGame->GameName} </span>
+                            </div>
+                            <div>
+                                <span> Date: {$unconfirmedReservation->ReservedDate} </span>
+                                <span> Fee: P {$unconfirmedReservation->ReservationFee} </span>
+                            </div>
+                        </div>
+                        <div>
+                            <form action="admin-manage_reservations.php" method="post">
+                                <input type="hidden" name="reservationId" value="{$unconfirmedReservation->ReservationID}">
+                                <input type="submit" name="Confirm" value="Confirm" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                    EOD;
+                }
+
+                ?>
+
+            </div>
+        </div>
 
     </div>
 </body>

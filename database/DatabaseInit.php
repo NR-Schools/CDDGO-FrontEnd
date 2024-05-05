@@ -49,7 +49,6 @@ Database::BasicSQL(
         InquiryTitle VARCHAR(255) NOT NULL,
         InquiryDesc TEXT NOT NULL,
         InquiryCreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (InquiryID),
         FOREIGN KEY (InquiryStudID) REFERENCES STUDENTS(StudID)
     );
     

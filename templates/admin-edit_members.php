@@ -46,6 +46,25 @@
                 $student->Program = $_POST['editProgram'];
                 $student->Password = $_POST['editPassword'];
 
+                // Check if the student is being made a member
+                if(isset($_POST['radioButtons']) && $_POST['radioButtons'] == "memberRadio") {
+                    // Handle membership fields                
+                    $position = $_POST['memberPosition'];
+                    $yearJoined = $_POST['memberYearJoined'];
+                    
+                    if ($student->member == null) {
+                        $student->member = new Member();
+                    }
+                    
+                    $student->member->student = $student;
+                    $student->member->Position = $position;
+                    $student->member->YearJoined = $yearJoined;
+                    
+                } else {
+                    // If not a member, set member property to null
+                    $student->member = null;
+                }
+
                 StudentService::updateStudent($student);
 
                 echo "<script> alert('User Updated');
@@ -58,7 +77,6 @@
         }
         
     ?>
-
 
 
     <!-- Start Body -->
@@ -120,13 +138,26 @@
                     </div>
                 </div>
                 <div class="form-check col-md-2">
-                    <input class="form-check-input" type="radio" name="radioButtons" id="memberRadio">
+                    <input class="form-check-input" type="radio" name="radioButtons" value="memberRadio" id="memberRadio" onclick="showMembershipFields()">
                     <label class="form-check-label text-white" for="memberRadio">Member</label>
                 </div>
                 <div class="form-check col-md-3">
-                    <input class="form-check-input" type="radio" name="radioButtons" id="nonmemberRadio" checked>
+                    <input class="form-check-input" type="radio" name="radioButtons" value="nonmemberRadio id="nonmemberRadio" checked onclick="hideMembershipFields()">
                     <label class="form-check-label text-white" for="nonmemberRadio">Non-member</label>
                 </div>
+
+                <!-- Membership Fields -->
+                <div id="membershipFields" style="display: none;">
+                    <div class="col-md-6">
+                        <label class="form-label text-white" for="memberPosition">Position</label>
+                        <input type="text" class="form-control" id="memberPosition" name="memberPosition" value="">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-white" for="memberYearJoined">Year Joined</label>
+                        <input type="text" class="form-control" id="memberYearJoined" name="memberYearJoined" value="">
+                    </div>
+                </div>
+
                 <div class="button-container text-center">
                     <input type="hidden" name="studID" id="studID" value="<?php echo $studId; ?>"> 
                     <button type="submit" class="btn" name="edit" id="edit">APPLY CHANGES</button>
@@ -136,5 +167,16 @@
         </div>
 
     </div>
+
+    <script>
+        function showMembershipFields() {
+            document.getElementById("membershipFields").style.display = "block";
+        }
+
+        function hideMembershipFields() {
+            document.getElementById("membershipFields").style.display = "none";
+        }
+    </script>
+
 </body>
 </html>

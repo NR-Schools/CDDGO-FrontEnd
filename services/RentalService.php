@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/RentalModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/BoardGameModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/RentalRepository.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/ReservationRepository.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/BoardGameRepository.php";
 
@@ -22,6 +23,22 @@ class RentalService
 
         if ($attemptStatus !== "AVAILABLE")
             return [false, $attemptStatus];
+
+        // Get All Reservations
+        $reservations = ReservationRepository::getAllReservationsByStudent($rental->student->StudID);
+        foreach ($reservations as $reservation) {
+            assert($reservation instanceof Reservation);
+
+            // Consume reservation if Reservation Date is the same with current day
+            if (
+                $rental->boardGame->GameID === $reservation->boardGame->GameID &&
+                date("Y-m-d") === $reservation->ReservedDate
+            ) {
+                ReservationRepository::deleteReservation($reservation->ReservationID);
+                break;
+            }
+
+        }
 
         // Add Rental by User
         RentalRepository::addNewRental($rental);

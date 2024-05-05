@@ -1,5 +1,6 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/EventService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
@@ -30,20 +31,21 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         <p>ALL EVENTS</p>
         <hr />
 
+        <a href="/templates/admin-add_event.php" class="btn btn-primary">Add New Event</a>
+
+
         <div class="custom-layout-manager">
             
             <?php
-
-            require_once $_SERVER['DOCUMENT_ROOT'] . "/services/EventService.php";
-
             // Get all events
             $events = EventService::getAllEvents();
             foreach ($events as $event) {
                 assert($event instanceof Event);
                 $editLink = "/templates/admin-edit_event.php?eventId=" . $event->EventID;
+                $photoResource = 'data:image/' . pathinfo($event->EventImage, PATHINFO_EXTENSION) . ';base64,' . $event->EventImage;
                 echo <<<EOD
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="https://placehold.co/600x400/png" alt="{Card image}">
+                    <img class="card-img-top" src="{$photoResource}"  alt="{Card image}">
                     <div class="card-body">
                         <h5 class="card-title">{$event->EventName}</h5>
                         <p class="card-text">{$event->EventDescription}</p>
@@ -57,7 +59,6 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
                 </div>
                 EOD;
             }
-
             ?>
 
         </div>
