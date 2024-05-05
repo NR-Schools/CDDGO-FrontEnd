@@ -47,7 +47,7 @@ HEADER_STYLE_BOOTSTRAP;
                     </div>
         
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href=../templates/user-homepage.php" class="nav-link px-2">HOME</a></li>
+                        <li><a href="../templates/user-homepage.php" class="nav-link px-2">HOME</a></li>
                         <li><a href="../templates/user-board_games.php" class="nav-link px-2">BOARD GAMES</a></li>
                         <li><a href="../templates/user-events.php" class="nav-link px-2">EVENTS</a></li>
                         <li><a href="../templates/user-inquiries.php" class="nav-link px-2">INQUIRIES</a></li>

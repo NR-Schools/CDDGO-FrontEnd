@@ -4,8 +4,9 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 1000px;
+    height: 1500px;
     border: none;
+    margin-top: -150px;
 }
 
 .game-content-container{
@@ -13,7 +14,7 @@
     flex-direction: row;
     gap: 37px;
     width: 1366px;
-    height: 769px;
+    height: 650px;
 }
 
 .divider{
@@ -36,6 +37,11 @@
     width: 644px;
 }
 .event-content-container{
+    width: 1366px;
+    height: 412px;
+}
+
+.reservation-content-container{
     width: 100%;
     height: 412px;
 }
@@ -131,9 +137,29 @@
     background-color: transparent;
     border-color: #9e0671;
     padding: 10px;
-
+}
+.reserve-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: #9e0671;
+    padding: 10px;
+    height: 101px;
 }
 
+.no-events{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
 .name-styling{
     color: rgb(50, 6, 78);
     font-family: "Merriweather Sans", sans-serif;
@@ -147,7 +173,37 @@
     font-weight: 300;
     font-size: 13px;
 }
-.scroll {
-    overflow-y: auto; 
+.with-events {
     height: 412px;
+}
+
+
+.scroll{
+    height: 450px;
+    padding-bottom: 3px;
+    overflow-y: auto;
+    padding-top: -3px;
+}
+.no-events {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 412px;
+}
+
+.no-event-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: rgb(50, 6, 78);
+    display: inline-block;
+}
+
+.no-event-desc{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: rgb(50, 6, 78);
+    display: inline-block;
 }
