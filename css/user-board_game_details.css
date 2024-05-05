@@ -3,8 +3,8 @@
     flex-direction: row; 
     justify-content: center;
     gap: 20px;
-    height: 900px;
-    margin-top: 50px   ;
+    height: 1000px;
+    margin-top: 50px;
 }
 
 .img-styling{
@@ -134,6 +134,11 @@
     overflow-y:auto;
     text-align: justify;
     width:694px;
+    color:rgb(50, 6, 78);
+    text-align: justify;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .button-container{
@@ -184,4 +189,92 @@
     height: 38px;
     border-radius: 5px;
     border-style: solid;
+}
+
+.no-reviews{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 310px;
+
+}
+
+.no-review-desc{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: rgb(50, 6, 78);
+    display: inline-block;
+}
+
+.no-review-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: rgb(50, 6, 78);
+    display: inline-block;
+}
+
+.comment-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color:rgb(50, 6, 78);
+    border-color: #9e0671;
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    width:100%;
+}
+
+.comment-container{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+.comment-styling:focus{
+    outline: none;
+}
+
+.send-button{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color:white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    background-color:#9e0671;
+    width: 160px;
+    height: 38px;
+    border-radius: 5px;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.send-button:hover{
+    color: #9e0671;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.no-review-member{
+    position: absolute;
+    top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 310px;
+}
+
+.comment-content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: transparent;
+    padding: 10px;
 }

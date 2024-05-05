@@ -1,7 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "models/BoardGame.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/BoardGameModel.php";
 
 
 class Testimonial {

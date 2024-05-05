@@ -45,6 +45,7 @@
                 $game->GameImage = $image_encoded;
                 $game->QuantityAvailable = $_POST['quantity_avail'];
                 $game->GameCategory = htmlspecialchars($_POST['game_category']);
+                $game->GameImage = $image_encoded;
 
                 BoardGameService::updateExistingBoardGame($game);
 
