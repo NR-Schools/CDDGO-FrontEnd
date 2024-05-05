@@ -1,10 +1,21 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/services/InquiryService.php";
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
     #Include Header and Footer
     require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
     require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
+
+<?php
+
+if (!AuthGuard::guard_route(Role::USER)) {
+    // Return to root
+    //header("Location: /");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,38 +28,29 @@
         <!-- Frontend Start -->
         <div class="box">
         <h1>My Inquiries</h1>
-        <div class="inquiry">
-            <div class="details">
-                <strong>Date of Inquiry:</strong> May 1, 2024<br>
-                <strong>Message:</strong><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+        
+        <?php
+        [$email, $role] = AuthService::getCurrentlyLoggedIn();
+        $inquiries = InquiryService::getInquiriesByStudent($email);
+        foreach ($inquiries as $inquiry) {
+            assert($inquiry instanceof Inquiry);
+            echo <<<EOD
+            <div class="inquiry">
+                <div class="details">
+                    <strong>Date of Inquiry:</strong>{$inquiry->InquiryCreatedAt}<br>
+                    <strong>Title:</strong><br> {$inquiry->InquiryTitle} <br><br>
+                    <strong>Message:</strong><br> {$inquiry->InquiryDesc}
+                </div>
+                <div class="actions">
+                    <button class="btn">View</button>
+                </div>
             </div>
-            <div class="actions">
-                <button class="btn">View</button>
-            </div>
-        </div>
-        <div class="inquiry">
-            <div class="details">
-                <strong>Date of Inquiry:</strong> May 1, 2024<br>
-                <strong>Message:</strong><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </div>
-            <div class="actions">
-                <button class="btn">View</button>
-            </div>
-        </div>
-        <div class="inquiry">
-            <div class="details">
-                <strong>Date of Inquiry:</strong> May 1, 2024<br>
-                <strong>Message:</strong><br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </div>
-            <div class="actions">
-                <button class="btn">View</button>
-            </div>
-        </div>
+            EOD;
+        }
+        ?>
+
         <div class="add-inquiry-btn">
-            <button class="btn">Add Inquiry</button>
+            <a href="/templates/user-submit_inquiry.php" class="btn">Add Inquiry</a>
         </div>
     </div>
         <!-- Backend Start -->
