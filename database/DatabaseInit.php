@@ -93,7 +93,7 @@ Database::BasicSQL(
         FOREIGN KEY (GameID) REFERENCES BOARD_GAMES(GameID)
     );
 
-    CREATE TABLE IF NOT EXISTS NOTIFICATION (
+    CREATE TABLE IF NOT EXISTS NOTIFICATIONS (
         NotificationID INT PRIMARY KEY AUTO_INCREMENT,
         NotificationTitle VARCHAR(50),
         NotificationBody VARCHAR(100),
