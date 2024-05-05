@@ -3,19 +3,8 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/ReservationService.php");
 
-
-
-    if(isset($_GET["gameId"]))
-    {
-        $gameID =(int)$_GET["gameId"];
-
-        $game = BoardGameService::getBoardGameById($gameID);
-        if ($game == null)
-        {
-            echo "No game.";
-        }
-    }
 
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -23,6 +12,7 @@
         if(isset($_POST['reserve'])){
             // Check if user is making a duplicate reservation
             $gameID = $_POST["gameID"];
+            $game = BoardGameService::getBoardGameById($gameID);
             $date = $_POST["date"];
             $fee = 50;
 
@@ -49,6 +39,17 @@
         {
             $id = $_POST["gameID"];
             header("Location:../templates/user-board_game_details.php?gameId=". $id);
+        }
+    }
+
+    if(isset($_GET["gameId"]))
+    {
+        $gameID =(int)$_GET["gameId"];
+
+        $game = BoardGameService::getBoardGameById($gameID);
+        if ($game == null)
+        {
+            echo "No game.";
         }
     }
 
@@ -79,6 +80,7 @@
                 <div class="divider"></div>
 
                 <?php 
+
                     echo<<<EOD
                     <div>
                         <img class="game-image" src="../assets/img-placeholder.png" alt="">
