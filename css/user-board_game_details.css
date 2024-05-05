@@ -1,0 +1,65 @@
+.main-container{
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    gap: 20px;
+}
+
+.img-styling{
+    width: 679px;
+    height: 406px;
+}
+.divider{
+    border-top-style: solid;
+    border-top-width: 5px;
+    border-color: #9e0671;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.title-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #9e0671;
+}
+
+.left-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.img-container{
+    margin-bottom: 20px;
+}
+
+.review-content{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: #9e0671;
+    padding: 10px;
+    height: 101px;
+}
+
+.author-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #9e0671;
+}
+
+.testimony-review{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color:rgb(50, 6, 78);
+    width: 670px;
+    height: 90px;
+    overflow-y:auto;
+}
