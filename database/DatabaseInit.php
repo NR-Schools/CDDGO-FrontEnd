@@ -92,6 +92,14 @@ Database::BasicSQL(
         FOREIGN KEY (StudID) REFERENCES STUDENTS(StudID),
         FOREIGN KEY (GameID) REFERENCES BOARD_GAMES(GameID)
     );
+
+    CREATE TABLE IF NOT EXISTS NOTIFICATION (
+        NotificationID INT PRIMARY KEY AUTO_INCREMENT,
+        NotificationTitle VARCHAR(50),
+        NotificationBody VARCHAR(100),
+        TargetEmail VARCHAR(50), 							-- Target Email to Send Notification
+        CreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
     
     "
 );
