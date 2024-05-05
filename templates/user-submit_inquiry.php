@@ -1,7 +1,9 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
-require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
-#Include Header and Footer
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/InquiryService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
@@ -12,8 +14,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // Get Currently Logged In Student
-    [$email, _] = AuthService::getCurrentlyLoggedIn();
-    $student = StudentRepository::getStudentByEmail($email);
+    [$email, $role] = AuthService::getCurrentlyLoggedIn();
+    $student = StudentService::getStudentByEmail($email);
 
     // Construct Inquiry
     $inquiry = new Inquiry();

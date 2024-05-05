@@ -1,6 +1,6 @@
 <?php
 
-require_once("models/StudentModel.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
 
 
 class Inquiry {
