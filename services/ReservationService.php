@@ -67,6 +67,12 @@ class ReservationService
         return true;
     }
 
+    static function adminRemoveReservation(int $reservationId): bool
+    {
+        ReservationRepository::deleteReservation($reservationId);
+        return true;
+    }
+
     static function adminMoveReservationSchedule(int $reservationId, string $newDate): bool
     {
         // Check if new date for reservation does not have the same game being reserved by any student

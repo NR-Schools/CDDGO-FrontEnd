@@ -17,26 +17,45 @@
     }
 }
 
+
+.reservations-container {
+    width: 75%;
+    >p {
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+.reservations-list-container {
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid rgb(42, 42, 42);
+}
+
 .reservation-entry {
-    background-color: gray;
-    width: 85%;
+    transition: all 0.25s ease-in-out;
+    background-color: whitesmoke;
     display: flex;
     margin: 10px;
-    padding: 10px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    font-size: 0.9rem;
+
+    &:hover {
+        transition: all 0.25s ease-in-out;
+        box-shadow: 3px 5px;
+        cursor: pointer;
+    }
 
     >div {
         &:nth-child(1) {
-            flex: 0.8;
+            flex: 0.88;
             display: flex;
 
-            >span {
+            span {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-            }
-
-            >span:nth-child(1) {
-                flex: 0.08;
             }
 
             >div {
@@ -45,24 +64,28 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+
+                &:nth-child(1) {
+                    flex: 0.1;
+                }
+
+                &:nth-child(2) {
+                    flex: 0.28;
+                }
+
+                &:nth-child(3) {
+                    flex: 0.38;
+                }
+
+                &:nth-child(4) {
+                    flex: 0.24;
+                }
             }
 
-            >span:nth-child(2) {
-                flex: 0.21;
-            }
-            >span:nth-child(3) {
-                flex: 0.2;
-            }
-            >span:nth-child(4) {
-                flex: 0.2;
-            }
-            >span:nth-child(5) {
-                flex: 0.2;
-            }
             
         }
         &:nth-child(2) {
-            flex: 0.2;
+            flex: 0.12;
             display: flex;
             align-items: center;
             justify-content: center;
