@@ -47,6 +47,11 @@ class InquiryService
         $inquiryResponse->ResponseSource = "ADMIN";
         return InquiryRepository::createResponseToInquiry($inquiryResponse);
     }
+
+    static function adminRemoveInquiry(int $inquiryId): bool
+    {
+        return InquiryRepository::deleteInquiry($inquiryId);
+    }
 }
 
 

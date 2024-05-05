@@ -137,6 +137,17 @@ class InquiryRepository
             ]
         );
     }
+
+    static function deleteInquiry(int $inquiryId): bool
+    {
+        return Database::SQLwithoutFetch(
+            Database::getPDO(),
+            "
+            DELETE FROM INQUIRIES WHERE InquiryID = :inquiryId;
+            ",
+            [ ":inquiryId" => $inquiryId ]
+        );
+    }
 }
 
 ?>
