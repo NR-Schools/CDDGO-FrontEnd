@@ -32,7 +32,11 @@ class AuthGuard
             session_start();
         }
 
-        return [$_SESSION['email'], AuthGuard::get_session_role()];
+        $email = null;
+        if (isset($_SESSION['email']))
+            $email = $_SESSION['email'];
+
+        return [$email, AuthGuard::get_session_role()];
     }
 
     static function clear_session(): void
