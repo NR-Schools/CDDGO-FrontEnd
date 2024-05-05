@@ -17,52 +17,95 @@
     }
 }
 
-.borrow-record-entry {
-    background-color: #32064e;
-    width: 85%;
+.registrations-list-container {
+    width: 70%;
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid rgb(42, 42, 42);
+}
+
+.registration-record {
+    transition: all 0.25s ease-in-out;
+    background-color: whitesmoke;
     display: flex;
-    justify-content: space-between;
     margin: 10px;
-    padding: 20px;
+    padding: 10px 20px;
     border: 1px solid black;
+    font-size: 0.9rem;
 
-    > div {
+    &:hover {
+        transition: all 0.25s ease-in-out;
+        box-shadow: 3px 5px;
+        cursor: pointer;
+    }
+
+    >div {
         &:nth-child(1) {
-            flex: 0.8;
+            flex: 0.88;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
 
-            >span {
-                flex: 0.2;
+            span {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            >div {
+                flex: 0.31;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                &:nth-child(1) {
+                    flex: 0.15;
+                }
+
+                &:nth-child(2) {
+                    flex: 0.3;
+                }
+
+                &:nth-child(3) {
+                    flex: 0.3;
+                }
+
+                &:nth-child(4) {
+                    flex: 0.2;
+                }
+
+                &:nth-child(5) {
+                    flex: 0.2;
+                }
+            }
+        }
+        &:nth-child(2) {
+            flex: 0.12;
+            align-items: center;
+            justify-content: center;
+
+            >form {
+                display: flex;
+            }
+
+            .btn {
+                background-color: #9e0671; 
+                color: #ffffff; 
+                border-color: #9e0671;
+                width: 6em;
+                border-width: 2px;
+                transition:background-color 0.5s, border-style 0.5s,color 0.5s;
+                margin-left: 10px;
+            }
+            
+            .btn:hover {
+                background-color: #32064e;
+                color: #FFFFFF;
+            }
+            
+            .btn:active {
+                border-color: #9e0671;
             }
         }
     }
 }
 
-.button-container {
-    margin: 10px;
-
-    >button {
-        background-color: #9e0671; 
-        color: #ffffff; 
-        border-color: #9e0671;
-        width: 6em;
-        border-width: 2px;
-        transition:background-color 0.5s, border-style 0.5s,color 0.5s;
-        margin-left: 10px;
-    }
-
-    .btn:hover {
-        background-color: #32064e;
-        color: #FFFFFF;
-    }
-
-    .btn:active {
-        border-color: #9e0671;
-    }
-}
