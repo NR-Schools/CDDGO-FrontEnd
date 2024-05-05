@@ -3,19 +3,30 @@
     flex-direction: row; 
     justify-content: center;
     gap: 20px;
+    height: 900px;
+    margin-top: 50px   ;
 }
 
 .img-styling{
-    width: 679px;
+    width: 694px;
     height: 406px;
 }
 .divider{
     border-top-style: solid;
     border-top-width: 5px;
     border-color: #9e0671;
-    width: 100%;
+    width: 694px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.subDivider{
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-color: #9e0671;
+    width: 100%;
+    margin-top: 3px;
+    margin-bottom: 5px;
 }
 
 .title-styling{
@@ -44,8 +55,9 @@
     background-color: transparent;
     border-color: #9e0671;
     padding: 10px;
-    height: 101px;
+    height: 90px;
 }
+
 
 .author-styling{
     font-family: "Merriweather Sans", sans-serif;
@@ -60,6 +72,116 @@
     font-size: 12px;
     color:rgb(50, 6, 78);
     width: 670px;
-    height: 90px;
     overflow-y:auto;
+    text-align: justify;
+}
+
+.reviews-container{
+    height: 310px;
+    overflow-y:auto;
+}
+
+.game-name-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 50px;
+    color: #9e0671;
+}
+
+.game-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.info-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    grid-column: 4;
+    color: #9e0671;
+}
+.rating-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    grid-column: 4;
+    color: #9e0671;
+}
+
+.value-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgb(50, 6, 78);
+}
+
+.category-styling{
+    background-color:transparent;
+    color:#9e0671;
+    text-align: center;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 2px;
+    border-width: 3px;
+    border-color: #9e0671;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.text-content{
+    height: 500px;
+    overflow-y:auto;
+    text-align: justify;
+    width:694px;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:50px;
+    margin-top: 10px;
+}
+
+.button{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color:white;
+    background-color: #9e0671;
+    border: none;
+    width: 160px;
+    height: 38px;
+    border-radius: 5px;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.button:hover{
+    color: #9e0671;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.back-button{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color:#9e0671;
+    border-width: 3px;
+    border-color: #9e0671;
+    background-color: transparent;
+    width: 160px;
+    height: 38px;
+    border-radius: 5px;
+    border-style: solid;
 }
