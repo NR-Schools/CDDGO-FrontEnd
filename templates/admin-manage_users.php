@@ -26,42 +26,60 @@
     <!-- Start Body -->
     <div class="main-body">
         <p>USER MANAGEMENT</p>
-
         <hr />
 
-        <?php
-            // Get all students
-            $students = StudentService::getAllStudents();
+        <div class="users-list-container">
+            <?php
+                // Get all students
+                $students = StudentService::getAllStudents();
 
-            foreach ($students as $student) {
-                assert($student instanceof Student);
+                foreach ($students as $student) {
+                    assert($student instanceof Student);
 
-                // Check if the student is verified
-                if ($student->isVerified) {
-                    // Determine member status
-                    $memberStatus = ($student->member !== null) ? "member" : "non-member";
+                    // Check if the student is verified
+                    if ($student->isVerified) {
+                        // Determine member status
+                        $memberStatus = ($student->member !== null) ? "member" : "non-member";
 
-                    $editLink = "/templates/admin-edit_members.php?studId=" . $student->StudID;
+                        $editLink = "/templates/admin-edit_members.php?studId=" . $student->StudID;
 
-                    echo <<<EOD
+                        echo <<<EOD
 
-                    <div class="borrow-record-entry">
-                        <div>
-                            <span>{$student->StudNo}</span>
-                            <span>{$student->getFullName()}</span>
-                            <span>{$student->Email}</span>
-                            <span>{$student->Program}</span>
-                            <span>{$memberStatus}</span>
+                        <div class="user-record">
+                            <div>
+                                <div>
+                                    <span>Student No.</span>
+                                    <span>{$student->StudNo}</span>
+                                </div>
+                                <div>
+                                    <span>Full Name</span>
+                                    <span>{$student->getFullName()}</span>
+                                </div>
+                                <div>
+                                    <span>Email</span>
+                                    <span>{$student->Email}</span>
+                                </div>
+                                <div>
+                                    <span>Program</span>
+                                    <span>{$student->Program}</span>
+                                </div>
+                                <div>
+                                    <span>Membership</span>
+                                    <span>{$memberStatus}</span>
+                                </div>  
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-danger" onclick="window.location.href='{$editLink}'">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
                         </div>
-                        <div>
-                            <button type="button" class="btn btn-danger" onclick="window.location.href='{$editLink}'">Edit</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                    EOD;
+                        EOD;
+                    }
                 }
-            }
-        ?>
+            ?>
+        </div>
+
+        
     </div>
 </body>
 </html>
