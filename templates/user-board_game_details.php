@@ -30,6 +30,29 @@
             require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
         ?>
 
+        <!--Form Start-->
+        <form action="user-board_game_details.php" method="POST">
+            <div class="main-container">
+                <div class="rent-container">
+                    <div class="title-styling">
+                        BOARD GAME DETAILS
+                    </div>
+                    <div class="divider"></div>
+
+                    <?php
+                        echo<<<EOD
+                        <div>
+                            <img class="game-image" src="../assets/img-placeholder.png" alt="">
+                        </div>
+                        <div class="name-styling" name="gameName" id="gameName">{$game->GameName}</div>
+                        <div class="price-styling" name="reservePrice" id="reservePrice">TOTAL PRICE</div>
+                        EOD;
+                    ?>
+
+                
+                </div>
+            </div>
+        </form>
         <!--Content Start-->
         <div class="content-container">
             <?php

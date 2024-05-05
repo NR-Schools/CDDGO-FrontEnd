@@ -13,19 +13,31 @@
             text-align: justify;
         }
 
+        .button-container{
+            width: 100%;
+            position: absolute;
+            left: 230px;
+            bottom: 20px;
+        
+            
+        }
+
         .game-card-title {
             margin-top: 0;
+            font-family: 'Helvetica',sans-serif;
+            text-align: center;
+            color:  #9e0671;
+            font-weight: bold;
         }
 
         .game-card-text {
             margin-bottom: 15px;
         }
 
-
-        .game-item-title {
-            font-family: 'Alice',sans-serif;
-            text-align: center;
-            color: #1EA36D;
+        .game-card-desc{
+            overflow-wrap: break-word;
+            overflow-y: auto;
+            height: 144px;
         }
 
         .game-card-container {
@@ -39,7 +51,9 @@
         .game-card {
             border: 1px solid #ccc;
             padding: 20px;
+            position: relative;
             transition: transform 1s;
+            border-radius: 15px;
         }
 
         .game-card:hover {
@@ -58,4 +72,41 @@
             background-color: #9e0671; 
             color: white;
             padding: 10px;
+        }
+
+        .title-container 
+        {
+            margin-top: 20px;
+            overflow: hidden;
+            margin-left: 270px;
+        }
+
+        .title
+        {
+            display: inline-block; /* Display elements side by side */
+            vertical-align: top; /* Align them to the top */
+            margin-right: 800px;
+        }
+
+        .add-button
+        {
+            display: inline-block; /* Display elements side by side */
+            vertical-align: top; /* Align them to the top */
+        }
+
+        .add-btn
+        {
+            display: inline-block;
+            background-color: #9e0671; 
+            color: white;
+            border-radius: 8px;
+            border: solid #9e0671;
+            padding: 10px;
+            transition:background-color 0.5s, border-style 0.5s, color 0.5s;
+        }
+
+        .add-btn:hover
+        {
+            background-color: #ffffff;
+            color: #9e0671;
         }
