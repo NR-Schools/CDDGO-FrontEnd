@@ -108,7 +108,7 @@ class InquiryRepository
         return $inquiryResponseList;
     }
 
-    static function createInquiry(int $studentId, Inquiry $inquiry): bool
+    static function createInquiry(Inquiry $inquiry): bool
     {
         return Database::SQLwithoutFetch(
             Database::getPDO(),
@@ -116,7 +116,7 @@ class InquiryRepository
             INSERT INTO INQUIRIES VALUES (null, :studId, :inquiryTitle, :inquiryDesc, null);
             ",
             [
-                ":studId" => $studentId,
+                ":studId" => $inquiry->student->StudID,
                 ":inquiryTitle" => $inquiry->InquiryTitle,
                 ":inquiryDesc" => $inquiry->InquiryDesc
             ]
