@@ -13,6 +13,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
 
+
+<?php
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    if (isset($_POST['Delete']))
+    {
+        $inquiryId = $_POST['inquiryId'];
+        InquiryService::adminRemoveInquiry($inquiryId);
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +52,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
             assert($inquiry instanceof Inquiry);
             $replyLink = "/templates/admin-reply_to_inquiry.php?inquiryId=" . $inquiry->InquiryID;
             echo <<<SHOW_INQUIRIES
-            <div class="inquiry">
+            <form class="inquiry" action="admin-manage_inquiries.php" method="post">
                 <div class="details">
                     <strong>Name:</strong> {$inquiry->student->getFullName()}<br>
                     <strong>Email:</strong> {$inquiry->student->Email}<br>
@@ -47,9 +60,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
                 </div>
                 <div class="actions">
                     <a class="btn reply" href="{$replyLink}">Reply</a>
+                    <input type="hidden" name="inquiryId" value="{$inquiry->InquiryID}"> 
                     <button class="btn delete" name="Delete">Delete</button>
                 </div>
-            </div>
+            </form>
             SHOW_INQUIRIES;
         }
 

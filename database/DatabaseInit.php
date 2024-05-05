@@ -58,7 +58,7 @@ Database::BasicSQL(
         ResponseText VARCHAR(500) NOT NULL,
         ResponseCreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         ResponseSource ENUM (\"STUDENT\", \"ADMIN\") NOT NULL,
-        FOREIGN KEY (RefInquiryID) REFERENCES INQUIRIES(InquiryID)
+        FOREIGN KEY (RefInquiryID) REFERENCES INQUIRIES(InquiryID) ON DELETE CASCADE
     );
     
     CREATE TABLE IF NOT EXISTS TESTIMONIALS (
