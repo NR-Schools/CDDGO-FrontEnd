@@ -41,6 +41,9 @@
             <div>
                 <a href="../templates/admin-manage_users.php"><button class="button-styling">MANAGE USERS AND MEMBERS</button></a>
             </div>
+            <div>
+                <a href="../templates/admin-manage_registrations.php"><button class="button-styling">MANAGE REGISTRATION</button></a>
+            </div>
             <div class="divider"></div>
         </div>
     </div>
