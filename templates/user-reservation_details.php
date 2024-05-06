@@ -30,9 +30,15 @@
 
             if (!$result) {
                 // Reservation Failed!
+                echo "<script> alert('Reservation Failed');
+                document.location.href = 'user-board_games.php';
+                </script>";
             }
 
             // Reservation Success!
+            echo "<script> alert('Board Game Added');
+            document.location.href = 'user-board_games.php';
+            </script>";
         }
 
         if(isset($_POST['cancel']))
