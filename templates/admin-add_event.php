@@ -24,50 +24,48 @@
     ?>
 
     <!-- Start Body -->
-    <div class="main-body">
+    <div class="content-container">
+        <div class="add-event-title">
         <p>ADD EVENT</p>
-        <hr />
-
-        <!-- Loop This Shit -->
-        <div class="fields-container">
-            <form action="admin-add_event.php" method="POST" enctype="multipart/form-data" class="row g-3">
-
-                <!-- Event Title/Name -->
-                <div class="col-md-6 form-group">
-                    <label for="inputName" class="form-label text-white">Event Title</label>
-                    <input type="text" class="form-control" id="inputName" name="inputName">
-                </div>
-
-                <!-- Event Location -->
-                <div class="col-md-6 form-group">
-                    <label for="inputLocation" class="form-label text-white">Location</label>
-                    <input type="text" class="form-control" id="inputLocation" name="inputLocation">
-                </div>
-                
-                <!-- Event Date -->
-                <div class="col-6 form-group">
-                    <label for="inputDate" class="form-label text-white">Event Date</label>
-                    <input type="date" class="form-control" id="inputDate" name="inputDate">
-                </div>
-
-                <!-- Event Image -->
-                <div class="col-6 form-group">
-                    <label for="inputImage" class="form-label text-white">Event Image</label>
-                    <input class="form-control" type="file" id="inputImage" name="inputImage" onchange="onFileSelected(event)" accept="image/*">
-                </div>
-
-                <!-- Event Description -->
-                <div class="col-12 form-group">
-                    <label for="inputDescription" class="form-label text-white">Description</label>
-                    <textarea type="text" class="form-control" id="inputDescription" rows="8" name="inputDescription"></textarea>
-                </div>
-
-                <div class="button-container text-center">
-                    <button type="submit" class="btn">ADD EVENT</button>
-                    <button onclick="window.location.href='admin-manage_events.php'" type="button" class="btn">CANCEL</button>
-                </div>
-            </form>
         </div>
+        
+        <!-- Loop This Shit -->
+        <form action="admin-add_event.php" method="POST" enctype="multipart/form-data" class="row g-3">
+            <!-- Event Title/Name -->
+            <div class="form-group">
+                <label for="inputName" class="form-label">Event Title</label>
+                <input type="text" class="form-control" id="inputName" name="inputName">
+            </div>
+
+            <!-- Event Location -->
+            <div class="form-group">
+                <label for="inputLocation" class="form-label">Location</label>
+                <input type="text" class="form-control" id="inputLocation" name="inputLocation">
+            </div>
+            
+            <!-- Event Date -->
+            <div class="form-group">
+                <label for="inputDate" class="form-label">Event Date</label>
+                <input type="date" class="form-control" id="inputDate" name="inputDate">
+            </div>
+
+            <!-- Event Image -->
+            <div class="form-group">
+                <label for="inputImage" class="form-label">Event Image</label>
+                <input class="form-control" type="file" id="inputImage" name="inputImage" onchange="onFileSelected(event)" accept="image/*">
+            </div>
+
+            <!-- Event Description -->
+            <div class="form-group">
+                <label for="inputDescription" class="form-label">Description</label>
+                <textarea type="text" class="form-control" id="inputDescription" rows="8" name="inputDescription"></textarea>
+            </div>
+
+            <div class="button-container text-center">
+                <button type="submit" class="btn-submit">ADD EVENT</button>
+                <button onclick="window.location.href='admin-manage_events.php'" type="button" class="btn-cancel">CANCEL</button>
+            </div>
+        </form>
     </div>
 
     <!-- Add Event -->
