@@ -15,7 +15,6 @@
     $studReserveGame = ReservationService::getAllReservationsByStudent($student->StudID);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
