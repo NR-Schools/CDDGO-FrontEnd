@@ -1,26 +1,28 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
-    #Include Header and Footer
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/InquiryService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
+#Include Header and Footer
+require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
 
 <?php
-    $inquiryId = $_GET['inquiryId'];
+$inquiryId = $_GET['inquiryId'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Inquiry Details</title>
-            <link type="text/css" rel="stylesheet" href="../css/user-inquiry_details.css">
-        </head>
-    <body>
-        <!-- Frontend Start -->
-        <div class="box">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry Details</title>
+    <link type="text/css" rel="stylesheet" href="../css/user-inquiry_details.css">
+</head>
+
+<body>
+    <!-- Frontend Start -->
+    <div class="box">
 
         <?php
         // Get Inquiry
@@ -40,18 +42,15 @@
 
         // Get InquiryResponses
         $inquiryResponses = InquiryService::getInquiryResponses($inquiryId);
-        foreach($inquiryResponses as $inquiryResponse) {
+        foreach ($inquiryResponses as $inquiryResponse) {
             assert($inquiryResponse instanceof InquiryResponse);
             $responseClass = "";
             $sourceDisplay = "";
-            
-            if ($inquiryResponse->ResponseSource == "USER")
-            {
+
+            if ($inquiryResponse->ResponseSource == "USER") {
                 $responseClass = "user";
                 $sourceDisplay = $inquiry->student->getFullName();
-            }
-            else
-            {
+            } else {
                 $responseClass = "admin";
                 $sourceDisplay = "admin@email.com";
 
@@ -81,7 +80,8 @@
             </div>
         </div>
     </div>
-        <!-- Backend Start -->
+    <!-- Backend Start -->
 
-    </body>
+</body>
+
 </html>

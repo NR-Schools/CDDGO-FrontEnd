@@ -25,19 +25,41 @@ hr{
 h3 {
     text-align: center;
 }
-.inquiry-info {
+.message-container {
     margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
-.inquiry-info strong {
-    display: inline-block;
-    width: 150px;
-    font-weight: bold;
+.message-container.user {
+    background-color: #d9edf7;
 }
-.inquiry-message {
+.message-container.admin {
+    background-color: #dff0d8;
+}
+.message-details {
+    margin-bottom: 10px;
+}
+.message-content {
+    margin-bottom: 10px;
+}
+.reply-box {
     margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
-.actions {
-    text-align: center;
+textarea {
+    width: calc(100% - 22px); /* Adjusted width to account for padding and borders */
+    height: 100px; /* Fixed height for consistency */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-bottom: 10px; /* Added margin for spacing */
+}
+.buttons{
+    text-align: right;
 }
 .btn {
     padding: 10px 20px;
