@@ -67,29 +67,4 @@ textarea {
 
 .btn-cancel:hover {
     opacity: 0.8;
-}   
-
-
-/* .button-container {
-    margin: 10px;
-
-    >button {
-        background-color: #9e0671; 
-        color: #ffffff; 
-        border-color: #9e0671;
-        width: 12.5em;
-        border-width: 3px;
-        padding: 10px 20px;
-        transition:background-color 0.5s, border-style 0.5s,color 0.5s;
-    }
-
-    .btn:hover {
-        background-color: #32064e;
-        border-color: #9e0671;
-        color: #FFFFFF;
-    }
-
-    .btn:active {
-        border-color: #9e0671;
-    }
-} */
+}

@@ -1,51 +1,70 @@
-.main-body {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    > p {
-        margin: 2.2rem 0 0 0;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-
-    > hr {
-        width: 55%;
-        height: 2px;
-    }
-}
-
-.fields-container {
-    background-color: #32064e;
-    width: 55%;
-    display: flex;
-    margin: 10px;
+.content-container {
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-    border: 1px solid black;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Helvetica, sans-serif;
+    border: solid #9e0671;
 }
 
-.button-container {
-    margin: 10px;
+.edit-event-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #9e0671;
+}
 
-    >button {
-        background-color: #9e0671; 
-        color: #ffffff; 
-        border-color: #9e0671;
-        width: 12.5em;
-        border-width: 3px;
-        padding: 10px 20px;
-        transition:background-color 0.5s, border-style 0.5s,color 0.5s;
-    }
 
-    .btn:hover {
-        background-color: #32064e;
-        border-color: #9e0671;
-        color: #FFFFFF;
-    }
+label {
+    font-weight: bold;
+    color: #32064e;
+}
 
-    .btn:active {
-        border-color: #9e0671;
-    }
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn-edit {
+    display: inline-block;
+    background-color: #9e0671; 
+    color: white;
+    border-radius: 8px;
+    border: solid #9e0671;
+    padding: 10px;
+    transition:background-color 0.5s, border-style 0.5s, color 0.5s;
+}
+
+.btn-delete {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #333;
+    text-decoration: none;
+    color: #9e0671;
+    border-radius: 8px;
+    border: solid ;
+    padding: 10px;
+    transition:background-color 0.5s, border-style 0.5s, color 0.5s;
+}
+
+.btn-edit:hover {
+    background-color: #ffffff;
+    color: #9e0671;
+}
+
+.btn-delete:hover {
+    opacity: 0.8;
 }

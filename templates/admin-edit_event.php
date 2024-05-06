@@ -71,55 +71,37 @@
     ?>
 
     <!-- Start Body -->
-    <div class="main-body">
-        <p>EVENT NAME</p>
-        <hr />
-
-        <div class="fields-container">
-            <form action="admin-edit_event.php" method="POST" enctype="multipart/form-data" class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="newName">Event Name</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="newName" name="newName" value="<?php echo $event->EventName; ?>">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="newLocation">Edit Location</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="newLocation" name="newLocation" value="<?php echo $event->EventLocation; ?>">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <label class="form-label text-white" for="newDate">Event Date</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="date" class="form-control" id="newDate" name="newDate" value="<?php echo $event->EventDate; ?>">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <label class="form-label text-white" for="newImage">Event Image</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input class="form-control" type="file" id="newImage" name="newImage" onchange="onFileSelected(event)" accept="image/*">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <label for="newDescription" class="form-label text-white">Description</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <textarea class="form-control" id="newDescription" name="newDescription" rows="8"><?php echo $event->EventDescription; ?></textarea>
-                    </div>
-                </div>
-                <div class="button-container text-center">
-                    <input type="hidden" name="eventID" id="eventID" value="<?php echo $eventId; ?>"> 
-                    <button type="sumbit" class="btn" name="edit" value="edit">APPLY CHANGES</button>
-                    <button type="submit" class="btn" name="delete" value="delete">REMOVE EVENT</button>
-                </div>
-            </form>
+    <div class="content-container">
+        <div class="edit-event-title">
+            <p>EDIT EVENT</p>
         </div>
+        <form action="admin-edit_event.php" method="POST" enctype="multipart/form-data" class="row g-3">
+            <div class="form-group">
+                <label class="form-label" for="newName">Event Name</label>
+                <input type="text" class="form-control" id="newName" name="newName" value="<?php echo $event->EventName; ?>">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="newLocation">Edit Location</label>
+                <input type="text" class="form-control" id="newLocation" name="newLocation" value="<?php echo $event->EventLocation; ?>">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="newDate">Event Date</label>
+                <input type="date" class="form-control" id="newDate" name="newDate" value="<?php echo $event->EventDate; ?>">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="newImage">Event Image</label>
+                <input class="form-control" type="file" id="newImage" name="newImage" onchange="onFileSelected(event)" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="newDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="newDescription" name="newDescription" rows="8"><?php echo $event->EventDescription; ?></textarea>
+            </div>
+            <div class="button-container text-center">
+                <input type="hidden" name="eventID" id="eventID" value="<?php echo $eventId; ?>"> 
+                <button type="sumbit" class="btn-edit" name="edit" value="edit">APPLY CHANGES</button>
+                <button type="submit" class="btn-delete" name="delete" value="delete">REMOVE EVENT</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
