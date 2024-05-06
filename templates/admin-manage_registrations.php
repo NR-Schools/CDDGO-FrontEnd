@@ -25,8 +25,12 @@
 
     <!-- Start Body -->
     <div class="main-body">
-        <p>MANAGE REGISTRATIONS</p>
-        <hr />
+        <div class="event-title">
+            MANAGE REGISTRATIONS
+        </div>
+        <div class="divider-container">
+            <div class="divider"></div>
+        </div>
 
         <div class="registrations-list-container">
 
@@ -63,19 +67,19 @@
                         <div class="registration-record">
                             <div>
                                 <div>
-                                    <span>Student No.</span>
+                                    <span class="name-styling">STUDENT NO.</span>
                                     <span>{$student->StudNo}</span>
                                 </div>
                                 <div>
-                                    <span>Full Name</span>
+                                    <span class="name-styling">FULL NAME</span>
                                     <span>{$student->getFullName()}</span>
                                 </div>
                                 <div>
-                                    <span>Email</span>
+                                    <span class="name-styling">EMAIL</span>
                                     <span>{$student->Email}</span>
                                 </div>
                                 <div>
-                                    <span>Program</span>
+                                    <span class="name-styling">PROGRAM</span>
                                     <span>{$student->Program}</span>
                                 </div>
                             </div>
