@@ -51,56 +51,56 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     ?>
 
     <!-- Start Body -->
-    <div class="main-body">
+    <div class="rentals-title">
         <p>ACTIVE RENTALS</p>
-        <hr />
+    </div>
 
-
-        <div class="rentals-container">
-            <p>Confirmed Rentals</p>
-            <div class="rentals-list-container">
-
-                <?php
-                // Get all rentals
-                $rentals = RentalService::getAllConfirmedRentals();
-                foreach ($rentals as $rental) {
-                    assert($rental instanceof Rental);
-                    echo <<<EOD
-                    <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
+    <div class="rental-main-container">
+        <div class="rental-title">
+            Confirmed Rentals
+        </div>
+    
+        <div class="rentals-list-container">
+        <?php
+            // Get all rentals
+            $rentals = RentalService::getAllConfirmedRentals();
+            foreach ($rentals as $rental) {
+                assert($rental instanceof Rental);
+                echo <<<EOD
+                <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
+                    <div>
                         <div>
-                            <div>
-                                <span> ID: {$rental->RentalID} </span>
-                                <span> {$rental->student->StudID} </span>
-                            </div>
-                            <div>
-                                <span> {$rental->boardGame->GameName} </span>
-                            </div>
-                            <div>
-                                <span> Date: {$rental->BorrowDate} </span>
-                                <span> Fee: P {$rental->Rent} </span>
-                            </div>
+                            <span> ID: {$rental->RentalID} </span>
+                            <span> {$rental->student->StudID} </span>
                         </div>
                         <div>
-                            <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
-                            <button type="button" name="remove" class="btn btn-danger">Delete</button>
+                            <span> {$rental->boardGame->GameName} </span>
                         </div>
-                    </form>
-                    EOD;
-                }
-                ?>
-                
-            </div>
+                        <div>
+                            <span> Date: {$rental->BorrowDate} </span>
+                            <span> Fee: P {$rental->Rent} </span>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
+                        <button type="button" name="remove" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+                EOD;
+            }
+            ?>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="rental-main-container">
+        <div class="rental-title">
+            Unconfirmed Rentals
         </div>
 
-        <br>
-        <br>
-        <br>
-
-
-        <div class="rentals-container">
-            <p>Unconfirmed Rentals</p>
-            <div class="rentals-list-container">
-
+        <div class="rentals-list-container">
             <?php
                 // Get all rentals
                 $rentals = RentalService::getAllUnconfirmedRentals();
@@ -128,11 +128,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
                     </form>
                     EOD;
                 }
-                ?>
-
-            </div>
-        </div>
-
+            ?>
+        </div> 
     </div>
 </body>
 
