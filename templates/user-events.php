@@ -24,35 +24,43 @@
     ?>
 
     <!-- Start Body -->
-    <div class="main-body">
-        <p>ALL EVENTS</p>
-        <hr />
-
-        <?php
-
-        // Get all events
-        $events = EventService::getAllEvents();
-
-        foreach ($events as $event) {
-            assert($event instanceof Event);
-
-            echo <<<EOD
-
-            <div class="card mb-3">
-                <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{$event->EventName}</h5>
-                    <p class="card-text">{$event->EventDescription}</p>
-                    <p class="card-text">Location: {$event->EventLocation}</p>
-                    <p class="card-text">Event Date: {$event->EventDate}</p>
-                    <p class="card-text date-posted"><small class="text-body-secondary">Last Updated: {$event->DatePosted}</small></p>
-                </div>
+    <div class="main-container">
+            <div class="event-title">
+                ALL EVENTS
             </div>
-            EOD;
-        }
+            <div class="divider-container">
+                <div class="divider"></div>
+            </div>
 
-        ?>
 
+            <?php
+
+            // Get all events
+            $events = EventService::getAllEvents();
+
+            foreach ($events as $event) {
+                assert($event instanceof Event);
+
+                echo <<<EOD
+
+                <div class="card mb-3">
+                    <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img" alt="...">
+                    <div class="card-body">
+                        <h5 class="title-styling">{$event->EventName}</h5>
+                        <p class="card-text">{$event->EventDescription}</p>
+                        <div class="info-styling">
+                            Location: <span class="value-styling">{$event->EventLocation}</span>
+                        </div>
+                        <div class="info-styling">
+                            Event Date: <span class="value-styling">{$event->EventDate}</span>
+                        </div> 
+                        <p class="card-text date-posted"><small class="text-body-secondary">Last Updated: {$event->DatePosted}</small></p>
+                    </div>
+                </div>
+                EOD;
+            }
+
+            ?>
     </div>
 </body>
 </html>
