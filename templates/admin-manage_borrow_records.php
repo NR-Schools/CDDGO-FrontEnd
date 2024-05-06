@@ -42,6 +42,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Borrow Records</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_borrow_records.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
