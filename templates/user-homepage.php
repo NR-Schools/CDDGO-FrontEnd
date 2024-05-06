@@ -132,7 +132,7 @@
                         EOD;
                     }else{
                     echo  '<div class="with-events">';
-                        for($i = 0; $i<4 ; $i++){
+                        for($i = 0; $i<count($events) ; $i++){
                             echo <<< EOD
                                 <div class="event-container">
                                     <div>

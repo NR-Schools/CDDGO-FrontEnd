@@ -3,7 +3,7 @@
     flex-direction: row; 
     justify-content: center;
     gap: 20px;
-    height: 900px;
+    height: 950px;
     margin-top: 50px;
 }
 
@@ -100,14 +100,23 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 700;
     font-size: 16px;
-    grid-column: 4;
+    grid-column: 3;
     color: #9e0671;
+    padding-top: 10px;
 }
 .rating-styling{
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 700;
     font-size: 16px;
-    grid-column: 4;
+    grid-column: 3;
+    color: #9e0671;
+}
+
+.status-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    grid-column: 3;
     color: #9e0671;
 }
 

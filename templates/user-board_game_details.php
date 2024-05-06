@@ -213,6 +213,13 @@
                             ?>
                         </span>
                     </div>
+                    <div class="status-styling">
+                        Status: <span class="value-styling">
+                            <?php
+                                echo $game->GameStatus;
+                            ?>
+                        </span>
+                    </div>
                 </div>
                 <div class="title-styling">
                     Overview
