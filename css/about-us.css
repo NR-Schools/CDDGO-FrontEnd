@@ -46,7 +46,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    color: black;
+    color: rgb(50, 6, 78);
     text-align: justify;
 }
 
@@ -55,7 +55,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    color: black;
+    color: rgb(50, 6, 78);
     text-align: justify;
     border-color: #9e0671;
     border-style: solid;
@@ -69,7 +69,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    color: black;
+    color: rgb(50, 6, 78);
     text-align: justify;
     border-color: #9e0671;
     border-style: solid;
@@ -104,6 +104,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 700;
     font-size: 24px;
+    color: rgb(50, 6, 78);
 }
 
 .contact{
@@ -117,6 +118,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 16px;
+    color: rgb(50, 6, 78);
 
 }
 

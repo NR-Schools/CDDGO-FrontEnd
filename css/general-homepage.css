@@ -38,6 +38,9 @@
 }
 
 .banner-button {
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 16px;
     display: inline-block;
     margin: 20px auto; /* Center the button horizontally with auto margins */
     padding: 10px 20px;
@@ -55,7 +58,6 @@
 .banner-button:hover {
     background-color: #ffffff;
     color: #9e0671;
-
 }
 
 .mtg-logo {
@@ -114,6 +116,9 @@
 }
 
 .learn-button {
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 16px;
     display: inline-block;
     margin: 0 auto; /* Center the button horizontally with auto margins */
     padding: 10px 20px;

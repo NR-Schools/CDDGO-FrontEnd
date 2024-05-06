@@ -53,67 +53,77 @@
             <div class="officer-container">
                 <div class="officer-content">
                     <div>
-                        <img class="img-styling" src="../assets/img-placeholder.png" alt="">
+                        <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
-                            OFFICERNAME
+                            JOSEPH HARVEY JUICO
                         </div>
-                        <div class="info">Position</div>
-                        <div class="contact">
-                            Contact Details
-                        </div>
-                        <div class="info">Email</div>
+                        <div class="info">COO Representative</div>
                     </div>
                 </div>
 
                 <div class="officer-content">
                     <div>
-                        <img class="img-styling" src="../assets/img-placeholder.png" alt="">
+                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
-                            OFFICERNAME
+                            ALLEN RAY SORIA
                         </div>
-                        <div class="info">Position</div>
-                        <div class="contact">
-                            Contact Details
-                        </div>
-                        <div class="info">Email</div>
+                        <div class="info">Executive Secretary</div>
                     </div>
                 </div>
 
                 <div class="officer-content">
                     <div>
-                        <img class="img-styling" src="../assets/img-placeholder.png" alt="">
+                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
-                            OFFICERNAME
+                            Joseph Angelo Corcuera
                         </div>
-                        <div class="info">Position</div>
-                        <div class="contact">
-                            Contact Details
-                        </div>
-                        <div class="info">Email</div>
+                        <div class="info">President</div>
                     </div>
                 </div>
 
                 <div class="officer-content">
                     <div>
-                        <img class="img-styling" src="../assets/img-placeholder.png" alt="">
+                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
-                            OFFICERNAME
+                            ANGEL EMMANUEL CRUZ
                         </div>
-                        <div class="info">Position</div>
-                        <div class="contact">
-                            Contact Details
-                        </div>
-                        <div class="info">Email</div>
+                        <div class="info">External Vice President</div>
                     </div>
                 </div>
+
+                <div class="officer-content">
+                    <div>
+                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                    </div>
+                    <div class="officer-info">
+                        <div class="officer-name">
+                            LORENZO SUPAN
+                        </div>
+                        <div class="info">Promos Officer</div>
+                    </div>
+                </div>
+
+                <div class="officer-content">
+                    <div>
+                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                    </div>
+                    <div class="officer-info">
+                        <div class="officer-name">
+                            ELIS MARA ARBOLEDA
+                        </div>
+                        <div class="info">Creatives</div>
+                    </div>
+                </div>
+
+                
             </div>
         </div>
     </div>

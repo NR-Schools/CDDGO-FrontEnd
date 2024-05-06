@@ -49,9 +49,6 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
                     <label class="cred-password" for="">Password</label>
                     <input class="cred-input" type="password" name="password" id="password">
                 </div>
-                <div class="fPassword-Button">
-                    <button class="fPassword-styling">Forgot Password?</button>
-                </div>
                 <div>
                     <button class="login-styling">LOGIN</button>
                 </div>
