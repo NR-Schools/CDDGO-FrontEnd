@@ -4,30 +4,29 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/TestimonialService.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/models/TestimonialModel.php");
 
 
     //get gameID
+    $game = null;
     if(isset($_GET["gameId"]))
     {
         $gameID = $_GET["gameId"];
 
         $game = BoardGameService::getBoardGameById($gameID);
+        [$email, $role] = AuthService::getCurrentlyLoggedIn();
+        $currentUser = StudentService::getStudentByEmail($email);
+        $testimonials = TestimonialService::getAllTestimonials();
+        $queryGetTestimonial = "SELECT * FROM testimonials WHERE GameID = $game->GameID";
+        $queryGetMember = "SELECT * FROM members WHERE MemberID = $currentUser->StudID";
+        $checkMember = Database::SQLwithFetch(Database::getPDO(), $queryGetMember);
+        $checkTestimonial = Database::SQLwithFetch(Database::getPDO(), $queryGetTestimonial);
         if ($game == null)
         {
             echo "No game.";
         }
         
     }
-
-    [$email, $role] = AuthService::getCurrentlyLoggedIn();
-    $currentUser = StudentService::getStudentByEmail($email);
-    $testimonials = TestimonialService::getAllTestimonials();
-
-    $queryGetTestimonial = "SELECT * FROM testimonials WHERE GameID = $gameID";
-    $queryGetMember = "SELECT * FROM members WHERE MemberID = $currentUser->StudID";
-    $checkMember = Database::SQLwithFetch(Database::getPDO(), $queryGetMember);
-    $checkTestimonial = Database::SQLwithFetch(Database::getPDO(), $queryGetTestimonial);
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             if(isset($_POST['memberReview']))
@@ -35,26 +34,24 @@
                 $reviewUser = $_POST["studEmail"];
                 $reviewContent = $_POST["review"];
                 $gameReviewed = (int)$_POST["reviewedGame"];
-                $rating = 5;
-                
+                $gameRate = (int)$_POST['rating'];
+                //$getGame = BoardGameService::getBoardGameById($gameReviewed);
                 $getReviewer = StudentService::getStudentByEmail($reviewUser);
                 $testimonial = new Testimonial();
-                
-                $testimonial->student->StudID = $getReviewer->StudID;
-                $testimonial->boardGame->GameID = $gameReviewed;
+                $testimonial->createOnlyStudentId($getReviewer->StudID);
+                $testimonial->createOnlyBoardGameId($gameReviewed);
                 $testimonial->Statement = $reviewContent;
-                $testimonial->Rating = $rating;
+                $testimonial->Rating = $gameRate;
+
                 
                 TestimonialService::addMemberTestimonial($reviewUser, $testimonial);
-                
-                echo "Testimonial added.";
-    
+                $id = $_POST["reviewedGame"];
+                header("Location:../templates/user-board_game_details.php?gameId=". $id);
             }
-    
         }
-
-
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,14 +71,13 @@
             require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
             require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
         ?>
-
         <!--Content Start For non-members-->
         <div class="main-container">
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                 <div class="left-column">
                     <div class="img-container">
                         <?php
-                        echo '<img class="img-styling" src="data:image/' . pathinfo($game->GameImage, PATHINFO_EXTENSION) . ';base64,' . $game->GameImage . '" id="game_image">';
+                            echo '<img class="img-styling" src="data:image/' . pathinfo($game->GameImage, PATHINFO_EXTENSION) . ';base64,' . $game->GameImage . '" id="game_image">';
                         ?>
                     </div>
                     <div class="title-styling">
@@ -92,6 +88,7 @@
                             echo <<< EOD
                                 <div class="comment-content">
                                     <div class="comment-container">
+                                        <input class="rating-input" type="number" name="rating" id="rating">
                                         <input class="comment-styling" type="text" name="review" id="review">
                                         <input type="hidden" name="studEmail" value="{$email}">
                                         <input type="hidden" name="reviewedGame" value="{$gameID}">
@@ -119,7 +116,9 @@
                                     echo <<< EOD
                                         <div class="review-content">
                                             <div class="author-styling">
-                                                {$stud->FirstName} {$stud->LastName}
+                                                {$stud->FirstName} {$stud->LastName} |  
+                                                {$testimonial['Rating']}
+                                                <img style="width:20px;padding-bottom:5px" src="../assets/star.png" alt="">
                                             </div>
                                             <div class="subDivider"></div>
                                             <div class="testimony-review">
@@ -145,7 +144,9 @@
                                     echo <<< EOD
                                         <div class="review-content">
                                             <div class="author-styling">
-                                                {$stud->FirstName} {$stud->LastName}
+                                                {$stud->FirstName} {$stud->LastName} |  
+                                                {$testimonial['Rating']}
+                                                <img style="width:20px;padding-bottom:5px" src="../assets/star.png" alt="">
                                             </div>
                                             <div class="subDivider"></div>
                                             <div class="testimony-review">
@@ -227,10 +228,16 @@
                 <div class="divider"></div>
                 <div class="button-container">
                     <button class="button">RENT THIS GAME</button>
-                    <button class="button">RESERVE THIS GAME</button>
+                    <?php
+                        echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
+                        echo '<button class="button">RESERVE THIS GAME</button>';
+                        echo '</a>';
+                    ?>
                 </div>
                 <div class="back-button-container">
-                    <button class="back-button">BACK</button>
+                    <a href="../templates/user-board_games.php">
+                        <button class="back-button" name="back">BACK</button>
+                    </a>
                 </div>
             </div>
         </div>

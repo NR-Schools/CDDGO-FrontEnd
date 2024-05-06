@@ -10,6 +10,9 @@
 .img-styling{
     width: 694px;
     height: 406px;
+    border-color: #9e0671;
+    border-width: 5px;
+    border-style: solid;
 }
 .divider{
     border-top-style: solid;
@@ -231,7 +234,7 @@
 .comment-container{
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 10px;
 }
 .comment-styling:focus{
     outline: none;
@@ -277,4 +280,17 @@
     margin-top: 10px;
     background-color: transparent;
     padding: 10px;
+}
+
+.rating-input{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color:rgb(50, 6, 78);
+    border-color: #9e0671;
+    border-radius: 10px;
+    border-width: 3px;
+    border-style: solid;
+    width:50px;
+
 }

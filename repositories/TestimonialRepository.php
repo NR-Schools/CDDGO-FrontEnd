@@ -13,7 +13,7 @@ class TestimonialRepository
         return Database::SQLwithoutFetch(
             Database::getPDO(),
             "
-            INSERT INTO TESTIMONIAL
+            INSERT INTO TESTIMONIALS
             VALUES (:studId, :gameId, :statement, :rating);
             ",
             [

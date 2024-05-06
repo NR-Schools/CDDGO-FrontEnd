@@ -36,7 +36,7 @@
             }
 
             // Reservation Success!
-            echo "<script> alert('Board Game Added');
+            echo "<script> alert('Board Game Reserved');
             document.location.href = 'user-board_games.php';
             </script>";
         }
@@ -86,14 +86,13 @@
                 <div class="divider"></div>
 
                 <?php 
-
-                    echo<<<EOD
-                    <div>
-                        <img class="game-image" src="../assets/img-placeholder.png" alt="">
-                    </div>
-                    <div class="name-styling" name="gameName" id="gameName">{$game->GameName}</div>
-                    <div class="price-styling" name="reservePrice" id="reservePrice">TOTAL PRICE</div>
-                    EOD;
+                    echo '<div>';
+                    echo '<img class="game-image" src="data:image/' . pathinfo($game->GameImage, PATHINFO_EXTENSION) . ';base64,' . $game->GameImage . '" id="game_image">';
+                    echo '</div>';
+                    echo '<div class="name-styling" name="gameName" id="gameName">'.$game->GameName.'</div>';
+                    echo '<div class="price-styling" name="reservePrice" id="reservePrice">';
+                    echo  'Reservation Fee: ₱50.00';
+                    echo '</div>';
                 ?>
                 <div class="date-container">
                     <div class="label-styling" name="date">
