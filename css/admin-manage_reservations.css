@@ -1,49 +1,51 @@
-.main-body {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+.reservations-title {
+    margin: auto;
+    width: 70vw;
+    text-align: center;
     align-items: center;
-    justify-content: center;
-
-    >p {
-        margin: 2.2rem 0 0 0;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-
-    >hr {
-        width: 55%;
-        height: 2px;
-    }
+    margin-top: 2%;
+    font-weight: bolder;
+    font-size: 3vw;
+    color: #9e0671;
+    border-bottom: 10px solid #9e0671;
+    font-family: "Merriweather Sans", sans-serif;
 }
 
-
-.reservations-container {
-    width: 75%;
-    >p {
-        margin-top: 10px;
-        text-align: center;
-    }
+.reservation-main-container {
+    margin: auto;
+    width: 80vw;
+    border: 3px solid #32064e;
+    margin-top: 2%;
+    font-family: "Merriweather Sans", sans-serif;
 }
 
-.reservations-list-container {
+.reservation-title {
+    background-color: #32064e;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align:center;
+    border: 1px solid #32064e;
+    color: #ffffff;
+}
+
+.reservation-list-container {
     height: 500px;
     overflow-y: auto;
-    border: 1px solid rgb(42, 42, 42);
+    border: 1px solid #32064e;
 }
 
 .reservation-entry {
     transition: all 0.25s ease-in-out;
     background-color: whitesmoke;
     display: flex;
-    margin: 10px;
-    padding: 10px 20px;
+    margin: 3%;
+    padding: 1% 2%;
     border: 1px solid black;
-    font-size: 0.9rem;
+    font-size: 1vw;
 
     &:hover {
         transition: all 0.25s ease-in-out;
-        box-shadow: 3px 5px;
+        box-shadow: 3px 3px 3px 3px #32064e;
         cursor: pointer;
     }
 
@@ -91,4 +93,9 @@
             justify-content: center;
         }
     }
+}
+
+.confirm-btn {
+    border-color: #9e0671;
+    background-color:#9e0671;
 }

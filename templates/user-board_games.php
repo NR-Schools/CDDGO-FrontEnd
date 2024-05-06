@@ -81,7 +81,6 @@
             <?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
                 {
-                    $searchClicked = true;
                     if(isset($_POST["searchButton"])){
                         $query = $_POST["search"];
                         $foundGame = false;
@@ -112,7 +111,16 @@
                             }
                         }
                         if (!$foundGame) {
-                            echo "BOARD GAME NOT FOUND";
+                            echo <<< EOD
+                                <div class="no-events">
+                                    <div class="no-event-styling">
+                                        Board Game Not Found.
+                                    </div>
+                                    <div class="no-event-desc">
+                                        Oops! the game you have searched is not in our inventory
+                                    </div>
+                                </div>
+                            EOD;
                         }
                     } 
                     if (isset($_POST["filterCategory"]))
@@ -176,7 +184,16 @@
                             }
 
                             if (!$filteredGame) {
-                                echo "BOARD GAME NOT FOUND";
+                                echo <<< EOD
+                                    <div class="no-events">
+                                        <div class="no-event-styling">
+                                            Board Game Not Found.
+                                        </div>
+                                        <div class="no-event-desc">
+                                            Oops! the game you have searched is not in our inventory
+                                        </div>
+                                    </div>
+                                EOD;
                             }
                         }
                     }  
@@ -206,7 +223,16 @@
                             EOD;    
                         }
                     } else {
-                        echo "BOARD GAME NOT FOUND";
+                        echo <<< EOD
+                            <div class="no-events">
+                                <div class="no-event-styling">
+                                    Board Game Not Found.
+                                </div>
+                                <div class="no-event-desc">
+                                    Oops! the game you have searched is not in our inventory
+                                </div>
+                            </div>
+                        EOD;
                     }
                 }
             
