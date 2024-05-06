@@ -137,6 +137,7 @@
     background-color: transparent;
     border-color: #9e0671;
     padding: 10px;
+    height: 100px;
 }
 .reserve-container{
     display: flex;
@@ -207,4 +208,14 @@
     font-size: 16px;
     color: rgb(50, 6, 78);
     display: inline-block;
+}
+
+
+.desc-styling{
+    color: rgb(50, 6, 78);
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    height: 60px;
+    overflow-y: auto;
 }

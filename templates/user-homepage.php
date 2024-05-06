@@ -114,7 +114,7 @@
             <div class="event-content-container">
                 <div class="title-styling">NEW EVENTS</div>
                 <div class="view-button-container">
-                    <a href="../templates/user-events"><button class="view-button">VIEW ALL EVENTS</button></a>
+                    <a href="../templates/user-events.php"><button class="view-button">VIEW ALL EVENTS</button></a>
                 </div> 
                 <div class="divider"></div>
                 <?php 
@@ -139,19 +139,17 @@
                                         <div class="name-styling">
                                             {$events[$i]->EventName}
                                         </div>
-                                        <div class="sub-name-styling">
+                                        <div class="desc-styling">
                                             {$events[$i]->EventDescription}
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="name-styling">
-                                            {$events[$i]->DatePosted}
+                                        <div class="sub-name-styling">
+                                        <span class="name-styling">DATE POSTED: </span>{$events[$i]->DatePosted}
                                         </div>
                                         <div class="sub-name-styling">
-                                            {$events[$i]->EventDate}
-                                        </div>
-                                        <div class="sub-name-styling">
-                                            {$events[$i]->EventLocation}
+                                        <span class="name-styling">EVENT INFO: </span>{$events[$i]->EventDate} 
+                                        ({$events[$i]->EventLocation})
                                         </div>
                                     </div>
                                 </div>

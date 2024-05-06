@@ -71,7 +71,7 @@
 }
 
 .img-styling:hover{
-    filter: brightness(80%);
+    filter: brightness(90%);
 }
 
 
@@ -113,6 +113,7 @@
     height: 650px;
     overflow-y: auto;
     column-gap: 30px;
+    position: relative;
 
 }
 
@@ -220,25 +221,28 @@
 }
 
 .no-events{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    position: absolute;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+    top: 270px;
+    overflow-y: none;
 }
 
 .no-event-styling{
+    text-align: center;
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 500;
     font-size: 32px;
     color: rgb(50, 6, 78);
-    display: inline-block;
+    display: block;
 }
 
 .no-event-desc{
+    text-align: center;
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 12px;
     color: rgb(50, 6, 78);
-    display: inline-block;
+    display: block;
 }
