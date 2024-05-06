@@ -51,7 +51,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
                         <p class="card-text">{$event->EventDescription}</p>
                         <p class="card-text">Location: {$event->EventLocation}</p>
                         <p class="card-text">Event Date: {$event->EventDate}</p>
-                        <a href="#" class="btn btn-primary">Edit Event</a>
+                        <a href="$editLink" class="btn btn-primary">Edit Event</a>
                         <br />
                         <br />
                         <span class="card-subtitle mb-2 text-muted fs-6">{$event->DatePosted}</span>
