@@ -15,6 +15,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 $inquiryId = $_GET['inquiryId'];
 ?>
 
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    $inquiryResponse = new InquiryResponse();
+    $inquiryResponse->RefInquiryID = $inquiryId;
+    $inquiryResponse->ResponseText = $_POST['replyText'];
+    InquiryService::adminReplyToInquiry($inquiryResponse);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,17 +90,19 @@ $inquiryId = $_GET['inquiryId'];
             </div>
             EOD;
         }
-        ?>
 
 
-        <!-- Reply Box -->
-        <div class="reply-box">
-            <textarea placeholder="Write your reply..." style="height: 100px;"></textarea>
+        $formLink = $_SERVER['REQUEST_URI'];
+        echo<<<EOD
+        <form class="reply-box" action="{$formLink}" method="post">
+            <textarea placeholder="Write your reply..." style="height: 100px;" name="replyText"></textarea>
             <div class="buttons">
-                <button class="btn">Send Reply</button>
-                <button class="btn cancel">Cancel</button>
+                <button class="btn" name="Reply">Send Reply</button>
             </div>
-        </div>
+        </form>
+        EOD;
+
+        ?>
     </div>
     <!-- Backend Start -->
 
