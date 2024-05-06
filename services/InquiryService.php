@@ -13,6 +13,10 @@ class InquiryService
         return InquiryRepository::getAllInquiryResponses($inquiryId);
     }
 
+    static function getInquiryById(int $inquiryId): Inquiry|null
+    {
+        return InquiryRepository::getInquiryById($inquiryId);
+    }
 
     // For students
     static function createStudentInquiry(Inquiry $inquiry): bool

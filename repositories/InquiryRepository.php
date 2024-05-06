@@ -60,6 +60,31 @@ class InquiryRepository
         return $inquiryList;
     }
 
+    static function getInquiryById(int $inquiryId): Inquiry|null
+    {
+        $queryResult = Database::SQLwithFetch(
+            Database::getPDO(),
+            "
+            SELECT * FROM INQUIRIES
+            INNER JOIN STUDENTS
+            ON INQUIRIES.InquiryStudID = STUDENTS.StudID
+            WHERE InquiryID = :inquiryId;
+            ",
+            [
+                ":inquiryId" => $inquiryId
+            ]
+        );
+
+        $inquiry = null;
+        foreach($queryResult as $inquiryResult)
+        {
+            $inquiry = self::queryResultToInquiry($inquiryResult);
+            break;
+        }
+
+        return $inquiry;
+    }
+
     static function getInquiriesByStudent(int $studentId): array
     {
         $queryResult = Database::SQLwithFetch(

@@ -5,6 +5,11 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
     require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
+
+<?php
+    $inquiryId = $_GET['inquiryId'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,26 +21,56 @@
     <body>
         <!-- Frontend Start -->
         <div class="box">
+
+        <?php
+        // Get Inquiry
+        $inquiry = InquiryService::getInquiryById($inquiryId);
+        echo <<<EOD
         <div class="message-container user">
             <div class="message-details">
-                <strong>Date:</strong> May 1, 2024<br>
+                <strong>Date:</strong>{$inquiry->InquiryCreatedAt}<br>
                 <strong>From:</strong> User<br>
             </div>
             <div class="message-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+            {$inquiry->InquiryDesc}
             </div>
         </div>
+        EOD;
 
-        <!-- Admin Replies -->
-        <div class="message-container admin">
-            <div class="message-details">
-                <strong>Date:</strong> May 2, 2024<br>
-                <strong>From:</strong> Admin<br>
+
+        // Get InquiryResponses
+        $inquiryResponses = InquiryService::getInquiryResponses($inquiryId);
+        foreach($inquiryResponses as $inquiryResponse) {
+            assert($inquiryResponse instanceof InquiryResponse);
+            $responseClass = "";
+            $sourceDisplay = "";
+            
+            if ($inquiryResponse->ResponseSource == "USER")
+            {
+                $responseClass = "user";
+                $sourceDisplay = $inquiry->student->getFullName();
+            }
+            else
+            {
+                $responseClass = "admin";
+                $sourceDisplay = "admin@email.com";
+
+            }
+
+            echo <<<EOD
+            <div class="message-container {$responseClass}">
+                <div class="message-details">
+                    <strong>Date:</strong>{$inquiryResponse->ResponseCreatedAt}<br>
+                    <strong>From:</strong> {$sourceDisplay}<br>
+                </div>
+                <div class="message-content">
+                {$inquiryResponse->ResponseText}
+                </div>
             </div>
-            <div class="message-content">
-                Reply from Admin Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-            </div>
-        </div>
+            EOD;
+        }
+        ?>
+
 
         <!-- Reply Box -->
         <div class="reply-box">
