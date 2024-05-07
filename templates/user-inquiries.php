@@ -11,7 +11,7 @@
 
 if (!AuthGuard::guard_route(Role::USER)) {
     // Return to root
-    //header("Location: /");
+    header("Location: /");
 }
 
 ?>

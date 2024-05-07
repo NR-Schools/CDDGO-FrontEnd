@@ -2,9 +2,9 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . "/services/EventService.php";
     require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
 
-    if (!AuthGuard::guard_route(Role::ADMIN)) {
+    if (!AuthGuard::guard_route(Role::USER)) {
         // Return to root
-        // header("Location: /");
+        header("Location: /");
     }
 ?>
 

@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/services/RentalService.php";
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
-    //header("Location: /");
+    header("Location: /");
 }
 
 ?>
