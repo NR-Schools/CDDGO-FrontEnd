@@ -7,6 +7,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
 
 <?php
+
+if (!AuthGuard::guard_route(Role::USER)) {
+    // Return to root
+    header("Location: /");
+}
+
+
 $inquiryId = $_GET['inquiryId'];
 ?>
 

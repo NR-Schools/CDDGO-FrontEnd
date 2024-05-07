@@ -6,6 +6,11 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/TestimonialService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/models/TestimonialModel.php");
 
+    if (!AuthGuard::guard_route(Role::USER)) {
+        // Return to root
+        header("Location: /");
+    }
+
 
     //get gameID
     $game = null;

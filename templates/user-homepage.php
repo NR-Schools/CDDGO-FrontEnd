@@ -6,6 +6,11 @@
     require_once($_SERVER['DOCUMENT_ROOT']. "/services/EventService.php");
     require_once($_SERVER['DOCUMENT_ROOT']. "/services/ReservationService.php");
 
+    if (!AuthGuard::guard_route(Role::USER)) {
+        // Return to root
+        header("Location: /");
+    }
+
     //Extracting the rented boardgame
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
     $getRentedBoardGame = BoardGameService::getCurrentlyRentedBoardGame($email);

@@ -5,7 +5,7 @@
 
     if (!AuthGuard::guard_route(Role::USER)) {
         // Return to root
-        // header("Location: /");
+        header("Location: /");
     }
 
     // Fetch currently logged-in user data

@@ -5,6 +5,11 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/ReservationService.php");
 
+    if (!AuthGuard::guard_route(Role::USER)) {
+        // Return to root
+        header("Location: /");
+    }
+
 
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST')

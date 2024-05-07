@@ -6,6 +6,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
+
+
+if (!AuthGuard::guard_route(Role::USER)) {
+    // Return to root
+    header("Location: /");
+}
 ?>
 
 
