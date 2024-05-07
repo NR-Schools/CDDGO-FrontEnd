@@ -5,7 +5,7 @@
 
     if (!AuthGuard::guard_route(Role::USER)) {
         // Return to root
-        header("Location: /");
+        // header("Location: /");
     }
 
     // Fetch currently logged-in user data
@@ -71,84 +71,85 @@
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
         require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
     ?>
-<form action="user-manage_account.php" method="POST" enctype="multipart/form-data">
-    <div class="main-container">
-        <div class="sign-up-container">
-                <div class="sign-up-title">
-                    MANAGE ACCOUNT
-                </div>
-                <div class="personal-details">
-                    <div class="form-title">Personal Details</div>
-                    <div class="divider"></div>
-                    <div class="content-container">
-                        <div>
-                            <label class="label-styling" for="editFirstname">First Name</label>
-                            <input class="input-styling" type="text" name="editFirstname" id="feditFirstname" value="<?php echo $student->FirstName; ?>">
-                        </div>
-                        <div>
-                            <label class="label-styling" for="editLastname">Last Name</label>
-                            <input class="input-styling" type="text" id="editLastname" name="editLastname" value="<?php echo $student->LastName; ?>">
-                        </div>
+    <form action="user-manage_account.php" method="POST" enctype="multipart/form-data">
+        <div class="main-container">
+            <div class="sign-up-container">
+                    <div class="sign-up-title">
+                        MANAGE ACCOUNT
                     </div>
-                </div>
-                <div class="school-details">
-                    <div class="form-title">School Details</div>
-                    <div class="divider"></div>
-                    <div class="content-container">
-                        <div>
-                            <label class="label-styling" for="studentNumber">Student Number</label>
-                            <input class="input-styling" type="text" id="studentNumber" value="<?php echo $student->StudNo; ?>" readonly>
-                        </div>
-                        <div>
-                            <label class="label-styling" for="editProgram">Progam</label>
-                            <input class="input-styling" type="text" id="editProgram" name="editProgram" value="<?php echo $student->Program; ?>">
-                        </div>
-                    </div>
-                </div>
-                <div class="account-details">
-                    <div class="form-title">Account Details</div>
-                    <div class="divider"></div>
-                    <div class="content-container">
-                        <div>
-                            <label class="label-styling" for="editEmail">Email</label>
-                            <input class="input-styling" type="text" id="editEmail" name="editEmail" value="<?php echo $student->Email; ?>">
-                        </div>
-                        <div>
-                            <label class="label-styling" for="editPassword">Password</label>
-                            <input required class="input-styling" type="password" id="editPassword" name="editPassword" value="<?php echo $student->Password; ?>">
-                        </div>
-                        <div class="pos-year-style" id="membershipFields" style="display: <?php echo ($isMember == 'checked') ?'none' : 'none'; ?>">
+                    <div class="personal-details">
+                        <div class="form-title">Personal Details</div>
+                        <div class="divider"></div>
+                        <div class="content-container">
                             <div>
-                                <label class="label-styling" for="memberPosition">Position</label>
-                                <input class="input-styling" type="text" id="memberPosition" name="memberPosition" value="<?php echo $student->member->Position; ?>" readonly>
+                                <label class="label-styling" for="editFirstname">First Name</label>
+                                <input class="input-styling" type="text" name="editFirstname" id="feditFirstname" value="<?php echo $student->FirstName; ?>">
                             </div>
-                            <div style="order:2">
-                                <label class="label-styling" for="memberYearJoined">Year Joined</label>
-                                <input class="input-styling" type="text" id="memberYearJoined" name="memberYearJoined" value="<?php echo $student->member->YearJoined; ?>" readonly>
-                            </div>
-                        </div>
-                        <div style="text-align:right">
                             <div>
-                                <label class="label-radio" for="memberRadio">Member</label>
-                                <input class="radio-but-style" type="radio" name="radioButtons" value="memberRadio" id="memberRadio" onclick="showMembershipFields()" <?php echo $isMember; ?> disabled>
+                                <label class="label-styling" for="editLastname">Last Name</label>
+                                <input class="input-styling" type="text" id="editLastname" name="editLastname" value="<?php echo $student->LastName; ?>">
                             </div>
-                        </div>
-                        <div>
-                            <label class="label-radio" for="nonmemberRadio">Non-member</label>
-                            <input class="radio-but-style" type="radio" name="radioButtons" value="nonmemberRadio" id="nonmemberRadio" onclick="hideMembershipFields()" <?php echo $isNonMember; ?> disabled>
                         </div>
                     </div>
-                </div>
-                <div class="button-container">
-                    <input type="submit" class="button-styling" name="edit" id="edit" value="APPLY CHANGES">
-                    <input type="submit" class="cancel-styling" name="cancel" id="cancel" value="CANCEL">
-                </div>
+                    <div class="school-details">
+                        <div class="form-title">School Details</div>
+                        <div class="divider"></div>
+                        <div class="content-container">
+                            <div>
+                                <label class="label-styling" for="studentNumber">Student Number</label>
+                                <input class="input-styling" type="text" id="studentNumber" value="<?php echo $student->StudNo; ?>" readonly>
+                            </div>
+                            <div>
+                                <label class="label-styling" for="editProgram">Progam</label>
+                                <input class="input-styling" type="text" id="editProgram" name="editProgram" value="<?php echo $student->Program; ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-details">
+                        <div class="form-title">Account Details</div>
+                        <div class="divider"></div>
+                        <div class="content-container">
+                            <div>
+                                <label class="label-styling" for="editEmail">Email</label>
+                                <input class="input-styling" type="text" id="editEmail" name="editEmail" value="<?php echo $student->Email; ?>">
+                            </div>
+                            <div>
+                                <label class="label-styling" for="editPassword">Password</label>
+                                <input required class="input-styling" type="password" id="editPassword" name="editPassword" value="<?php echo $student->Password; ?>">
+                            </div>
+                            <div style="text-align:right">
+                                <div>
+                                    <label class="label-radio" for="memberRadio">Member</label>
+                                    <input class="radio-but-style" type="radio" name="radioButtons" value="memberRadio" id="memberRadio" onclick="showMembershipFields()" <?php echo $isMember; ?> disabled>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="label-radio" for="nonmemberRadio">Non-member</label>
+                                <input class="radio-but-style" type="radio" name="radioButtons" value="nonmemberRadio" id="nonmemberRadio" onclick="hideMembershipFields()" <?php echo $isNonMember; ?> disabled>
+                            </div>
+                        </div>
+
+                        <div class="content-container" id="membershipFields" style="display: <?php echo ($isMember == 'checked') ?'flex' : 'none'; ?>">
+                                <div>
+                                    <label class="label-styling" for="memberPosition">Position</label>
+                                    <input class="input-styling" type="text" id="memberPosition" name="memberPosition" value="<?php echo $student->member->Position; ?>" readonly>
+                                </div>
+                                <div style="order:2">
+                                    <label class="label-styling" for="memberYearJoined">Year Joined</label>
+                                    <input class="input-styling" type="text" id="memberYearJoined" name="memberYearJoined" value="<?php echo $student->member->YearJoined; ?>" readonly>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="button-container">
+                        <input type="submit" class="button-styling" name="edit" id="edit" value="APPLY CHANGES">
+                        <input type="submit" class="cancel-styling" name="cancel" id="cancel" value="CANCEL">
+                    </div>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
     <script>
         function showMembershipFields() {
-            document.getElementById("membershipFields").style.display = "inline";
+            document.getElementById("membershipFields").style.display = "flex";
         }
 
         function hideMembershipFields() {
