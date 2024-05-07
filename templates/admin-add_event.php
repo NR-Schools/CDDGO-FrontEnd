@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Event</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link type="text/css" rel="stylesheet" href="../css/admin-add_event.css">
 </head>
@@ -33,7 +34,7 @@
         <form action="admin-add_event.php" method="POST" enctype="multipart/form-data" class="row g-3">
             <!-- Event Title/Name -->
             <div class="form-group">
-                <label for="inputName" class="form-label">Event Title</label>
+                <label for="inputName" class="form-label">Event Name</label>
                 <input type="text" class="form-control" id="inputName" name="inputName">
             </div>
 
@@ -62,8 +63,8 @@
             </div>
 
             <div class="button-container text-center">
-                <button type="submit" class="btn-submit">ADD EVENT</button>
-                <button onclick="window.location.href='admin-manage_events.php'" type="button" class="btn-cancel">CANCEL</button>
+                <button type="submit" class="btn-submit">Add Event</button>
+                <button onclick="window.location.href='admin-manage_events.php'" type="button" class="btn-cancel">Cancel</button>
             </div>
         </form>
     </div>
