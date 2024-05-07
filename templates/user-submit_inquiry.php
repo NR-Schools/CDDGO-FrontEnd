@@ -13,11 +13,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    echo <<<SCRIPT
-    <script>
-    alert(1);
-    </script>
-    SCRIPT;
+
 
     // Get Currently Logged In Student
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
@@ -32,11 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     // Submit Inquiry
     InquiryService::createStudentInquiry($inquiry);
 
-    echo <<<SCRIPT
-    <script>
-    alert(1);
-    </script>
-    SCRIPT;
+    header("Location: /templates/user-inquiries.php");
+
 }
 
 ?>
