@@ -106,16 +106,16 @@
 
 .board-game-container{
     display: grid;
+    position: relative;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
     padding-right: 100px;
     padding-left: 100px;
-    row-gap: 40px;
+    row-gap: 80px;
     margin-bottom: 10px;
     height: 700px;
     overflow-y: auto;
     column-gap: 30px;
-    position: relative;
 
 }
 

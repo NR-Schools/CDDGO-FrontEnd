@@ -88,8 +88,8 @@ HEADER_CUSTOM_STYLE;
                         </div>
             
                         <div class="nav">
-                            <li><a href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
-                            <li><a href="../templates/logout.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
+                            <li><a style="color:white !important;font-weight:bold;" href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
+                            <li><a style="color:white !important;font-weight:bold;" href="../templates/logout.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
                         </div>
                         EOD;
                         break;
