@@ -34,6 +34,7 @@ if (!AuthGuard::guard_route(Role::USER)) {
         $inquiries = InquiryService::getInquiriesByStudent($email);
         foreach ($inquiries as $inquiry) {
             assert($inquiry instanceof Inquiry);
+            $viewLink = "/templates/user-inquiry_details.php?inquiryId={$inquiry->InquiryID}";
             echo <<<EOD
             <div class="inquiry">
                 <div class="details">
@@ -42,7 +43,7 @@ if (!AuthGuard::guard_route(Role::USER)) {
                     <strong>Message:</strong><br> {$inquiry->InquiryDesc}
                 </div>
                 <div class="actions">
-                    <button class="btn">View</button>
+                    <a href="{$viewLink}" class="btn">View</a>
                 </div>
             </div>
             EOD;
