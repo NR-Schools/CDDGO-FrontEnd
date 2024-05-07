@@ -138,7 +138,7 @@ class InquiryRepository
         return Database::SQLwithoutFetch(
             Database::getPDO(),
             "
-            INSERT INTO INQUIRIES VALUES (null, :studId, :inquiryTitle, :inquiryDesc, null);
+            INSERT INTO INQUIRIES VALUES (null, :studId, :inquiryTitle, :inquiryDesc, CURDATE());
             ",
             [
                 ":studId" => $inquiry->student->StudID,

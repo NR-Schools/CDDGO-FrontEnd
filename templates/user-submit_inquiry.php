@@ -13,6 +13,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
+    echo <<<SCRIPT
+    <script>
+    alert(1);
+    </script>
+    SCRIPT;
+
     // Get Currently Logged In Student
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
     $student = StudentService::getStudentByEmail($email);
@@ -25,6 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // Submit Inquiry
     InquiryService::createStudentInquiry($inquiry);
+
+    echo <<<SCRIPT
+    <script>
+    alert(1);
+    </script>
+    SCRIPT;
 }
 
 ?>
@@ -54,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 <textarea id="message" name="message" required></textarea>
             </div>
             <div class="btn-container">
-                <button type="button" class="btn">Submit</button>
+                <input type="submit" class="btn" value="Submit">
                 <button type="button" class="btn cancel">Cancel</button>
             </div>
         </form>

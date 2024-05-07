@@ -47,7 +47,7 @@ Database::BasicSQL(
         InquiryID INT PRIMARY KEY AUTO_INCREMENT,
         InquiryStudID INT NOT NULL,
         InquiryTitle VARCHAR(255) NOT NULL,
-        InquiryDesc TEXT NOT NULL,
+        InquiryDesc VARCHAR(255) NOT NULL,
         InquiryCreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (InquiryStudID) REFERENCES STUDENTS(StudID)
     );
@@ -98,7 +98,7 @@ Database::BasicSQL(
         NotificationTitle VARCHAR(50),
         NotificationBody VARCHAR(100),
         TargetEmail VARCHAR(50), 							-- Target Email to Send Notification
-        CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP()
+        CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
     );
     
     "
