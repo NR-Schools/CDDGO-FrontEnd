@@ -153,7 +153,7 @@ class InquiryRepository
         return Database::SQLwithoutFetch(
             Database::getPDO(),
             "
-            INSERT INTO INQUIRY_RESPONSES VALUES (null, :refInqId, :responseText, null, :responseSource);
+            INSERT INTO INQUIRY_RESPONSES VALUES (null, :refInqId, :responseText, CURDATE(), :responseSource);
             ",
             [
                 ":refInqId" => $inquiryResponse->RefInquiryID,
