@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         <div class="message-container user">
             <div class="message-details">
                 <strong>Date:</strong>{$inquiry->InquiryCreatedAt}<br>
-                <strong>From:</strong> User<br>
+                <strong>From:</strong> {$inquiry->student->getFullName()}<br>
             </div>
             <div class="message-content">
             {$inquiry->InquiryDesc}
@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 $sourceDisplay = $inquiry->student->getFullName();
             } else {
                 $responseClass = "admin";
-                $sourceDisplay = "admin@email.com";
+                $sourceDisplay = "MTG Admin";
 
             }
 
