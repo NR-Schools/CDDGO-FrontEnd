@@ -158,7 +158,7 @@
                 <div class="button-container text-center">
                     <input type="hidden" name="studID" id="studID" value="<?php echo $studId; ?>"> 
                     <button type="submit" class="button-styling" name="edit" id="edit">APPLY CHANGES</button>
-                    <button type="submit" class="button-styling" name="cancel" id="cancel">CANCEL</button>
+                    <button type="submit" class="cancel-styling" name="cancel" id="cancel">CANCEL</button>
                 </div>
             </div>
         </div>
