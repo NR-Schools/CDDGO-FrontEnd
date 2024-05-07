@@ -1,9 +1,6 @@
-<?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +11,12 @@
         rel="stylesheet">
     <title>MTG Board Game Rental System</title>
 </head>
+
 <body>
-    <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-    ?>
+
+    <!-- Header -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
     <div class="main-container">
         <div class="about-container">
             <div class="title-styling">
@@ -27,10 +25,16 @@
             <div class="divider"></div>
             <div class="org-content-container">
                 <div class="content-styling">
-                    Mapúa Tabletop Gamers (MTG) began as a student club with the goal of serving the recreational needs of its student body. MTG aims to provide a place where people can unwind and have fun away from the demanding academics of university life. Game nights, tournaments, and enlightening workshops are just a few of the planned events that MTG hosts to encourage social and community service among its members.
+                    Mapúa Tabletop Gamers (MTG) began as a student club with the goal of serving the recreational needs
+                    of its student body. MTG aims to provide a place where people can unwind and have fun away from the
+                    demanding academics of university life. Game nights, tournaments, and enlightening workshops are
+                    just a few of the planned events that MTG hosts to encourage social and community service among its
+                    members.
                 </div>
                 <div class="content-styling">
-                MTG fosters a sense of community among the school population while providing a hub for students looking for a break from their academic obligations thanks to its wide selection of games and welcoming atmosphere.
+                    MTG fosters a sense of community among the school population while providing a hub for students
+                    looking for a break from their academic obligations thanks to its wide selection of games and
+                    welcoming atmosphere.
                 </div>
             </div>
             <div class="divider"></div>
@@ -42,10 +46,14 @@
                     VISION
                 </div>
                 <div class="content-styling-mission">
-                    Mapúa Tabletop Gamers shall become an expansive community of gamers and game enthusiasts joined by their common love for games and recreation.
+                    Mapúa Tabletop Gamers shall become an expansive community of gamers and game enthusiasts joined by
+                    their common love for games and recreation.
                 </div>
                 <div class="content-styling-vision">
-                    To realize this vision, Mapúa Tabletop Gamers aims to be an open community for people who have interests in games, and to increase awareness by sharing knowledge of board games and video games, all while carrying the name of Mapúa Tabletop Gamers in-order to reach fellow enthusiasts, and aspiring gamers alike.
+                    To realize this vision, Mapúa Tabletop Gamers aims to be an open community for people who have
+                    interests in games, and to increase awareness by sharing knowledge of board games and video games,
+                    all while carrying the name of Mapúa Tabletop Gamers in-order to reach fellow enthusiasts, and
+                    aspiring gamers alike.
                 </div>
             </div>
             <div class="title-styling">THE OFFICERS</div>
@@ -65,7 +73,7 @@
 
                 <div class="officer-content">
                     <div>
-                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                        <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
@@ -77,7 +85,7 @@
 
                 <div class="officer-content">
                     <div>
-                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                        <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
@@ -89,7 +97,7 @@
 
                 <div class="officer-content">
                     <div>
-                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                        <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
@@ -101,7 +109,7 @@
 
                 <div class="officer-content">
                     <div>
-                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                        <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
@@ -113,7 +121,7 @@
 
                 <div class="officer-content">
                     <div>
-                    <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
+                        <img class="img-styling" src="../assets/profile-placeholder.png" alt="">
                     </div>
                     <div class="officer-info">
                         <div class="officer-name">
@@ -123,10 +131,14 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
     </div>
-    
+
+    <!-- Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
 </body>
+
 </html>
