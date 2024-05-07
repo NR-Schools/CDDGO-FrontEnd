@@ -22,14 +22,14 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 32px;
-    color: #9e0671;
+    color: #32064e;
     text-align: center;
 }
 
 .divider{
     border-top-style: solid;
     border-top-width: 5px;
-    border-color: #9e0671;
+    border-color: #32064e;
     width: 100%;
 }
 
@@ -57,7 +57,7 @@
     font-size: 16px;
     color: rgb(50, 6, 78);
     text-align: justify;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-style: solid;
     border-width: 1px;
     padding: 20px;
@@ -71,7 +71,7 @@
     font-size: 16px;
     color: rgb(50, 6, 78);
     text-align: justify;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-style: solid;
     border-width: 1px;
     padding: 20px;

@@ -15,6 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/user-events.css">
 </head>
 <body>
@@ -44,7 +48,7 @@
                 echo <<<EOD
 
                 <div class="card mb-3">
-                    <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img" alt="...">
+                    <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img img-styling" alt="...">
                     <div class="card-body">
                         <h5 class="title-styling">{$event->EventName}</h5>
                         <p class="card-text">{$event->EventDescription}</p>

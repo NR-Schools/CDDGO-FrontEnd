@@ -62,6 +62,9 @@
                 echo    '</div>';
                 echo    '<a class="button-container" href="/templates/admin-edit_board_game.php?gameId=' . $game->GameID . '"><button class="game-btn">Edit</button></a>';  
                 echo '</div>';
+
+
+
             }
         }
     ?>

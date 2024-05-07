@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="box">
 
         <?php
-
+        //Backend Start
         $inquiries = InquiryService::getAllInquiries();
         foreach ($inquiries as $inquiry) {
             assert($inquiry instanceof Inquiry);
@@ -70,8 +70,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         ?>
 
     </div>
-    <!-- Backend Start -->
-
 </body>
 
 </html>

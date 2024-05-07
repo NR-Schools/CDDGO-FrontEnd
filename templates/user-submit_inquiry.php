@@ -20,7 +20,7 @@ if (!AuthGuard::guard_route(Role::USER)) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
-
+    //Backend Start
     // Get Currently Logged In Student
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
     $student = StudentService::getStudentByEmail($email);
@@ -39,39 +39,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add an Inquiry</title>
-    <link type="text/css" rel="stylesheet" href="../css/user-submit_inquiry.css">
+    <link rel="stylesheet" href="../css/user-submit_inquiry.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Sign Up</title>
 </head>
-
 <body>
-    <!-- Frontend Start -->
-    <div class="box">
-        <h1>Inquiry Form</h1>
-        <form id="inquiryForm" action="user-submit_inquiry.php" method="post">
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required>
+    <?php 
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
+        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
+    ?>
+
+    <div class="main-container">
+        <form id="inquiryForm" action="user-submit_inquiry.php" method="post" class="sign-up-container">
+            <div class="sign-up-title">
+                INQUIRY FORM
             </div>
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
+            <div class="personal-details">
+                <div class="form-title">Inquiry Information</div>
+                <div class="divider"></div>
+                <div class="content-container">
+                    <div>
+                        <label class="label-styling" for="title">Title</label>
+                        <input required class="input-styling" type="text" name="title" id="title">
+                    </div>
+                    <div>
+                        <label class="label-styling" for="message">Your Message</label>
+                        <textarea class="text-input" id="message" name="message" required></textarea>
+                    </div>
+                </div>
             </div>
-            <div class="btn-container">
-                <input type="submit" class="btn" value="Submit">
-                <button type="button" class="btn cancel">Cancel</button>
+            <div class="button-container">
+                <input type="submit" class="button-styling" value="SEND">
+                <input type="submit" class="cancel-styling" value="CANCEL">
             </div>
         </form>
     </div>
-    <!-- Backend Start -->
-
 </body>
-
 </html>
+

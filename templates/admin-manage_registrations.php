@@ -15,6 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Registrations</title>
     <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_registrations.css">
 </head>
 <body>
@@ -85,7 +88,7 @@
                             </div>
 
 
-                            <div>
+                            <div class="button-container">
                                 <form action="admin-manage_registrations.php" enctype="multipart/form-data" method="POST">
                                     <!-- Hidden input field to store student ID -->
                                     <input type="hidden" name="studentId" value="{$student->StudID}">

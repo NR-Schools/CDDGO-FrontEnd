@@ -10,14 +10,15 @@
 .img-styling{
     width: 694px;
     height: 406px;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-width: 5px;
     border-style: solid;
+    object-fit: cover;
 }
 .divider{
     border-top-style: solid;
     border-top-width: 5px;
-    border-color: #9e0671;
+    border-color: #32064e;
     width: 694px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -36,7 +37,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 700;
     font-size: 24px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .left-column{
@@ -56,7 +57,7 @@
     border-style: solid;
     border-radius: 10px;
     background-color: transparent;
-    border-color: #9e0671;
+    border-color: #32064e;
     padding: 10px;
     height: 90px;
 }
@@ -66,14 +67,14 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 700;
     font-size: 14px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .testimony-review{
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 12px;
-    color:rgb(50, 6, 78);
+    color:#32064e;
     width: 670px;
     overflow-y:auto;
     text-align: justify;
@@ -88,7 +89,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 50px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .game-info{
@@ -101,7 +102,7 @@
     font-weight: 700;
     font-size: 16px;
     grid-column: 3;
-    color: #9e0671;
+    color: #32064e;
     padding-top: 10px;
 }
 .rating-styling{
@@ -109,7 +110,7 @@
     font-weight: 700;
     font-size: 16px;
     grid-column: 3;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .status-styling{
@@ -117,26 +118,26 @@
     font-weight: 700;
     font-size: 16px;
     grid-column: 3;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .value-styling{
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 14px;
-    color: rgb(50, 6, 78);
+    color: #32064e;
 }
 
 .category-styling{
     background-color:transparent;
-    color:#9e0671;
+    color:#32064e;
     text-align: center;
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
     padding: 2px;
     border-width: 3px;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-style: solid;
     border-radius: 10px;
 }

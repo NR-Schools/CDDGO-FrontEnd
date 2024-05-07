@@ -6,30 +6,33 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: Helvetica, sans-serif;
-    border: solid #9e0671;
+    border: solid #32064e;
 }
 
 .add-event-title {
     text-align: center;
+    font-family: "Merriweather Sans", sans-serif;
     margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #9e0671;
+    font-size: 32px;
+    font-weight: 800;
+    color: #32064e;
 }
 
-
 label {
-    font-weight: bold;
     color: #32064e;
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 400;
 }
 
 input[type="text"],
 input[type="number"],
+input[type="date"],
+input[type="file"],
 select,
-textarea {
+textarea.form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #32064e;
     border-radius: 4px;
     box-sizing: border-box;
 }

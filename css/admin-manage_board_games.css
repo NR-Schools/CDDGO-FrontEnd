@@ -1,112 +1,112 @@
-
-        .game-card-pic {
-            width: 100%;
-            height: 300px; 
-            object-fit: cover; 
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-
-        .game-card-body {
-            padding: 20px;
-            text-align: justify;
-        }
-
-        .button-container{
-            width: 100%;
-            position: absolute;
-            left: 230px;
-            bottom: 20px;
-        
-            
-        }
-
-        .game-card-title {
-            margin-top: 0;
-            font-family: 'Helvetica',sans-serif;
-            text-align: center;
-            color:  #9e0671;
-            font-weight: bold;
-        }
-
-        .game-card-text {
-            margin-bottom: 15px;
-        }
-
-        .game-card-desc{
-            overflow-wrap: break-word;
-            overflow-y: auto;
-            height: 144px;
-        }
-
-        .game-card-container {
-            margin: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-            gap: 40px;
-            padding: 50px; 
-        }
-
-        .game-card {
-            border: 1px solid #ccc;
-            padding: 20px;
-            position: relative;
-            transition: transform 1s;
-            border-radius: 15px;
-        }
-
-        .game-card:hover {
-            box-shadow: 0 0 5px #9e0671;
-            transform: scale(1.05,1.05);
-        }
+.game-card-pic {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover; 
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 
 
-        .game-btn {
-            background-color: #9e0671; 
-            color: white;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .game-btn:hover {
-            background-color: #9e0671; 
-            color: white;
-            padding: 10px;
-        }
+.game-card-body {
+    padding: 20px;
+    text-align: justify;
+}
 
-        .title-container 
-        {
-            margin-top: 20px;
-            overflow: hidden;
-            margin-left: 270px;
-        }
+.button-container{
+    width: 100%;
+    position: absolute;
+    left: 230px;
+    bottom: 20px;
 
-        .title
-        {
-            display: inline-block; /* Display elements side by side */
-            vertical-align: top; /* Align them to the top */
-            margin-right: 800px;
-        }
+    
+}
 
-        .add-button
-        {
-            display: inline-block; /* Display elements side by side */
-            vertical-align: top; /* Align them to the top */
-        }
+.game-card-title {
+    margin-top: 0;
+    font-family: 'Helvetica',sans-serif;
+    text-align: center;
+    color:  #9e0671;
+    font-weight: bold;
+}
 
-        .add-btn
-        {
-            display: inline-block;
-            background-color: #9e0671; 
-            color: white;
-            border-radius: 8px;
-            border: solid #9e0671;
-            padding: 10px;
-            transition:background-color 0.5s, border-style 0.5s, color 0.5s;
-        }
+.game-card-text {
+    margin-bottom: 15px;
+}
 
-        .add-btn:hover
-        {
-            background-color: #ffffff;
-            color: #9e0671;
-        }
+.game-card-desc{
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    height: 144px;
+}
+
+.game-card-container {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 40px;
+    padding: 50px; 
+    width: 100%;
+}
+
+.game-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    position: relative;
+    transition: transform 1s;
+    border-radius: 15px;
+}
+
+.game-card:hover {
+    box-shadow: 0 0 5px #9e0671;
+    transform: scale(1.05,1.05);
+}
+
+
+.game-btn {
+    background-color: #9e0671; 
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+.game-btn:hover {
+    background-color: #9e0671; 
+    color: white;
+    padding: 10px;
+}
+
+.title-container 
+{
+    margin-top: 20px;
+    overflow: hidden;
+    margin-left: 270px;
+}
+
+.title
+{
+    display: inline-block; /* Display elements side by side */
+    vertical-align: top; /* Align them to the top */
+    margin-right: 800px;
+}
+
+.add-button
+{
+    display: inline-block; /* Display elements side by side */
+    vertical-align: top; /* Align them to the top */
+}
+
+.add-btn
+{
+    display: inline-block;
+    background-color: #9e0671; 
+    color: white;
+    border-radius: 8px;
+    border: solid #9e0671;
+    padding: 10px;
+    transition:background-color 0.5s, border-style 0.5s, color 0.5s;
+}
+
+.add-btn:hover
+{
+    background-color: #ffffff;
+    color: #9e0671;
+}

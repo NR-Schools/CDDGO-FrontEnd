@@ -4,15 +4,15 @@
     justify-content: center;
     align-items: center;
     height:1000px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .search-input{
     width: 712px;
     height: 47px;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-style: solid;
-    border-width: 3px;
+    border-width: 1px;
     border-radius: 5px;
     font-size: 13px;
 }
@@ -22,12 +22,14 @@
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
+    margin-bottom: 90px;
 }
 
 .divider{
     border-top-style: solid;
     border-top-width: 5px;
-    border-color: #9e0671;
+    border-color: #32064e;
     width: 1079px;
     margin-top: 5px;
     margin-bottom: 15px;
@@ -99,21 +101,21 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 700;
     font-size: 16px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .board-game-container{
     display: grid;
+    position: relative;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
     padding-right: 100px;
     padding-left: 100px;
-    row-gap: 40px;
+    row-gap: 80px;
     margin-bottom: 10px;
-    height: 650px;
+    height: 700px;
     overflow-y: auto;
     column-gap: 30px;
-    position: relative;
 
 }
 
@@ -127,7 +129,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 32px;
-    color: #9e0671;
+    color: #32064e;
     margin-bottom: 10px;
     margin-top: 30px;
     padding-left: 100px;
@@ -182,21 +184,21 @@
 
 .filters{
     display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
     padding: 0;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 5px;
     font-size: 13px;
+    margin-left: 100px;
+    gap: 5px;
 }
 
 .filter-styling{
-    width: 500px;
+    width: 300px;
     height: 30px;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-style: solid;
-    border-width: 3px;
+    border-width: 1px;
     border-radius: 5px;
     justify-content: right;
 }

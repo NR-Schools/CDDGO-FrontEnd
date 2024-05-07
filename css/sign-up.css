@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1000px;
+    height: 900px;
     width: 100%;
 }
 
@@ -14,7 +14,7 @@
     background-color: transparent;
     border-width: 7px;
     border-style: solid;
-    border-color: #9e0671;
+    border-color: #32064e;
     width: 900px;
     height: 821px;
     border-radius: 10px;
@@ -37,7 +37,7 @@
 .divider{
     border-top-style: solid;
     border-top-width: 5px;
-    border-color: #9e0671;
+    border-color: #32064e;
     width: 100%;
     margin-top: 5px;
     margin-bottom: 15px;
@@ -49,14 +49,15 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 400;
     font-size: 20px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .input-styling{
     width: 246px;
     height: 39px;
-    border-color: #9e0671;
+    border-color: #32064e;
     border-radius: 10px;
+    border-style: solid;
 }
 
 .label-styling{
@@ -64,7 +65,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 13px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .sign-up-title{
@@ -73,7 +74,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 32px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .button-container{
@@ -98,7 +99,7 @@
 
 .button-styling:hover{
     color: #9e0671;
-    background-color: #F1EDE9;
+    background-color:white;
     border-style: solid;
     border-width: 3px;
     border-color: #9e0671;

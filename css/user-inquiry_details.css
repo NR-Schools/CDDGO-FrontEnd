@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Merriweather Sans", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -7,22 +7,28 @@ body {
 .box {
     max-width: 800px;
     margin: 20px auto;
-    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #32064e;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 }
 .message-container {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
 }
 .message-container.user {
-    background-color: #d9edf7;
+    background-color: #32064e;
+    color: white;
+    border-radius: 5px;
 }
 .message-container.admin {
-    background-color: #dff0d8;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color:#32064e;
+    background-color: transparent;
 }
 .message-details {
     margin-bottom: 10px;
@@ -59,4 +65,51 @@ textarea {
 }
 .btn.cancel {
     background-color: #dc3545;
+}
+
+.label-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.value-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.button-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color:white;
+    background-color: #9e0671;
+    border: none;
+    width: 137px;
+    height: 38px;
+    border-radius: 5px;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.button-styling:hover{
+    color: #9e0671;
+    background-color:white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-styling:focus{
+    outline: none;
+}
+.sign-up-title{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #32064e;
+    text-align: center;
+    margin-bottom: 50px;
 }
