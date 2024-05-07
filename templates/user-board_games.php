@@ -34,46 +34,47 @@
                     <button class="button-styling" type="submit" name="searchButton">Search</button>
                 </form>
             </div>
-            <div class="filters">
-                <form action="user-board_games.php" method="POST">
-                        <div>
-                            <select class="filter-styling" name="filters" id="filters">
-                                <option value="No Category">Select Category</option>
-                                <option value="All">All</option>
-                                <option value="Abstract Strategy">Abstract Strategy</option>
-                                <option value="Area Control">Area Control</option>
-                                <option value="Campaign">Campaign</option>
-                                <option value="City Building">City Building</option>
-                                <option value="Cooperative">Cooperative</option>
-                                <option value="Deck Building">Deck Building</option>
-                                <option value="Deduction">Deduction</option>
-                                <option value="Dexterity">Dexterity</option>
-                                <option value="Dungeon Crawler">Dungeon Crawler</option>
-                                <option value="Economic">Economic</option>
-                                <option value="Family">Family</option>
-                                <option value="Fighting">Fighting</option>
-                                <option value="Hand Management">Hand Management</option>
-                                <option value="Kid">Kid</option>
-                                <option value="Limited Communication">Limited Communication</option>
-                                <option value="Party">Party</option>
-                                <option value="Pick-Up and Deliver">Pick-Up and Deliver</option>
-                                <option value="Programming">Programming</option>
-                                <option value="Set Collection">Set Collection</option>
-                                <option value="Storytelling">Storytelling</option>
-                                <option value="Tower Defense">Tower Defense</option>
-                                <option value="War">War</option>
-                                <option value="Word">Word</option>
-                                <option value="Worker Placement">Worker Placement</option>
-                            </select>
-                        </div>
-                        <div style="text-align:center;margin-top:8px">
-                            <button class="filter-button" type="submit" name="filterCategory">Filter</button>
-                        </div>    
-                </form>
-            </div>
             <div class="main-title-styling">
                 AVAILABLE BOARD GAMES
             </div>
+            <form action="user-board_games.php" method="POST">
+                <div class="filters">
+                    <form action="user-board_games.php" method="POST">
+                    <div>
+                        <select class="filter-styling" name="filters" id="filters">
+                            <option value="No Category">Select Category</option>
+                            <option value="All">All</option>
+                            <option value="Abstract Strategy">Abstract Strategy</option>
+                            <option value="Area Control">Area Control</option>
+                            <option value="Campaign">Campaign</option>
+                            <option value="City Building">City Building</option>
+                            <option value="Cooperative">Cooperative</option>
+                            <option value="Deck Building">Deck Building</option>
+                            <option value="Deduction">Deduction</option>
+                            <option value="Dexterity">Dexterity</option>
+                            <option value="Dungeon Crawler">Dungeon Crawler</option>
+                            <option value="Economic">Economic</option>
+                            <option value="Family">Family</option>
+                            <option value="Fighting">Fighting</option>
+                            <option value="Hand Management">Hand Management</option>
+                            <option value="Kid">Kid</option>
+                            <option value="Limited Communication">Limited Communication</option>
+                            <option value="Party">Party</option>
+                            <option value="Pick-Up and Deliver">Pick-Up and Deliver</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Set Collection">Set Collection</option>
+                            <option value="Storytelling">Storytelling</option>
+                            <option value="Tower Defense">Tower Defense</option>
+                            <option value="War">War</option>
+                            <option value="Word">Word</option>
+                            <option value="Worker Placement">Worker Placement</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="filter-button" type="submit" name="filterCategory">Filter</button>
+                    </div>    
+                </div>
+            </form>
             <div class="divider-container">
                 <div class="divider"></div>
             </div>

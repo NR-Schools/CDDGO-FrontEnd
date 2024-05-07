@@ -216,6 +216,8 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 13px;
-    height: 60px;
+    height: 40px;
+    width: 700px;
+    word-wrap: break-word;
     overflow-y: auto;
 }
