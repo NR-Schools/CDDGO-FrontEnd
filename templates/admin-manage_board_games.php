@@ -20,6 +20,10 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Board Games</title>
+    <link type="text/css" rel="stylesheet" href="../css/user-board_games.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_board_games.css">
 
 </head>
@@ -31,18 +35,13 @@
     ?>
     
     <!-- Start Board Game Cards -->
-    <div class="title-container">
-        <div class="title">
-            <h3>ALL BOARD GAMES</h3>
-        </div>
-        <div class="add-button">
-        <a href="admin-add_board_game.php">
-        <button class="add-btn">Add Board Game </button>
-        </a>
-        </div>
-    </div>
+    <div class="main-body">
+    <p>ALL BOARD GAMES</p>
+        <hr />
 
-    <div class="game-card-container">
+        <a href="/templates/admin-add_board_game.php" class="btn btn-primary">Add New BoardGame</a>
+
+    <div class="custom-layout-manager">
 
     <?php
         if($games != 0)
@@ -50,22 +49,25 @@
             foreach($games as $game)
             {
                 assert($game instanceof BoardGame);
-
-                //Output events
-                echo '<div class="game-card" style="padding:0">';
-                echo    '<img class="game-card-pic" style="height:300px;min-width:300" src="data:image/' . pathinfo($game->GameImage, PATHINFO_EXTENSION) . ';base64,' . $game->GameImage . '" id="event_image">';
-                echo    '<div class="game-card-body">';
-                echo        '<h4 class="game-card-title">' . $game->GameName . '</h4>';
-                echo        '<p class="game-card-desc">' .$game->GameDescription . '</p>';
-                echo        '<p class="game-card-text">' .$game->GameCategory . '</p>';
-                echo        '<p class="game-card-text">' .$game->QuantityAvailable. '</p>';
-                echo    '</div>';
-                echo    '<a class="button-container" href="/templates/admin-edit_board_game.php?gameId=' . $game->GameID . '"><button class="game-btn">Edit</button></a>';  
-                echo '</div>';
+                $editLink = "/templates/admin-edit_board_game.php?gameId=" . $game->GameID;
+                $photoResource = 'data:image/' . pathinfo($game->GameImage, PATHINFO_EXTENSION) . ';base64,' . $game->GameImage;
+                echo <<<EOD
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{$photoResource}"  alt="{Card image}">
+                    <div class="card-body">
+                        <h5 class="card-title">{$game->GameName}</h5>
+                        <p class="card-text">{$game->GameCategory}</p>
+                        <p class="card-text">{$game->QuantityAvailable}</p>
+                        <a href="$editLink" class="btn btn-primary">Edit Game</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                EOD;
             }
         }
     ?>
     </div>
-
+    </div>
 </body>
 </html>

@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Users</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link type="text/css" rel="stylesheet" href="../css/admin-edit_members.css">
 </head>
@@ -78,99 +79,95 @@
         
     ?>
 
-
-    <!-- Start Body -->
-    <div class="main-body">
+    <form class="row g-3" action="admin-edit_members.php" method="POST" enctype="multipart/form-data">
 
         <div class="main-container">
-            
-            <p class="text-white">EDIT USER</p>
+            <div class="edit-container">
+                <div class="sign-up-title">
+                    EDIT USER
+                </div>
 
-            <form class="row g-3" action="admin-edit_members.php" method="POST" enctype="multipart/form-data">
                 <!-- Personal Details -->
-                <p class="text-white">Personal Details</p>
-                <hr class="text-white">
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="editFirstname">First Name</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editFirstname" name="editFirstname" value="<?php echo $student->FirstName; ?>">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="editLastname">Last Name</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editLastname" name="editLastname" value="<?php echo $student->LastName; ?>">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <label class="form-label text-white" for="editEmail">Email</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="email" class="form-control" id="editEmail" name="editEmail" value="<?php echo $student->Email; ?>">
+                <div class="personal-details">
+                    <div class="form-title">Personal Details</div>
+                    <div class="divider"></div>
+                    <div class="content-container">
+                        <div>
+                            <label class="label-styling" for="editFirstname">First Name</label>
+                            <input class="input-styling" type="text" name="editFirstname" id="feditFirstname" value="<?php echo $student->FirstName; ?>">
+                        </div>
+                        <div>
+                            <label class="label-styling" for="editLastname">Last Name</label>
+                            <input class="input-styling" type="text" id="editLastname" name="editLastname" value="<?php echo $student->LastName; ?>">
+                        </div>
                     </div>
                 </div>
 
                 <!-- School Details -->
-                <p class="text-white">School Details</p>
-                <hr class="text-white">
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="studentNumber">Student Number</label>
-                    <input type="text" class="form-control" id="studentNumber" value="<?php echo $student->StudNo; ?>" readonly>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="editProgram">Program</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="text" class="form-control" id="editProgram" name="editProgram" value="<?php echo $student->Program; ?>">
+                <div class="school-details">
+                    <div class="form-title">School Details</div>
+                    <div class="divider"></div>
+                    <div class="content-container">
+                        <div>
+                            <label class="label-styling" for="studentNumber">Student Number</label>
+                            <input class="input-styling" type="text" id="studentNumber" value="<?php echo $student->StudNo; ?>" readonly>
+                        </div>
+                        <div>
+                            <label class="label-styling" for="editProgram">Progam</label>
+                            <input class="input-styling" type="text" id="editProgram" name="editProgram" value="<?php echo $student->Program; ?>">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Account Details -->
-                <p class="text-white">Account Details</p>
-                <hr class="text-white">
-                <div class="col-md-6">
-                    <label class="form-label text-white" for="editPassword">Password</label>
-                    <div class="input-group">
-                        <div class="input-group-text">Edit Icon</div>
-                        <input type="password" class="form-control" id="editPassword" name="editPassword" value="<?php echo $student->Password; ?>">
+                <div class="account-details">
+                    <div class="form-title">Account Details</div>
+                    <div class="divider"></div>
+                    <div class="content-container">
+                        <div>
+                            <label class="label-styling" for="editEmail">Email</label>
+                            <input class="input-styling" type="text" id="editEmail" name="editEmail" value="<?php echo $student->Email; ?>">
+                        </div>
+                        <div>
+                            <label class="label-styling" for="editPassword">Password</label>
+                            <input required class="input-styling" type="password" id="editPassword" name="editPassword" value="<?php echo $student->Password; ?>">
+                        </div>
+                        <div style="text-align:right">
+                            <div>
+                                <label class="label-radio" for="memberRadio">Member</label>
+                                <input class="radio-but-style" type="radio" name="radioButtons" value="memberRadio" id="memberRadio" onclick="showMembershipFields()">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="label-radio" for="nonmemberRadio">Non-member</label>
+                            <input class="form-check-input" type="radio" name="radioButtons" value="nonmemberRadio" id="nonmemberRadio" checked onclick="hideMembershipFields()">
+                        </div>
                     </div>
-                </div>
-                <div class="form-check col-md-2">
-                    <input class="form-check-input" type="radio" name="radioButtons" value="memberRadio" id="memberRadio" onclick="showMembershipFields()">
-                    <label class="form-check-label text-white" for="memberRadio">Member</label>
-                </div>
-                <div class="form-check col-md-3">
-                    <input class="form-check-input" type="radio" name="radioButtons" value="nonmemberRadio id="nonmemberRadio" checked onclick="hideMembershipFields()">
-                    <label class="form-check-label text-white" for="nonmemberRadio">Non-member</label>
-                </div>
-
-                <!-- Membership Fields -->
-                <div id="membershipFields" style="display: none;">
-                    <div class="col-md-6">
-                        <label class="form-label text-white" for="memberPosition">Position</label>
-                        <input type="text" class="form-control" id="memberPosition" name="memberPosition" value="">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label text-white" for="memberYearJoined">Year Joined</label>
-                        <input type="text" class="form-control" id="memberYearJoined" name="memberYearJoined" value="">
+                    <div class="content-container" id="membershipFields" style="display: none;">
+                        <div>
+                            <label class="label-styling" for="memberPosition">Position</label>
+                            <input class="input-styling" type="text" id="memberPosition" name="memberPosition" value="">
+                        </div>
+                        <div style="order:2">
+                            <label class="label-styling" for="memberYearJoined">Year Joined</label>
+                            <input class="input-styling" type="text" id="memberYearJoined" name="memberYearJoined" value="">
+                        </div>
                     </div>
                 </div>
 
                 <div class="button-container text-center">
                     <input type="hidden" name="studID" id="studID" value="<?php echo $studId; ?>"> 
-                    <button type="submit" class="btn" name="edit" id="edit">APPLY CHANGES</button>
-                    <button type="submit" class="btn" name="cancel" id="cancel">CANCEL</button>
+                    <button type="submit" class="button-styling" name="edit" id="edit">APPLY CHANGES</button>
+                    <button type="submit" class="cancel-styling" name="cancel" id="cancel">CANCEL</button>
                 </div>
-            </form>
+            </div>
         </div>
+    </form>
 
-    </div>
 
     <script>
         function showMembershipFields() {
-            document.getElementById("membershipFields").style.display = "block";
+            document.getElementById("membershipFields").style.display = "flex";
         }
 
         function hideMembershipFields() {

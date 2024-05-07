@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-edit_event.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -101,8 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="button-container text-center">
                 <input type="hidden" name="eventID" id="eventID" value="<?php echo $eventId; ?>">
-                <button type="sumbit" class="btn-edit" name="edit" value="edit">APPLY CHANGES</button>
-                <button type="submit" class="btn-delete" name="delete" value="delete">REMOVE EVENT</button>
+                <button type="sumbit" class="btn-edit" name="edit" value="edit">Apply Changes</button>
+                <button type="submit" class="btn-delete" name="delete" value="delete">Remove Event</button>
             </div>
         </form>
     </div>
