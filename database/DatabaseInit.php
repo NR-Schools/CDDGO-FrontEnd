@@ -98,7 +98,7 @@ Database::BasicSQL(
         NotificationTitle VARCHAR(50),
         NotificationBody VARCHAR(100),
         TargetEmail VARCHAR(50), 							-- Target Email to Send Notification
-        CreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP()
     );
     
     "

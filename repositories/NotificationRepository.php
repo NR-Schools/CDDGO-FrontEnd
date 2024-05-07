@@ -10,7 +10,7 @@ class NotificationRepository
         return Database::SQLwithoutFetch(
             Database::getPDO(),
             "
-            INSERT INTO NOTIFICATIONS VALUES (null, :title, :body, :target, null);
+            INSERT INTO NOTIFICATIONS VALUES (null, :title, :body, :target, CURDATE());
             ",
             [
                 ":title" => $notification->NotificationTitle,
