@@ -32,6 +32,7 @@ if (!AuthGuard::guard_route(Role::USER)) {
         <div class="box">
             <h1 class="sign-up-title">My Inquiries</h1>
             <?php
+            //Backend Start
             [$email, $role] = AuthService::getCurrentlyLoggedIn();
             $inquiries = InquiryService::getInquiriesByStudent($email);
             foreach ($inquiries as $inquiry) {

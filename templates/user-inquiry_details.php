@@ -18,7 +18,7 @@ $inquiryId = $_GET['inquiryId'];
 ?>
 
 <?php
-
+//Backend Start
 if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $inquiryResponse = new InquiryResponse();
@@ -99,8 +99,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         EOD;
         ?>
     </div>
-    <!-- Backend Start -->
-
 </body>
 
 </html>

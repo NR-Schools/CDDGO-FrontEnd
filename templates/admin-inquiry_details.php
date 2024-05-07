@@ -47,6 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="box">
 
         <?php
+        //Backend Start
         // Get Inquiry
         $inquiry = InquiryService::getInquiryById($inquiryId);
         echo <<<EOD
@@ -104,8 +105,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
         ?>
     </div>
-    <!-- Backend Start -->
-
 </body>
 
 </html>
