@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         $inquiries = InquiryService::getAllInquiries();
         foreach ($inquiries as $inquiry) {
             assert($inquiry instanceof Inquiry);
-            $replyLink = "/templates/admin-reply_to_inquiry.php?inquiryId=" . $inquiry->InquiryID;
+            $replyLink = "/templates/admin-inquiry_details.php?inquiryId=" . $inquiry->InquiryID;
             echo <<<SHOW_INQUIRIES
             <form class="inquiry" action="admin-manage_inquiries.php" method="post">
                 <div class="details">
