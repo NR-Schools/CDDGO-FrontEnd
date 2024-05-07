@@ -6,9 +6,6 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
     header("Location: /");
 }
-#Include Header and Footer
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
 
 <?php
@@ -17,8 +14,7 @@ $inquiryId = $_GET['inquiryId'];
 
 <?php
 
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $inquiryResponse = new InquiryResponse();
     $inquiryResponse->RefInquiryID = $inquiryId;
     $inquiryResponse->ResponseText = $_POST['replyText'];
@@ -38,6 +34,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 </head>
 
 <body>
+
+    <!-- Include Header -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
     <!-- Frontend Start -->
     <br>
     <h3>Inquiry Review</h3>
@@ -94,7 +94,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
         $formLink = $_SERVER['REQUEST_URI'];
-        echo<<<EOD
+        echo <<<EOD
         <form class="reply-box" action="{$formLink}" method="post">
             <textarea placeholder="Write your reply..." style="height: 100px;" name="replyText"></textarea>
             <div class="buttons">
@@ -105,6 +105,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
         ?>
     </div>
+
+    <!-- Include Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
 </body>
 
 </html>

@@ -7,24 +7,18 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
     header("Location: /");
 }
-
 ?>
 
 
 <?php
 
-if($_SERVER['REQUEST_METHOD'] === 'POST')
-{
-    if(isset($_POST['remove']))
-    {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['remove'])) {
         $rentalId = $_POST['rentalId'];
 
         // Remove Rental
         RentalService::adminRemoveRental($rentalId);
-    }
-
-    else if (isset($_POST['confirm']))
-    {
+    } else if (isset($_POST['confirm'])) {
         $rentalId = $_POST['rentalId'];
 
         // Confirm Rental
@@ -49,10 +43,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 </head>
 
 <body>
+
     <!-- Include Header -->
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-    ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
     <!-- Start Body -->
     <div class="rentals-title">
@@ -63,9 +56,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         <div class="rental-title">
             Confirmed Rentals
         </div>
-    
+
         <div class="rentals-list-container">
-        <?php
+            <?php
             // Get all rentals
             $rentals = RentalService::getAllConfirmedRentals();
             foreach ($rentals as $rental) {
@@ -106,11 +99,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 
         <div class="rentals-list-container">
             <?php
-                // Get all rentals
-                $rentals = RentalService::getAllUnconfirmedRentals();
-                foreach ($rentals as $rental) {
-                    assert($rental instanceof Rental);
-                    echo <<<EOD
+            // Get all rentals
+            $rentals = RentalService::getAllUnconfirmedRentals();
+            foreach ($rentals as $rental) {
+                assert($rental instanceof Rental);
+                echo <<<EOD
                     <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
                     <div>
                         <div>
@@ -131,10 +124,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
                         </div>
                     </form>
                     EOD;
-                }
+            }
             ?>
-        </div> 
+        </div>
     </div>
+
+    <!-- Include Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
 </body>
 
 </html>

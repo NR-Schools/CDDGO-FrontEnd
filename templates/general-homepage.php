@@ -1,10 +1,6 @@
-<?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
-?>
-
-<!--html codes-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,17 +11,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
-    <!-- Include Header and Footer-->
-    <?php 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-    ?>
+    <!-- Include Header -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
     <!--Banner Start -->
     <div class="banner">
         <div class="banner-content">
-            <h1 style="font-size: 4rem; font-weight: bold;">LEARN.</h1> 
+            <h1 style="font-size: 4rem; font-weight: bold;">LEARN.</h1>
             <h2 style="font-size: 3.5rem; font-weight: bold;">PLAY.</h2>
             <h3 style="font-weight: bold;">REPEAT.</h3>
             <p>Tabletop board games have never been this fun!</p>
@@ -44,12 +38,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
         </div>
         <div class="divider"></div>
         <div class="mtg-bg">
-            <p>Mapúa Tabletop Gamers (MTG) began as a student club with the goal of serving the recreational needs of its student body. MTG aims to provide a place where people can unwind and have fun away from the demanding academics of university life. Game nights, tournaments, and enlightening workshops are just a few of the planned events that MTG hosts to encourage social and community service among its members. MTG fosters a sense of community among the school population while providing a hub for students looking for a break from their academic obligations thanks to its wide selection of games and welcoming atmosphere.</p>
+            <p>Mapúa Tabletop Gamers (MTG) began as a student club with the goal of serving the recreational needs of
+                its student body. MTG aims to provide a place where people can unwind and have fun away from the
+                demanding academics of university life. Game nights, tournaments, and enlightening workshops are just a
+                few of the planned events that MTG hosts to encourage social and community service among its members.
+                MTG fosters a sense of community among the school population while providing a hub for students looking
+                for a break from their academic obligations thanks to its wide selection of games and welcoming
+                atmosphere.</p>
             <div class="mtg-learn-button">
                 <a href="about-us.php" class="learn-button">Learn more</a>
             </div>
         </div>
     </div>
-</body>
-</html>
 
+    <!-- Include Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
+</body>
+
+</html>

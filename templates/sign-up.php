@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $student->Program = $_POST['program'];
     $student->Password = $_POST['password'];
 
-
     // Save Student
     AuthService::signup($student);
 

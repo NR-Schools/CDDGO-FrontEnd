@@ -1,6 +1,5 @@
 <?php
-require_once ($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
-require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +16,9 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
 </head>
 
 <body>
-    <!-- Include Header and Footer-->
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-    ?>
+    <!-- Include Header -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
     <div class="main-container">
         <div class="login-container">
             <div class="logo-container">
@@ -61,6 +58,9 @@ require_once ($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
             </form>
         </div>
     </div>
+
+    <!-- Include Header -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 </body>
 
 </html>

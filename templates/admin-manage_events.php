@@ -7,7 +7,6 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
     header("Location: /");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -21,10 +20,10 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 </head>
 
 <body>
+
     <!-- Include Header -->
-    <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-    ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
 
     <!-- Start Body -->
     <div class="main-body">
@@ -35,7 +34,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
 
         <div class="custom-layout-manager">
-            
+
             <?php
             // Get all events
             $events = EventService::getAllEvents();
@@ -64,6 +63,10 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         </div>
 
     </div>
+
+    <!-- Include Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
 </body>
 
 </html>

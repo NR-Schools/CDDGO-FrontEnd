@@ -21,10 +21,10 @@
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_registrations.css">
 </head>
 <body>
+
     <!-- Include Header -->
-    <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-    ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
 
     <!-- Start Body -->
     <div class="main-body">
@@ -110,6 +110,10 @@
 
         
     </div>
+
+        <!-- Include Footer -->
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
     
 </body>
 </html>

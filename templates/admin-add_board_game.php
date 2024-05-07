@@ -1,29 +1,58 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php");
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
 
-    if (!AuthGuard::guard_route(Role::ADMIN)) {
-        // Return to root
-        header("Location: /");
-    }
+if (!AuthGuard::guard_route(Role::ADMIN)) {
+    // Return to root
+    header("Location: /");
+}
 ?>
+
+
+<?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        //image
+        $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
+        $image_encoded = base64_encode($game_image);
+
+    
+        // Create Board Game 
+        $boardgame = new BoardGame();
+        $boardgame->GameName = $_POST['game_name'];
+        $boardgame->GameDescription = $_POST['description'];
+        $boardgame->GameImage = $image_encoded;
+        $boardgame->QuantityAvailable = $_POST['quantity_avail'];
+        $boardgame->GameCategory = $_POST['game_category'];
+        $boardgame->GameStatus = "Available";
+
+        BoardGameService::addNewBoardGame($boardgame);
+
+        echo <<<SCRIPT
+        <script>
+            alert('Board Game Added');
+            document.location.href = 'admin-manage_board_games.php';
+        </script>
+        SCRIPT;
+    }
+    ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Board Game</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-add_board_game.css">
 </head>
-<body>
-    <!-- Include Header and Footer-->
-    <?php 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-    ?>
 
-    <!-- Front End start -->
+<body>
+
+    <!-- Include Header-->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
     <div class="content-container">
         <div class="add-board-title">
             ADD BOARD GAME
@@ -38,7 +67,8 @@
             <!-- Board Game Image -->
             <div class="form-group">
                 <label for="game_img">Board Game Image</label>
-                <input type="file" id="game_img" name="game_img" class="form-control" onchange="onFileSelected(event)" accept="image/*">
+                <input type="file" id="game_img" name="game_img" class="form-control" onchange="onFileSelected(event)"
+                    accept="image/*">
             </div>
 
             <!-- Description -->
@@ -93,37 +123,11 @@
         </form>
     </div>
 
-        <!-- Backend Start -->
-        <?php
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            //image
-            $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
-            $image_encoded = base64_encode($game_image);
+    <!-- Include Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
 
-            //status
-            $status = "Available"; //by default available
 
-            //create board games 
-            $boardgame = new BoardGame();
 
-            $boardgame->GameName = $_POST['game_name'];
-            $boardgame->GameDescription = $_POST['description'];
-            $boardgame->GameImage = $image_encoded;
-            $boardgame->QuantityAvailable = $_POST['quantity_avail'];
-            $boardgame->GameCategory = $_POST['game_category'];
-            $boardgame->GameStatus = $status;
-
-                BoardGameService::addNewBoardGame($boardgame);
-
-                echo "<script> alert('Board Game Added');
-                document.location.href = 'admin-manage_board_games.php';
-                </script>";
-
-        }
-        ?>
-
-    
-    
 </body>
+
 </html>

@@ -7,10 +7,6 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
     header("Location: /");
 }
-
-#Include Header and Footer
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
 ?>
 
 
