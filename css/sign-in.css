@@ -5,6 +5,7 @@
     width: 100%;
     height: 800px;
 }
+
 .image-styling{
     width: 200px;
     border-radius: 100%;
@@ -26,7 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #9e0671;
+    background-color: #32064e;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -75,14 +76,14 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 32px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .cred-username{
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 13px;
-    color: #9e0671;
+    color: #32064e;
     display: block;
     margin-top: 70px;
 }
@@ -91,7 +92,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 13px;
-    color: #9e0671;
+    color: #32064e;
     display: block;
     margin-top: 15px;
 }
@@ -102,7 +103,7 @@
     border-radius: 10px;
     min-height: 39px;
     min-width: 246px;
-    border-color: #9e0671;
+    border-color: #32064e;
 }
 
 .fPassword-Button{
@@ -115,7 +116,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 300;
     font-size: 13px;
-    color: #9e0671;
+    color: #32064e;
     border: none;
     background-color: transparent;
 }
@@ -123,6 +124,7 @@
 
 .not-registered-button{
     margin-top: 30px;
+    color: #32064e;
 }
 
 .sign-up-button{
@@ -152,7 +154,7 @@
 
 .login-styling:hover{
     color: #9e0671;
-    background-color: #F1EDE9;
+    background-color: white;
     border-style: solid;
     border-width: 3px;
     border-color: #9e0671;

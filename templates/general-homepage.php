@@ -32,7 +32,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
             <a href="sign-up.php" class="banner-button">JOIN</a>
         </div>
         <div class="banner-image">
-            <img src="../assets/banner-pic.jpg" alt="Banner Image">
+            <img src="../assets/banner-pic.png" alt="Banner Image">
         </div>
     </div>
     <!--banner end-->

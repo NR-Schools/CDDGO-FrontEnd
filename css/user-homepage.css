@@ -20,7 +20,7 @@
 .divider{
     border-top-style: solid;
     border-top-width: 5px;
-    border-color: #9e0671;
+    border-color: #32064e;
     width: 100%;
     margin-top: 10px;
 }
@@ -29,7 +29,7 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 32px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .img-styling{
@@ -175,7 +175,7 @@
     font-size: 13px;
 }
 .with-events {
-    height: 412px;
+    height: 330px;
     overflow-y: auto;
 }
 

@@ -48,7 +48,7 @@
                 echo <<<EOD
 
                 <div class="card mb-3">
-                    <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img" alt="...">
+                    <img src="data:image/{$event->EventImage};base64,{$event->EventImage}" id="event_image" class="card-img-top custom-card-img img-styling" alt="...">
                     <div class="card-body">
                         <h5 class="title-styling">{$event->EventName}</h5>
                         <p class="card-text">{$event->EventDescription}</p>

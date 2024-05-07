@@ -2,14 +2,14 @@
     font-family: "Merriweather Sans", sans-serif;
     font-weight: 800;
     font-size: 32px;
-    color: #9e0671;
+    color: #32064e;
 }
 
 .divider{
     border-top-style:solid;
     border-top-width: 5px;
     width: 100%;
-    border-top-color:#9e0671
+    border-top-color:#32064e;
 }
 
 .main-container{
@@ -34,6 +34,7 @@
 .game-image{
     width: 679px;
     height: 296px;
+    object-fit: cover;
 }
 
 .name-styling{
