@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $inquiryResponse = new InquiryResponse();
     $inquiryResponse->RefInquiryID = $inquiryId;
     $inquiryResponse->ResponseText = $_POST['replyText'];
-    InquiryService::adminReplyToInquiry($inquiryResponse);
+    InquiryService::userReplyToInquiry($inquiryResponse);
 }
 
 ?>

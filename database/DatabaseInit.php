@@ -57,7 +57,7 @@ Database::BasicSQL(
         RefInquiryID INT NOT NULL,
         ResponseText VARCHAR(500) NOT NULL,
         ResponseCreatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        ResponseSource ENUM (\"STUDENT\", \"ADMIN\") NOT NULL,
+        ResponseSource VARCHAR(50) NOT NULL,
         FOREIGN KEY (RefInquiryID) REFERENCES INQUIRIES(InquiryID) ON DELETE CASCADE
     );
     
