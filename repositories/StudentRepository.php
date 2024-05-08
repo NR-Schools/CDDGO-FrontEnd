@@ -38,8 +38,10 @@ class StudentRepository
             Database::getPDO(),
             "
             SELECT * FROM STUDENTS
-            LEFT JOIN MEMBERS
-            ON STUDENTS.StudID = MEMBERS.MemberID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
+                LEFT JOIN MEMBERS
+                    ON STUDENTS.StudID = MEMBERS.MemberID
             WHERE Email = :email
             ",
                 [":email" => $email]
@@ -60,8 +62,10 @@ class StudentRepository
             Database::getPDO(),
             "
             SELECT * FROM STUDENTS
-            LEFT JOIN MEMBERS
-            ON STUDENTS.StudID = MEMBERS.MemberID;
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
+                LEFT JOIN MEMBERS
+                    ON STUDENTS.StudID = MEMBERS.MemberID;
             ",
             []
         );
@@ -80,8 +84,10 @@ class StudentRepository
             Database::getPDO(),
             "
             SELECT * FROM STUDENTS
-            LEFT JOIN MEMBERS
-            ON STUDENTS.StudID = MEMBERS.MemberID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
+                LEFT JOIN MEMBERS
+                    ON STUDENTS.StudID = MEMBERS.MemberID
             WHERE StudID = :studId
             ",
             [":studId" => $studId]
@@ -102,23 +108,20 @@ class StudentRepository
             "
             INSERT INTO STUDENTS
             VALUES (
-                null,
+                :studId,
                 :studentNumber,
                 :firstName,
                 :lastName,
                 :program,
-                :email,
-                :password,
                 false
             );
             ",
             [
+                ":studId" => $student->StudID,
                 ":studentNumber" => $student->StudNo,
                 ":firstName" => $student->FirstName,
                 ":lastName" => $student->LastName,
-                ":program" => $student->Program,
-                ":email" => $student->Email,
-                ":password" => $student->Password
+                ":program" => $student->Program
             ]
         );
     }
@@ -134,8 +137,6 @@ class StudentRepository
                 FirstName = :firstName,
                 LastName = :lastName,
                 Program = :program,
-                Email = :email,
-                Password = :password,
                 isVerified = :isVerified
             WHERE
                 StudID = :studId
@@ -146,8 +147,6 @@ class StudentRepository
                 ":firstName" => $student->FirstName,
                 ":lastName" => $student->LastName,
                 ":program" => $student->Program,
-                ":email" => $student->Email,
-                ":password" => $student->Password,
                 ":isVerified" => $student->isVerified
             ]
         );

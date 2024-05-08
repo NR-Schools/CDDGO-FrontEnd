@@ -1,16 +1,15 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/UserModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/MemberModel.php';
 
-class Student
+class Student extends User
 {
     public int $StudID;
     public string $StudNo;
     public string $FirstName;
     public string $LastName;
     public string $Program;
-    public string $Email;
-    public string $Password;
     public bool $isVerified;
     public Member|null $member;
 

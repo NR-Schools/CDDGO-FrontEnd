@@ -1,7 +1,9 @@
 <?php
 
 // Build Paths From Root
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/UserModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/UserRepository.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
 
@@ -15,12 +17,17 @@ class AuthService
     static function signup(Student $student): bool
     {
         // Check if email already exists
-        $studentCheck = StudentRepository::getStudentByEmail($student->Email);
+        $studentCheck = UserRepository::getUserByEmail($student->Email);
         if ($studentCheck !== null)
             return false;
 
-        // Hash the student's password
-        //$student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
+        // Create New User
+        $student->Role = "USER";
+        UserRepository::createUser($student);
+
+        // Get UserID
+        $user = UserRepository::getUserByEmail($student->Email);
+        $student->StudID = $user->UserID;
 
         // Create New Student
         return StudentRepository::addNewStudent($student);
@@ -28,28 +35,21 @@ class AuthService
 
     static function login(string $email, string $password): array
     {
-        // Check if admin
+        // Check if email already exists
+        $user = UserRepository::getUserByEmail($email);
+        if ($user === null)
+            return [false, "User Does Not Exist!!"];
+
+        // Compare Passwords
+        if ($password !== $user->Password)
+            return [false, "Incorrect Password for User !!"];
+        
+        // Determine Role
         $role = Role::USER;
-        if ($email === "admin@email.com") {
-
-            if ($password !== "Admin123_") {
-                return [false, "Incorrect Password for Admin!!"];
-            }
-
+        if ($user->Role == "ADMIN")
+        {
             $role = Role::ADMIN;
-        } else {
-            // Check if email already exists
-            $studentCheck = StudentRepository::getStudentByEmail($email);
-            if ($studentCheck === null)
-                return [false, "Student Does Not Exist!!"];
-
-            // Compare Passwords
-            //if (!password_verify($password, $studentCheck->Password))
-            //    return [false, "Incorrect Password for User !!"];
-            if ($password !== $studentCheck->Password)
-                return [false, "Incorrect Password for User !!"];
         }
-
 
         // Set Session
         AuthGuard::set_session($email, $role);

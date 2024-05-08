@@ -29,6 +29,8 @@ class MemberRepository
             SELECT * FROM MEMBERS
                 INNER JOIN STUDENTS
                     ON MEMBERS.MemberID = STUDENTS.StudID;
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
             ",
             []
         );

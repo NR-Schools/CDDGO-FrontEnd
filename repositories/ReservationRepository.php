@@ -67,6 +67,8 @@ class ReservationRepository
                     ON RESERVATIONS.ReservedStudent = STUDENTS.StudID
                 INNER JOIN BOARD_GAMES
                     ON RESERVATIONS.ReservedGame = BOARD_GAMES.GameID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
                 WHERE RESERVATIONS.isPaid = :isConfirmed;
             ",
             [
@@ -93,6 +95,8 @@ class ReservationRepository
                     ON RESERVATIONS.ReservedStudent = STUDENTS.StudID
                 INNER JOIN BOARD_GAMES
                     ON RESERVATIONS.ReservedGame = BOARD_GAMES.GameID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
                 WHERE ReservedStudent = :studentId;
             ",
             [
@@ -118,6 +122,8 @@ class ReservationRepository
                     ON RESERVATIONS.ReservedStudent = STUDENTS.StudID
                 INNER JOIN BOARD_GAMES
                     ON RESERVATIONS.ReservedGame = BOARD_GAMES.GameID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
                 WHERE ReservationID = :reserveId;
             ",
             [
