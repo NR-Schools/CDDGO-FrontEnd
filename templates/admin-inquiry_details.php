@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/InquiryService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
@@ -15,10 +16,24 @@ $inquiryId = $_GET['inquiryId'];
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $inquiryResponse = new InquiryResponse();
-    $inquiryResponse->RefInquiryID = $inquiryId;
-    $inquiryResponse->ResponseText = $_POST['replyText'];
-    InquiryService::adminReplyToInquiry($inquiryResponse);
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["ResponseText", $_POST['replyText'], [new MinLengthRule(5), new MaxLengthRule(20)]]
+    ]);
+
+    echo <<<EOD
+    <script>
+        alert('{$error}');
+        document.location.href = '{$_SERVER['REQUEST_URI']}';
+    </script>
+    EOD;
+
+    if ($status) {
+        $inquiryResponse = new InquiryResponse();
+        $inquiryResponse->RefInquiryID = $inquiryId;
+        $inquiryResponse->ResponseText = $_POST['replyText'];
+        InquiryService::adminReplyToInquiry($inquiryResponse);
+    }
 }
 
 ?>

@@ -1,12 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/InquiryService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
-#Include Header and Footer
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-?>
-
-<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::USER)) {
     // Return to root
@@ -19,12 +14,25 @@ $inquiryId = $_GET['inquiryId'];
 
 <?php
 //Backend Start
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    $inquiryResponse = new InquiryResponse();
-    $inquiryResponse->RefInquiryID = $inquiryId;
-    $inquiryResponse->ResponseText = $_POST['replyText'];
-    InquiryService::userReplyToInquiry($inquiryResponse);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["ResponseText", $_POST['replyText'], [new MinLengthRule(5), new MaxLengthRule(20)]]
+    ]);
+
+    echo <<<EOD
+    <script>
+        alert('{$error}');
+        document.location.href = '{$_SERVER['REQUEST_URI']}';
+    </script>
+    EOD;
+
+    if ($status) {
+        $inquiryResponse = new InquiryResponse();
+        $inquiryResponse->RefInquiryID = $inquiryId;
+        $inquiryResponse->ResponseText = $_POST['replyText'];
+        InquiryService::userReplyToInquiry($inquiryResponse);
+    }
 }
 
 ?>
@@ -37,12 +45,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inquiry Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/user-inquiry_details.css">
 </head>
 
 <body>
+
+    <!-- Include Header-->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
     <!-- Frontend Start -->
     <div class="box">
         <h1 class="sign-up-title">User/Admin Chat</h1>
@@ -89,7 +102,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         }
 
         $formLink = $_SERVER['REQUEST_URI'];
-        echo<<<EOD
+        echo <<<EOD
         <form class="reply-box" action="{$formLink}" method="post">
             <textarea placeholder="Write your reply..." style="height: 100px;" name="replyText"></textarea>
             <div class="buttons">
@@ -99,6 +112,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         EOD;
         ?>
     </div>
+
+    <!-- Include Footer-->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
+
 </body>
 
 </html>
