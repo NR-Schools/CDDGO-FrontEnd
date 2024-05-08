@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Borrow Records</title>
-    <link type="text/css" rel="stylesheet" href="../css/admin-manage_borrow_records.css">
+    <link type="text/css" rel="stylesheet" href="../css/admin-manage_reservations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
@@ -50,23 +50,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
     <!-- Start Body -->
-    <div class="rentals-title">
+    <div class="reservations-title">
         <p>ACTIVE RENTALS</p>
     </div>
 
-    <div class="rental-main-container">
-        <div class="rental-title">
+    <div class="reservation-main-container">
+        <div class="reservation-title">
             Confirmed Rentals
         </div>
 
-        <div class="rentals-list-container">
+        <div class="reservation-list-container">
             <?php
             // Get all rentals
             $rentals = RentalService::getAllConfirmedRentals();
             foreach ($rentals as $rental) {
                 assert($rental instanceof Rental);
                 echo <<<EOD
-                <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
+                <form class="reservation-entry" method="post" action="admin-manage_borrow_records.php">
                     <div>
                         <div>
                             <span> ID: {$rental->RentalID} </span>
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div>
                         <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
-                        <input type="submit" name="remove" value="Delete" class="btn btn-danger">
+                        <input type="submit" class="confirm-btn" name="remove" value="Delete">
                     </div>
                 </form>
                 EOD;
@@ -94,19 +94,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <br>
     <br>
 
-    <div class="rental-main-container-2">
-        <div class="rental-title">
+    <div class="reservation-main-container-2">
+        <div class="reservation-title">
             Unconfirmed Rentals
         </div>
 
-        <div class="rentals-list-container">
+        <div class="reservation-list-container">
             <?php
             // Get all rentals
             $rentals = RentalService::getAllUnconfirmedRentals();
             foreach ($rentals as $rental) {
                 assert($rental instanceof Rental);
                 echo <<<EOD
-                    <form class="borrow-record-entry" method="post" action="admin-manage_borrow_records.php">
+                    <form class="reservation-entry" method="post" action="admin-manage_borrow_records.php">
                     <div>
                         <div>
                             <span> ID: {$rental->RentalID} </span>
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                         <div>
                             <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
-                            <input type="submit" name="confirm" value="Confirm" class="btn btn-primary">
+                            <input type="submit" name="confirm" value="Confirm" class="confirm-btn">
                         </div>
                     </form>
                     EOD;
