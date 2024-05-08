@@ -6,6 +6,7 @@
 // HTTP Strict Transport Security (HSTS) protect against Man-in-the-middle attacks ;
 // header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/services/UserRepository.php';
 
 enum Role: string
 {
@@ -32,9 +33,16 @@ class AuthGuard
             session_start();
         }
 
-        $email = null;
-        if (isset($_SESSION['email']))
-            $email = $_SESSION['email'];
+        // Validate Email
+        $email = $_SESSION['email'];
+
+        if ($email == null)
+            header("Location: /templates/logout.php");
+
+        $user = UserRepository::getUserByEmail($email);
+        if ($user == null)
+            header("Location: /templates/logout.php");
+        
 
         return [$email, AuthGuard::get_session_role()];
     }
