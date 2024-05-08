@@ -89,8 +89,8 @@
                                 <form action="admin-manage_registrations.php" enctype="multipart/form-data" method="POST">
                                     <!-- Hidden input field to store student ID -->
                                     <input type="hidden" name="studentId" value="{$student->StudID}">
-                                        <button type="submit" class="btn btn-danger" name="confirm" value="confirm">Confirm</button>
-                                        <button type="submit" class="btn btn-danger" name="reject" value="reject">Reject</button>
+                                        <button type="submit" class="button" name="confirm" value="confirm">Confirm</button>
+                                        <button type="submit" class="button" name="reject" value="reject">Reject</button>
                                 </form>
                             </div>
                         </div>

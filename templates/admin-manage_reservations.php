@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div>
                     <form action="admin-manage_reservations.php" method="post">
                         <input type="hidden" name="reservationId" value="{$confirmedReservation->ReservationID}">
-                        <input type="submit" name="Remove" value="Remove" class="btn btn-danger">
+                        <input type="submit" name="Remove" value="Remove" class="confirm-btn">
                     </form>
                 </div>
             </div>
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <br>
     <br>
 
-    <div class="reservation-main-container">
+    <div class="reservation-main-container-2">
         <div class="reservation-title">
             Unconfirmed Reservations
         </div>
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <form action="admin-manage_reservations.php" method="post">
                             <input type="hidden" name="reservationId" value="{$unconfirmedReservation->ReservationID}">
-                            <input type="submit" name="Confirm" value="Confirm" class="btn btn-primary">
+                            <input type="submit" name="Confirm" value="CONFIRM" class="confirm-btn">
                         </form>
                     </div>
                 </div>
@@ -139,75 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
         </div>
     </div>
-
-
-
-    <?php
-    $confirmedReservations = ReservationService::getAllConfirmedReservations();
-    foreach ($confirmedReservations as $confirmedReservation) {
-        assert($confirmedReservation instanceof Reservation);
-        echo <<<EOD
-        <div class="reservation-entry">
-            <div>
-                <div>
-                    <span> {$confirmedReservation->ReservationID} </span>
-                </div>
-                <div>
-                    <span> {$confirmedReservation->student->getFullName()} </span>
-                    <span> {$confirmedReservation->student->StudNo} </span>
-                </div>
-                <div>
-                    <span> {$confirmedReservation->boardGame->GameName} </span>
-                </div>
-                <div>
-                    <span> Date: {$confirmedReservation->ReservedDate} </span>
-                    <span> Fee: P {$confirmedReservation->ReservationFee} </span>
-                </div>
-            </div>
-            <div>
-                <form action="admin-manage_reservations.php" method="post">
-                    <input type="hidden" name="reservationId" value="{$confirmedReservation->ReservationID}">
-                    <input type="submit" name="Remove" value="Remove" class="btn btn-danger">
-                </form>
-            </div>
-        </div>
-        EOD;
-    }
-    ?>
-
-
-    <?php
-    $unconfirmedReservations = ReservationService::getAllUnconfirmedReservations();
-    foreach ($unconfirmedReservations as $unconfirmedReservation) {
-        assert($unconfirmedReservation instanceof Reservation);
-        echo <<<EOD
-        <div class="reservation-entry">
-            <div>
-                <div>
-                    <span> {$unconfirmedReservation->ReservationID} </span>
-                </div>
-                <div>
-                    <span> {$unconfirmedReservation->student->getFullName()} </span>
-                    <span> {$unconfirmedReservation->student->StudNo} </span>
-                </div>
-                <div>
-                    <span> {$unconfirmedReservation->boardGame->GameName} </span>
-                </div>
-                <div>
-                    <span> Date: {$unconfirmedReservation->ReservedDate} </span>
-                    <span> Fee: P {$unconfirmedReservation->ReservationFee} </span>
-                </div>
-            </div>
-            <div>
-                <form action="admin-manage_reservations.php" method="post">
-                    <input type="hidden" name="reservationId" value="{$unconfirmedReservation->ReservationID}">
-                    <button class="confirm-btn" name="Confirm">Confirm</button>
-                </form>
-            </div>
-        </div>
-        EOD;
-    }
-    ?>
 
 
     <!-- Include Footer -->

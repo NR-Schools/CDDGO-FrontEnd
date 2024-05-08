@@ -6,8 +6,8 @@
     margin-top: 2%;
     font-weight: bolder;
     font-size: 3vw;
-    color: #9e0671;
-    border-bottom: 10px solid #9e0671;
+    color: #32064e;
+    border-bottom: 10px solid #32064e;
     font-family: "Merriweather Sans", sans-serif;
 }
 
@@ -104,7 +104,28 @@
     }
 }
 
-.confirm-btn {
-    border-color: #9e0671;
-    background-color:#9e0671;
+.confirm-btn{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color:white;
+    background-color: #9e0671;
+    border: 3px solid #9e0671;
+    width: 137px;
+    height: 38px;
+    border-radius: 5px;
+    transition: color 0.5s, background-color 0.5s;
 }
+
+.confirm-btn:hover{
+    color: #9e0671;
+    background-color: white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+.confirm-btn:focus{
+    outline: none;
+}
+
