@@ -30,17 +30,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Inquiries</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_inquiries.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <!-- Frontend Start -->
-    <br>
-    <h3>Inquiry Management</h3>
-    <div class="hrline">
-        <hr>
-    </div>
-    <div class="box">
 
+    <!-- Include Header-->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+
+    <!-- Frontend Start -->
+    <div class="box">
+        <h1 class="page-title">Inquiry Management</h1>
         <?php
         //Backend Start
         $inquiries = InquiryService::getAllInquiries();
@@ -50,14 +51,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             echo <<<SHOW_INQUIRIES
             <form class="inquiry" action="admin-manage_inquiries.php" method="post">
                 <div class="details">
-                    <strong>Name:</strong> {$inquiry->student->getFullName()}<br>
-                    <strong>Email:</strong> {$inquiry->student->Email}<br>
-                    <strong>Message:</strong> {$inquiry->InquiryDesc}
+                    <strong class="label-styling">Name:</strong> <div class="value-styling">{$inquiry->student->getFullName()}</div><br>
+                    <strong class="label-styling">Email:</strong> <div class="value-styling">{$inquiry->student->Email}</div><br>
+                    <strong class="label-styling">Message:</strong> <div class="value-styling">{$inquiry->InquiryDesc}</div>
                 </div>
                 <div class="actions">
-                    <a class="btn reply" href="{$replyLink}">Reply</a>
+                    <a class="buttons" href="{$replyLink}">Reply</a>
                     <input type="hidden" name="inquiryId" value="{$inquiry->InquiryID}"> 
-                    <button class="btn delete" name="Delete">Delete</button>
+                    <button class="buttons" name="Delete">Delete</button>
                 </div>
             </form>
             SHOW_INQUIRIES;
@@ -66,6 +67,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         ?>
 
     </div>
+
+    <!-- Include Footer-->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
 </body>
 
 </html>

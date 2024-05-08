@@ -4,35 +4,34 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+
 .box {
     max-width: 800px;
     margin: 20px auto;
-    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    max-height: calc(100vh - 180px);
-    margin-bottom: 60px;
+    background-color: transparent;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #32064e;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 100px;
 }
-.hrline{
-    display: flex; 
-    justify-content: center;
-}
-hr{
-    width:50%;
-    height:3px;
-    background-color:black;
-    border:none;
-}
-h3 {
+
+.page-title{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #32064e;
     text-align: center;
+    margin-bottom: 50px;
 }
 .inquiry {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: #32064e;
 }
 .inquiry .details {
     margin-bottom: 10px;
@@ -40,17 +39,50 @@ h3 {
 .inquiry .actions {
     text-align: right;
 }
-.btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    background-color: #32064e;
-    color: #fff;
-    cursor: pointer;
+
+strong.label-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 10px;
+    color: white;
 }
-.btn.reply {
-    margin-right: 5px;
+
+div.value-styling{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+    display: inline;
 }
-.btn.delete {
-    background-color: #dc3545;
+
+.buttons{
+    font-family: "Merriweather Sans", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color:white;
+    background-color: #9e0671;
+    border: 3px solid #9e0671;
+    width: 100px;
+    height: 38px;
+    border-radius: 5px;
+    transition: color 0.5s, background-color 0.5s;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+a.buttons {
+    padding: 7px 30px;
+}
+
+.buttons:hover{
+    color: #9e0671;
+    background-color: white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #9e0671;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+}
+.buttons:focus{
+    outline: none;
 }
