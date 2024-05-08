@@ -54,7 +54,7 @@ class UserRepository
             UPDATE USERS
             SET
                 Email = :email,
-                Password - :password
+                Password = :password
             WHERE
                 UserID = :userId
             ",
