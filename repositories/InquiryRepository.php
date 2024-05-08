@@ -46,7 +46,7 @@ class InquiryRepository
             "
             SELECT * FROM INQUIRIES
             INNER JOIN STUDENTS
-                ON INQUIRIES.InquiryStudID = STUDENTS.StudID;
+                ON INQUIRIES.InquiryStudID = STUDENTS.StudID
             INNER JOIN USERS
                 ON STUDENTS.StudID = USERS.UserID
             ",
@@ -97,6 +97,8 @@ class InquiryRepository
             SELECT * FROM INQUIRIES
                 INNER JOIN STUDENTS
                     ON INQUIRIES.InquiryStudID = STUDENTS.StudID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
             WHERE STUDENTS.StudID = :studentId
             ",
             [
