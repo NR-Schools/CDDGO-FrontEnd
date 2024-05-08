@@ -106,6 +106,10 @@ Database::BasicSQL(
         TargetEmail VARCHAR(50), 							-- Target Email to Send Notification
         CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    INSERT INTO USERS (Email, Password, Role)
+    SELECT 'admin@email.com', 'admin', 'ADMIN'
+    WHERE NOT EXISTS (SELECT 1 FROM USERS WHERE Email = 'admin@email.com');    
     "
 );
 
