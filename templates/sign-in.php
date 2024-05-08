@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo <<<EOD
             <script>
                 alert("{$error}");
+                window.location.href="/templates/sign-in.php"
             </script>
             EOD;
             return;

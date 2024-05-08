@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="button-container">
                 <input type="submit" class="button-styling" value="SEND">
-                <input type="submit" class="cancel-styling" value="CANCEL">
+                <input type="button" onclick="window.location.href='user-inquiries.php'" class="cancel-styling" value="CANCEL">
             </div>
         </form>
     </div>

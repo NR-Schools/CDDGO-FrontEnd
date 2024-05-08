@@ -6,7 +6,7 @@
 // HTTP Strict Transport Security (HSTS) protect against Man-in-the-middle attacks ;
 // header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/services/UserRepository.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/repositories/UserRepository.php';
 
 enum Role: string
 {
