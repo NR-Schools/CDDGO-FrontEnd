@@ -17,13 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ["Password", $_POST['password'], [new MinLengthRule(5), new MaxLengthRule(20)]],
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
-
     if ($status) {
         $student = new Student();
         $student->FirstName = $_POST['fname'];
@@ -34,10 +27,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $student->Password = $_POST['password'];
 
         // Save Student
-        AuthService::signup($student);
+        [$status, $error] = AuthService::signup($student);
 
-        // Redirect to sign in page
-        header("Location: ../templates/sign-in.php");
+        if ($status) {
+            echo <<<EOD
+            <script>
+                alert('{$error}');
+            </script>
+            EOD;
+        } else {
+            // Redirect to sign in page
+            header("Location: ../templates/sign-in.php");
+
+        }
+    } else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
     }
 }
 ?>

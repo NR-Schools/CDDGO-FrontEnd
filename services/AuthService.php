@@ -14,12 +14,12 @@ class AuthService
         return AuthGuard::get_session();
     }
 
-    static function signup(Student $student): bool
+    static function signup(Student $student): array
     {
         // Check if email already exists
         $studentCheck = UserRepository::getUserByEmail($student->Email);
         if ($studentCheck !== null)
-            return false;
+            return [false, "Email already registered!"];
 
         // Create New User
         $student->Role = "USER";
@@ -30,7 +30,9 @@ class AuthService
         $student->StudID = $user->UserID;
 
         // Create New Student
-        return StudentRepository::addNewStudent($student);
+        StudentRepository::addNewStudent($student);
+
+        return [true, ""];
     }
 
     static function login(string $email, string $password): array
