@@ -30,18 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Perform Validation
         [$status, $error] = validate_many_inputs([
-            ["EventName", $_POST['inputName'], [new MinLengthRule(1), new MaxLengthRule(50)]],
-            ["EventLocation", $_POST['inputLocation'], [new MinLengthRule(1), new MaxLengthRule(100)]],
-            ["EventDate", $_POST['inputDate'], [new MinLengthRule(1),]],
-            ["EventDescription", $_POST['inputDescription'], [new MinLengthRule(1), new MaxLengthRule(200)]]
+            ["EventName", $_POST['newName'], [new MinLengthRule(1), new MaxLengthRule(50)]],
+            ["EventLocation", $_POST['newLocation'], [new MinLengthRule(1), new MaxLengthRule(100)]],
+            ["EventDate", $_POST['newDate'], [new MinLengthRule(1),]],
+            ["EventDescription", $_POST['newDescription'], [new MinLengthRule(1), new MaxLengthRule(200)]]
         ]);
-
-        echo <<<EOD
-        <script>
-            alert('{$error}');
-            document.location.href = '{$_SERVER['REQUEST_URI']}';
-        </script>
-        EOD;
 
         if ($status) {
             $event->EventName = $_POST['newName'];
@@ -60,8 +53,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             echo <<<EOD
             <script>
-                alert('Event Added');
+                alert('Event Updated');
                 document.location.href = 'admin-manage_events.php';
+            </script>
+            EOD;
+        }
+
+        else {
+            echo <<<EOD
+            <script>
+                alert('{$error}');
+                document.location.href = '{$_SERVER['REQUEST_URI']}';
             </script>
             EOD;
         }

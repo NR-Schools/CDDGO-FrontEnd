@@ -21,13 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ["EventDescription", $_POST['inputDescription'], [new MinLengthRule(1), new MaxLengthRule(200)]],
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
-
     if ($status) {
         $inputImage = file_get_contents($_FILES['inputImage']['tmp_name']);
         $inputImageEncoded = base64_encode($inputImage);
@@ -46,6 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <script>
             alert('Event Added');
             document.location.href = 'admin-manage_events.php';
+        </script>
+        EOD;
+    }
+    else{
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
         </script>
         EOD;
     }
