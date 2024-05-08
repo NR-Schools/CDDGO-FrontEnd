@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="game_category">Category</label>
                 <select name="game_category" id="game_category">
-                    <option value="No Category">Select Category</option>
+                    <option value="No Category" disabled selected>Select Category</option>
                     <option value="Abstract Strategy">Abstract Strategy</option>
                     <option value="Area Control">Area Control</option>
                     <option value="Campaign">Campaign</option>
