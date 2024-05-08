@@ -48,7 +48,6 @@
                     <form action="user-board_games.php" method="POST">
                     <div>
                         <select class="filter-styling" name="filters" id="filters">
-                            <option value="No Category">Select Category</option>
                             <option value="All">All</option>
                             <option value="Abstract Strategy">Abstract Strategy</option>
                             <option value="Area Control">Area Control</option>
