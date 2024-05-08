@@ -22,12 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ["GameCategory", $_POST['game_category'], [new MinLengthRule(1), new MaxLengthRule(100)]],
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
 
     if ($status)
     {
@@ -50,6 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 document.location.href = 'admin-manage_board_games.php';
         </script>
         SCRIPT;
+    }
+    else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
     }
 }
 ?>
