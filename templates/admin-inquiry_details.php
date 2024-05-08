@@ -45,21 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inquiry Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../css/admin-inquiry_details.css">
+    
 </head>
 
 <body>
-
     <!-- Include Header -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
-    <!-- Frontend Start -->
-    <br>
-    <h3>Inquiry Review</h3>
-    <div class="hrline">
-        <hr>
-    </div>
     <div class="box">
+        <h1 class="sign-up-title">Inquiry Review</h1>
 
         <?php
         //Backend Start
@@ -67,16 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $inquiry = InquiryService::getInquiryById($inquiryId);
         echo <<<EOD
         <div class="message-container user">
-            <div class="message-details">
-                <strong>Date:</strong>{$inquiry->InquiryCreatedAt}<br>
-                <strong>From:</strong> {$inquiry->student->getFullName()}<br>
-            </div>
-            <div class="message-content">
-            {$inquiry->InquiryDesc}
+            <div class="details">
+                <div class="label-styling">Date: <span class="value-styling">{$inquiry->InquiryCreatedAt}</span></div>
+                <div class="label-styling">From: <span class="value-styling">{$inquiry->student->getFullName()}</span></div>
+                <div class="value-styling" style="margin-top:30px">{$inquiry->InquiryDesc}</div>
             </div>
         </div>
         EOD;
-
 
         // Get InquiryResponses
         $inquiryResponses = InquiryService::getInquiryResponses($inquiryId);
@@ -97,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo <<<EOD
             <div class="message-container {$responseClass}">
                 <div class="message-details">
-                    <strong>Date:</strong>{$inquiryResponse->ResponseCreatedAt}<br>
-                    <strong>From:</strong> {$sourceDisplay}<br>
+                    <strong>Date: </strong>{$inquiryResponse->ResponseCreatedAt}<br>
+                    <strong>From: </strong> {$sourceDisplay}<br>
                 </div>
                 <div class="message-content">
                 {$inquiryResponse->ResponseText}
@@ -113,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form class="reply-box" action="{$formLink}" method="post">
             <textarea placeholder="Write your reply..." style="height: 100px;" name="replyText"></textarea>
             <div class="buttons">
-                <button class="btn" name="Reply">Send Reply</button>
+                <button class="button-styling" name="Reply">Send Reply</button>
             </div>
         </form>
         EOD;

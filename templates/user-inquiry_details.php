@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Frontend Start -->
     <div class="box">
         <h1 class="sign-up-title">User/Admin Chat</h1>
+
         <?php
         // Get Inquiry
         $inquiry = InquiryService::getInquiryById($inquiryId);
@@ -72,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </div>
         EOD;
-
 
         // Get InquiryResponses
         $inquiryResponses = InquiryService::getInquiryResponses($inquiryId);
