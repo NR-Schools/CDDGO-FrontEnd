@@ -25,9 +25,6 @@ class Database
             // Test connection
             $PDOConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // If connection successful, log it
-            error_log("Connection successful.");
-
         } catch (PDOException $e) {
             // Log connection failure
             error_log("Connection unsuccessful: " . $e->getMessage());
