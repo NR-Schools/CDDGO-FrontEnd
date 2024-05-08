@@ -1,67 +1,51 @@
-.main-body {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+.reservations-title {
+    margin: auto;
+    width: 70vw;
+    text-align: center;
     align-items: center;
-    justify-content: center;
-
-    > p {
-        margin: 2.2rem 0 0 0;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-
-    > hr {
-        width: 55%;
-        height: 2px;
-    }
+    margin-top: 2%;
+    font-weight: bolder;
+    font-size: 3vw;
+    color: #9e0671;
+    border-bottom: 10px solid #9e0671;
+    font-family: "Merriweather Sans", sans-serif;
 }
 
-.users-list-container {
-    width: 70%;
+.reservation-main-container {
+    margin: auto;
+    width: 80vw;
+    border: 3px solid #32064e;
+    margin-top: 2%;
+    font-family: "Merriweather Sans", sans-serif;
+}
+
+.reservation-title {
+    background-color: #32064e;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align:center;
+    border: 1px solid #32064e;
+    color: #ffffff;
+}
+
+.reservation-list-container {
     height: 500px;
     overflow-y: auto;
-    border: 1px solid rgb(42, 42, 42);
+    border: 1px solid #32064e;
 }
 
-.event-title {
-    font-family: "Merriweather Sans", sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    color:#32064e;
-    margin-bottom: 10px;
-    margin-top: 30px;
-}
-
-.divider-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.divider {
-    border-top-style: solid;
-    border-top-width: 5px;
-    border-color: #32064e;
-    width: 1079px;
-    margin-top: 5px;
-    margin-bottom: 25px;
-}
-
-.user-record {
+.reservation-entry {
     transition: all 0.25s ease-in-out;
     background-color: whitesmoke;
     display: flex;
-    margin: 10px;
-    padding: 10px 20px;
-    border: 2px solid #32064e;
-    font-size: 0.9rem;
+    margin: 3%;
+    padding: 1% 2%;
+    border: 1px solid black;
+    font-size: 1vw;
 
     &:hover {
         transition: all 0.25s ease-in-out;
-        box-shadow: 3px 5px #32064e;
+        box-shadow: 3px 3px 3px 3px #32064e;
         cursor: pointer;
     }
 
@@ -84,98 +68,34 @@
                 justify-content: center;
 
                 &:nth-child(1) {
-                    flex: 0.12;
+                    flex: 0.2;
                 }
 
                 &:nth-child(2) {
-                    flex: 0.24;
+                    flex: 0.28;
                 }
 
                 &:nth-child(3) {
-                    flex: 0.2;
+                    flex: 0.38;
                 }
 
                 &:nth-child(4) {
-                    flex: 0.18;
-                }
-
-                &:nth-child(5) {
-                    flex: 0.2;
+                    flex: 0.24;
                 }
             }
 
             
         }
         &:nth-child(2) {
-            flex: 0.2;
+            flex: 0.12;
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
-
-            >button {
-                font-family: "Merriweather Sans", sans-serif;
-                font-weight: 800;
-                font-size: 13px;
-                color:white;
-                background-color: #9e0671;
-                border: none;
-                width: 110px;
-                height: 38px;
-                border-radius: 5px;
-                margin-left: 10px;
-                transition: color 0.5s, background-color 0.5s;
-            }
-
-            .btn:hover {
-                color: #9e0671;
-                background-color:transparent;
-                border-style: solid;
-                border-width: 3px;
-                border-color: #9e0671;
-                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            .btn:focus {
-                outline: none;
-            }
+            justify-content: center;
         }
     }
 }
 
-.name-styling{
-    color: #32064e;
-    font-family: "Merriweather Sans", sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-}
-
-.button-container {
-    margin: 10px;
-
-    >button {
-        font-family: "Merriweather Sans", sans-serif;
-        font-weight: 800;
-        font-size: 13px;
-        color:white;
-        background-color: #9e0671;
-        border: none;
-        width: 110px;
-        height: 38px;
-        border-radius: 5px;
-        margin-left: 10px;
-        transition: color 0.5s, background-color 0.5s;
-    }
-
-    .btn:hover {
-        color: #9e0671;
-        background-color:transparent;
-        border-style: solid;
-        border-width: 3px;
-        border-color: #9e0671;
-        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn:focus {
-        outline: none;
-    }
+.btn-danger {
+    width: 5rem;
+    margin-left: 5px;
 }
