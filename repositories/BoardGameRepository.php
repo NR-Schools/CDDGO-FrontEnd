@@ -52,6 +52,8 @@ class BoardGameRepository
                     ON STUDENTS.StudID = RENTALS.StudID
                 INNER JOIN USERS
                     ON STUDENTS.StudID = USERS.UserID
+                INNER JOIN BOARD_GAMES
+                    ON RENTALS.GameID = BOARD_GAMES.GameID
                 WHERE Email = :email;
             ",
             [":email" => $email]

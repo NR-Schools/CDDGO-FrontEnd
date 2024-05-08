@@ -86,7 +86,7 @@
                 $rental->BorrowDate = $currDate;
                 $rental->Rent = $fee;
                 
-                $result = RentalService::addUserRentsGame($rental);
+                [$result, $error] = RentalService::addUserRentsGame($rental);
                 if (!$result) {
                     // Rental Failed!
                     echo "<script> alert('Rental Failed');
