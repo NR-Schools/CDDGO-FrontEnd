@@ -25,18 +25,17 @@
     <!-- Include Header -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
+    <div class="reservations-title">
+        <p>MANAGE REGISTRATIONS</p>
+    </div>
 
     <!-- Start Body -->
-    <div class="main-body">
-        <div class="event-title">
-            MANAGE REGISTRATIONS
-        </div>
-        <div class="divider-container">
-            <div class="divider"></div>
+    <div class="reservation-main-container">
+        <div class="reservation-title">
+            Confirm/Reject Users
         </div>
 
-        <div class="registrations-list-container">
-
+        <div class="reservation-list-container">
             <?php
                 // Check if the form is submitted
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -67,7 +66,7 @@
                     if (!$student->isVerified) {
                         echo <<<EOD
 
-                        <div class="registration-record">
+                        <div class="reservation-entry">
                             <div>
                                 <div>
                                     <span class="name-styling">STUDENT NO.</span>
@@ -86,20 +85,14 @@
                                     <span>{$student->Program}</span>
                                 </div>
                             </div>
-
-
                             <div class="button-container">
                                 <form action="admin-manage_registrations.php" enctype="multipart/form-data" method="POST">
                                     <!-- Hidden input field to store student ID -->
                                     <input type="hidden" name="studentId" value="{$student->StudID}">
-                                        <button type="submit" class="btn" name="confirm" value="confirm">Confirm</button>
-                                        <button type="submit" class="btn" name="reject" value="reject">Reject</button>
+                                        <button type="submit" class="btn btn-danger" name="confirm" value="confirm">Confirm</button>
+                                        <button type="submit" class="btn btn-danger" name="reject" value="reject">Reject</button>
                                 </form>
                             </div>
-
-                            
-
-                            
                         </div>
                         EOD;
                     }
@@ -107,8 +100,6 @@
             ?>
 
         </div>
-
-        
     </div>
 
         <!-- Include Footer -->

@@ -27,16 +27,17 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     <!-- Include Header -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
+    <div class="reservations-title">
+        <p>USER MANAGEMENT</p>
+    </div>
+
     <!-- Start Body -->
-    <div class="main-body">
-        <div class="event-title">
-            USER MANAGEMENT
-        </div>
-        <div class="divider-container">
-            <div class="divider"></div>
+    <div class="reservation-main-container">
+        <div class="reservation-title">
+            Edit/Delete Users
         </div>
 
-        <div class="users-list-container">
+        <div class="reservation-list-container">
             <?php
             // Get all students
             $students = StudentService::getAllStudents();
@@ -53,7 +54,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
                     echo <<<EOD
 
-                        <div class="user-record">
+                        <div class="reservation-entry">
                             <div>
                                 <div>
                                     <span class="name-styling">STUDENT NO.</span>
