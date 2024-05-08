@@ -90,9 +90,10 @@
                     if(isset($_POST["searchButton"])){
                         $query = $_POST["search"];
                         $foundGame = false;
-                        foreach($games as $game) 
-                        {
-                            if(strtolower($game->GameName) === strtolower($query)) 
+
+
+                        if(empty($query)){
+                            foreach($games as $game) 
                             {
                                 echo <<< EOD
                                     <div class="game-card-container">
@@ -112,21 +113,47 @@
                                             </a>
                                         </div>
                                     </div>
-                                EOD;
-                                $foundGame = true;
+                                EOD;    
                             }
-                        }
-                        if (!$foundGame) {
-                            echo <<< EOD
-                                <div class="no-events">
-                                    <div class="no-event-styling">
-                                        Board Game Not Found.
+                        }else{
+                            foreach($games as $game) 
+                            {
+                                if(strtolower($game->GameName) === strtolower($query)) 
+                                {
+                                    echo <<< EOD
+                                        <div class="game-card-container">
+                                            <div class="board-name-container">
+                                                {$game->GameName}
+                                                <span class="game-cat">{$game->GameCategory}</span>
+                                            </div>
+                                    EOD;
+                                    echo '<img class="img-styling" src="data:image/' . pathinfo($game->GameImage, PATHINFO_EXTENSION) . ';base64,' . $game->GameImage . '" id="game_image">';
+                                    echo <<< EOD
+                                            <div class="status-container">
+                                                {$game->GameStatus}
+                                            </div>
+                                            <div class=view-button-container>
+                                                <a href="/templates/user-board_game_details.php?gameId={$game->GameID}" class="game-btn">
+                                                    <button class="view-button-styling">View</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    EOD;
+                                    $foundGame = true;
+                                }
+                            }
+                            if (!$foundGame) {
+                                echo <<< EOD
+                                    <div class="no-events">
+                                        <div class="no-event-styling">
+                                            Board Game Not Found.
+                                        </div>
+                                        <div class="no-event-desc">
+                                            Oops! the game you have searched is not in our inventory
+                                        </div>
                                     </div>
-                                    <div class="no-event-desc">
-                                        Oops! the game you have searched is not in our inventory
-                                    </div>
-                                </div>
-                            EOD;
+                                EOD;
+                            }
                         }
                     } 
                     if (isset($_POST["filterCategory"]))
