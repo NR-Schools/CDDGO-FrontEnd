@@ -6,16 +6,16 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: Helvetica, sans-serif;
-    border: solid #32064e;
+    border: solid #9e0671;
 }
 
 .add-event-title {
     text-align: center;
     font-family: "Merriweather Sans", sans-serif;
     margin-bottom: 20px;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 800;
-    color: #32064e;
+    color: #9e0671;
 }
 
 label {
@@ -32,7 +32,7 @@ select,
 textarea.form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #32064e;
+    border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }

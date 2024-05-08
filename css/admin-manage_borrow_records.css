@@ -19,6 +19,15 @@
     font-family: "Merriweather Sans", sans-serif;
 }
 
+
+.rental-main-container-2{
+    margin: auto;
+    width: 80vw;
+    border: 3px solid #32064e;
+    margin-top: 2%;
+    font-family: "Merriweather Sans", sans-serif;
+    margin-bottom: 100px;
+}
 .rental-title {
     background-color: #32064e;
     font-size: 1.5vw;

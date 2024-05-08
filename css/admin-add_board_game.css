@@ -11,9 +11,10 @@
         
         .add-board-title {
             text-align: center;
+            font-family: "Merriweather Sans", sans-serif;
             margin-bottom: 20px;
             font-size: 24px;
-            font-weight: bold;
+            font-weight: 800;
             color: #9e0671;
         }
 
@@ -22,7 +23,8 @@
         }
 
         label {
-            font-weight: bold;
+            font-family: "Merriweather Sans", sans-serif;
+            font-weight: 400;
             color: #32064e;
         }
 
