@@ -30,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Perform Validation
         [$status, $error] = validate_many_inputs([
-            ["EventName", $_POST['inputName'], [new MinLengthRule(5), new MaxLengthRule(20)]],
-            ["EventLocation", $_POST['inputLocation'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["EventName", $_POST['inputName'], [new MinLengthRule(1), new MaxLengthRule(50)]],
+            ["EventLocation", $_POST['inputLocation'], [new MinLengthRule(1), new MaxLengthRule(100)]],
             ["EventDate", $_POST['inputDate'], [new MinLengthRule(1),]],
-            ["EventDescription", $_POST['inputDescription'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["EventDescription", $_POST['inputDescription'], [new MinLengthRule(1), new MaxLengthRule(200)]]
         ]);
 
         echo <<<EOD
