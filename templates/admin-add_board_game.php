@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
@@ -10,13 +11,29 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
 
 <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //image
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["GameName", $_POST['game_name'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["GameDescription", $_POST['description'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["GameImage", $_FILES['game_img'], [new ExistingFileRule()]],
+        ["QuantityAvailable", $_POST['quantity_avail'], [new MinLengthRule(1)]],
+        ["GameCategory", $_POST['game_category'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+    ]);
+
+    echo <<<EOD
+    <script>
+        alert('{$error}');
+        document.location.href = '{$_SERVER['REQUEST_URI']}';
+    </script>
+    EOD;
+
+    if ($status)
+    {
         $game_image = file_get_contents($_FILES['game_img']['tmp_name']); //event image
         $image_encoded = base64_encode($game_image);
-
     
-        // Create Board Game 
         $boardgame = new BoardGame();
         $boardgame->GameName = $_POST['game_name'];
         $boardgame->GameDescription = $_POST['description'];
@@ -24,17 +41,18 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
         $boardgame->QuantityAvailable = $_POST['quantity_avail'];
         $boardgame->GameCategory = $_POST['game_category'];
         $boardgame->GameStatus = "Available";
-
+    
         BoardGameService::addNewBoardGame($boardgame);
-
+    
         echo <<<SCRIPT
-        <script>
-            alert('Board Game Added');
-            document.location.href = 'admin-manage_board_games.php';
+            <script>
+                alert('Board Game Added');
+                document.location.href = 'admin-manage_board_games.php';
         </script>
         SCRIPT;
     }
-    ?>
+}
+?>
 
 
 
