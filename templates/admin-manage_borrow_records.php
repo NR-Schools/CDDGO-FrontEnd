@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <br>
     <br>
 
-    <div class="rental-main-container">
+    <div class="rental-main-container-2">
         <div class="rental-title">
             Unconfirmed Rentals
         </div>
