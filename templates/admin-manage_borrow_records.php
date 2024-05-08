@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (isset($_POST['confirm'])) {
         $rentalId = $_POST['rentalId'];
 
-        echo "<script> alert(1); </script>";
+        echo "<script> alert('Rental Confirmed!'); </script>";
 
         // Confirm Rental
         RentalService::adminConfirmRental($rentalId);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTG - Manage Borrow Records</title>
+    <title>Manage Borrow Records</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-manage_reservations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
