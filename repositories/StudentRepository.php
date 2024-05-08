@@ -12,6 +12,7 @@ class StudentRepository
     {
         $student = new Student();
         $student->StudID = $queryResult['StudID'];
+        $student->UserID = $queryResult['StudID'];
         $student->StudNo = $queryResult['StudNo'];
         $student->FirstName = $queryResult['FirstName'];
         $student->LastName = $queryResult['LastName'];

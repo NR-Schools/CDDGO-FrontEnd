@@ -54,16 +54,14 @@ class UserRepository
             UPDATE USERS
             SET
                 Email = :email,
-                Password - :password,
-                Role = :role
+                Password = :password
             WHERE
                 UserID = :userId
             ",
             [
                 ":userId" => $user->UserID,
                 ":email" => $user->Email,
-                ":password" =>$user->Password,
-                ":role" => $user->Role
+                ":password" =>$user->Password
             ]
         );
     }
