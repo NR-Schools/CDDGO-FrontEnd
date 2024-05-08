@@ -28,9 +28,6 @@ class StudentService
     static function updateStudent(Student $student): bool
     {
         $dbStudent = StudentRepository::getStudentById($student->StudID);
-        $dbUser = UserRepository::getUserByEmail($dbStudent->Email);
-        $student->UserID = $student->StudID;
-        $student->Role = $dbUser->Role;
         UserRepository::updateUser($student);
         StudentRepository::updateStudent($student);
 
