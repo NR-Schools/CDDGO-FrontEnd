@@ -29,9 +29,7 @@ class BoardGameRepository
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT * FROM BOARD_GAMES
-            INNER JOIN USERS
-                ON STUDENTS.StudID = USERS.UserID;
+            SELECT * FROM BOARD_GAMES;
             ",
             []
         );
@@ -75,8 +73,6 @@ class BoardGameRepository
             "
             SELECT bg.*, COALESCE(AVG(t.Rating), 0) AS AverageRating FROM BOARD_GAMES bg 
             LEFT JOIN TESTIMONIALS t ON bg.GameID = t.GameID 
-            INNER JOIN USERS
-                ON STUDENTS.StudID = USERS.UserID
             WHERE bg.GameID = :gameId 
             GROUP BY bg.GameName;
             ",
@@ -98,8 +94,6 @@ class BoardGameRepository
             Database::getPDO(),
             "
             SELECT * FROM BOARD_GAMES
-            INNER JOIN USERS
-                ON STUDENTS.StudID = USERS.UserID
             WHERE GameName = :gameName
             ",
             [":gameName" => $boardGameName]
