@@ -208,7 +208,6 @@ class ReservationRepository
                         SELECT * 
                         FROM RESERVATIONS 
                         WHERE ReservedStudent = :studId
-                        AND ReservedGame = :gameId
                         AND ReservedDate = :reserveDate
                     ) THEN 'DUPLICATE_RESERVATION'
                     WHEN (
