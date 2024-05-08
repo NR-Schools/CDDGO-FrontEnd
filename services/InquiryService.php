@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/InquiryModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/StudentModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/InquiryRepository.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/services/NotificationService.php";
 
 
 class InquiryService
@@ -21,7 +22,16 @@ class InquiryService
     // For students
     static function createStudentInquiry(Inquiry $inquiry): bool
     {
-        return InquiryRepository::createInquiry($inquiry);
+        // Add Student Inquiry
+        InquiryRepository::createInquiry($inquiry);
+
+        // Make Notification
+        $notification = new Notification();
+        $notification->NotificationTitle = "Student Inquiry";
+        $notification->NotificationBody = "{$inquiry->student->getFullName()} has a new inquiry!";
+        $notification->TargetEmail = $inquiry->student->Email;
+        NotificationService::addNewNotification($notification);
+        return true;
     }
 
     static function getInquiriesByStudent(string $email): array
@@ -35,9 +45,18 @@ class InquiryService
 
     static function userReplyToInquiry(InquiryResponse $inquiryResponse): bool
     {
-        // Get Student from email
         $inquiryResponse->ResponseSource = "USER";
-        return InquiryRepository::createResponseToInquiry($inquiryResponse);
+        InquiryRepository::createResponseToInquiry($inquiryResponse);
+
+        // Make Notification
+        $inquiry = self::getInquiryById($inquiryResponse->RefInquiryID);
+        $notification = new Notification();
+        $notification->NotificationTitle = "Student Inquiry Reply";
+        $notification->NotificationBody = "{$inquiry->student->getFullName()} replied!";
+        $notification->TargetEmail = "admin@email.com";
+        NotificationService::addNewNotification($notification);
+
+        return true;
     }
 
     // For admin
@@ -45,11 +64,21 @@ class InquiryService
     {
         return InquiryRepository::getAllInquiries();
     }
-    
+
     static function adminReplyToInquiry(InquiryResponse $inquiryResponse): bool
     {
         $inquiryResponse->ResponseSource = "ADMIN";
-        return InquiryRepository::createResponseToInquiry($inquiryResponse);
+        InquiryRepository::createResponseToInquiry($inquiryResponse);
+
+        // Make Notification
+        $inquiry = self::getInquiryById($inquiryResponse->RefInquiryID);
+        $notification = new Notification();
+        $notification->NotificationTitle = "Admin Inquiry Reply";
+        $notification->NotificationBody = "MTG Admin replied!";
+        $notification->TargetEmail = $inquiry->student->Email;
+        NotificationService::addNewNotification($notification);
+
+        return true;
     }
 
     static function adminRemoveInquiry(int $inquiryId): bool
