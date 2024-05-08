@@ -20,18 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ["ResponseText", $_POST['replyText'], [new MinLengthRule(5), new MaxLengthRule(20)]]
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
-
     if ($status) {
         $inquiryResponse = new InquiryResponse();
         $inquiryResponse->RefInquiryID = $inquiryId;
         $inquiryResponse->ResponseText = $_POST['replyText'];
         InquiryService::userReplyToInquiry($inquiryResponse);
+    }else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
     }
 }
 
