@@ -15,19 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Perform Validation
     [$status, $error] = validate_many_inputs([
-        ["GameName", $_POST['game_name'], [new MinLengthRule(5), new MaxLengthRule(20)]],
-        ["GameDescription", $_POST['description'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["GameName", $_POST['game_name'], [new MinLengthRule(1), new MaxLengthRule(40)]],
+        ["GameDescription", $_POST['description'], [new MinLengthRule(1), new MaxLengthRule(400)]],
         ["GameImage", $_FILES['game_img'], [new ExistingFileRule()]],
         ["QuantityAvailable", $_POST['quantity_avail'], [new MinLengthRule(1)]],
-        ["GameCategory", $_POST['game_category'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["GameCategory", $_POST['game_category'], [new MinLengthRule(1), new MaxLengthRule(100)]],
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
 
     if ($status)
     {
@@ -50,6 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 document.location.href = 'admin-manage_board_games.php';
         </script>
         SCRIPT;
+    }
+    else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
     }
 }
 ?>

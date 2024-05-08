@@ -77,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Perform Validation
     [$status, $error] = validate_many_inputs([
-        ["Email", $_POST['email'], [new MinLengthRule(5), new MaxLengthRule(40)]],
-        ["Password", $_POST['password'], [new MinLengthRule(5), new MaxLengthRule(20)]]
+        ["Email", $_POST['email'], [new MinLengthRule(1), new MaxLengthRule(50)]],
+        ["Password", $_POST['password'], [new MinLengthRule(1), new MaxLengthRule(50)]]
     ]);
 
     if ($status) {

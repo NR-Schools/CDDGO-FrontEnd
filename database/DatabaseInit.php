@@ -18,7 +18,7 @@ Database::BasicSQL(
     CREATE TABLE IF NOT EXISTS USERS (
         UserID INT PRIMARY KEY AUTO_INCREMENT,
         Email VARCHAR(255),
-        Password VARCHAR(50),
+        Password VARCHAR(255),
         Role VARCHAR(50)
     );
     

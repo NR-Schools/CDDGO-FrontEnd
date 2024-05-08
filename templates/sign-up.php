@@ -9,12 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Perform Validation
     [$status, $error] = validate_many_inputs([
-        ["First Name", $_POST['fname'], [new MinLengthRule(5), new MaxLengthRule(50)]],
-        ["Last Name", $_POST['lname'], [new MinLengthRule(5), new MaxLengthRule(50)]],
-        ["Email", $_POST['email'], [new MinLengthRule(5), new MaxLengthRule(40)]],
+        ["First Name", $_POST['fname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
+        ["Last Name", $_POST['lname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
+        ["Email", $_POST['email'], [new MinLengthRule(1), new MaxLengthRule(50)]],
         ["Student Number", $_POST['studentNumber'], [new MinLengthRule(10), new MaxLengthRule(10)]],
-        ["Program", $_POST['program'], [new MinLengthRule(5), new MaxLengthRule(20)]],
-        ["Password", $_POST['password'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["Program", $_POST['program'], [new MinLengthRule(1), new MaxLengthRule(20)]],
+        ["Password", $_POST['password'], [new MinLengthRule(1), new MaxLengthRule(50)]],
     ]);
 
     if ($status) {
