@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (isset($_POST['confirm'])) {
         $rentalId = $_POST['rentalId'];
 
+        echo "<script> alert(1); </script>";
+
         // Confirm Rental
         RentalService::adminConfirmRental($rentalId);
     }
@@ -80,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div>
                         <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
-                        <button type="button" name="remove" class="btn btn-danger">Delete</button>
+                        <input type="submit" name="remove" value="Delete" class="btn btn-danger">
                     </div>
                 </form>
                 EOD;
@@ -120,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                         <div>
                             <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
-                            <button type="button" name="confirm" class="btn btn-primary">Confirm</button>
+                            <input type="submit" name="confirm" value="Confirm" class="btn btn-primary">
                         </div>
                     </form>
                     EOD;
