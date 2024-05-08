@@ -3,6 +3,56 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 ?>
 
+<?php
+
+// When trying to log in, load the html first before checking log in
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["Email", $_POST['email'], [new MinLengthRule(1), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
+        ["Password", $_POST['password'], [new MinLengthRule(1), new MaxLengthRule(50)]]
+    ]);
+
+    if ($status) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        [$status, $error] = AuthService::login($email, $password);
+
+        if (!$status) {
+            echo <<<EOD
+            <script>
+                alert("{$error}");
+            </script>
+            EOD;
+            return;
+        }
+
+        // redirect to correct home page based on role
+        [$email, $role] = AuthService::getCurrentlyLoggedIn();
+        assert($role instanceof Role);
+
+
+        if ($role === Role::ADMIN) {
+            header("Location: /templates/admin-homepage.php");
+        } else {
+            header("Location: /templates/user-homepage.php");
+        }
+    }
+    else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,55 +116,3 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 </body>
 
 </html>
-
-
-
-<?php
-
-// When trying to log in, load the html first before checking log in
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Perform Validation
-    [$status, $error] = validate_many_inputs([
-        ["Email", $_POST['email'], [new MinLengthRule(1), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
-        ["Password", $_POST['password'], [new MinLengthRule(1), new MaxLengthRule(50)]]
-    ]);
-
-    if ($status) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        [$status, $error] = AuthService::login($email, $password);
-
-        if (!$status) {
-            echo <<<EOD
-            <script>
-                alert("{$error}");
-            </script>
-            EOD;
-            return;
-        }
-
-        // redirect to correct home page based on role
-        [$email, $role] = AuthService::getCurrentlyLoggedIn();
-        assert($role instanceof Role);
-
-
-        if ($role === Role::ADMIN) {
-            header("Location: /templates/admin-homepage.php");
-        } else {
-            header("Location: /templates/user-homepage.php");
-        }
-    }
-    else {
-        echo <<<EOD
-        <script>
-            alert('{$error}');
-            document.location.href = '{$_SERVER['REQUEST_URI']}';
-        </script>
-        EOD;
-    }
-}
-
-?>
