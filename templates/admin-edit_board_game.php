@@ -15,22 +15,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $gameID = $_POST['gameID'];
         $game = BoardGameService::getBoardGameById($gameID);
 
-        $game->GameName = htmlspecialchars($_POST['game_name']);
-        $game->GameDescription = htmlspecialchars($_POST['description']);
-        if (boolval($_FILES['newImage']['error'] === 0)) {
-            $game_image = file_get_contents($_FILES['game_img']['tmp_name']);
-            $image_encoded = base64_encode($game_image);
-            $game->GameImage = $newImageEncoded;
+        // Perform Validation
+        [$status, $error] = validate_many_inputs([
+            ["GameName", $_POST['game_name'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["GameDescription", $_POST['description'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["QuantityAvailable", $_POST['quantity_avail'], [new MinLengthRule(1)]],
+            ["GameCategory", $_POST['game_category'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ]);
+
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
+
+        if ($status) {
+            $game->GameName = htmlspecialchars($_POST['game_name']);
+            $game->GameDescription = htmlspecialchars($_POST['description']);
+            if (boolval($_FILES['newImage']['error'] === 0)) {
+                $game_image = file_get_contents($_FILES['game_img']['tmp_name']);
+                $image_encoded = base64_encode($game_image);
+                $game->GameImage = $newImageEncoded;
+            }
+            $game->QuantityAvailable = $_POST['quantity_avail'];
+            $game->GameCategory = htmlspecialchars($_POST['game_category']);
+            $game->GameImage = $image_encoded;
+
+            BoardGameService::updateExistingBoardGame($game);
+
+            echo <<<EOD
+            <script>
+                alert('Board Game Updated');
+                document.location.href = 'admin-manage_board_games.php';
+            </script>"
+            EOD;
         }
-        $game->QuantityAvailable = $_POST['quantity_avail'];
-        $game->GameCategory = htmlspecialchars($_POST['game_category']);
-        $game->GameImage = $image_encoded;
-
-        BoardGameService::updateExistingBoardGame($game);
-
-        echo "<script> alert('Board Game Updated');
-                    document.location.href = 'admin-manage_board_games.php';
-                    </script>";
     }
 
     if (isset($_POST["delete"])) {
