@@ -7,7 +7,7 @@ interface ValidationRule
 
 class MinLengthRule implements ValidationRule
 {
-    private $minLength;
+    private int $minLength;
 
     public function __construct(int $minLength)
     {
@@ -24,7 +24,7 @@ class MinLengthRule implements ValidationRule
 
 class MaxLengthRule implements ValidationRule
 {
-    private $maxLength;
+    private int $maxLength;
 
     public function __construct(int $maxLength)
     {
@@ -44,12 +44,29 @@ class ExistingFileRule implements ValidationRule
 {
     public function validate($var): array
     {
-        $status = true;
-        $error = "";
         if (boolval($var['error'] === 0))
-            return [true, "File exists!"];
-        return [false, "File does not exists!"];
+            return [true, "File exists"];
+        return [false, "File does not exists"];
+    }
+}
 
+class EmailRule implements ValidationRule
+{
+    private array $endsWithStrs;
+
+    public function __construct(array $endsWithStrs)
+    {
+        $this->endsWithStrs = $endsWithStrs;
+    }
+
+    public function validate($var): array
+    {
+        foreach($this->endsWithStrs as $endWithStr)
+        {
+            if (str_ends_with($var, $endWithStr))
+                return [true, "Valid Email"];
+        }
+        return [false, "Invalid Email"];
     }
 }
 
