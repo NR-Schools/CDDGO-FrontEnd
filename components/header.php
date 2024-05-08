@@ -7,10 +7,6 @@ echo <<<HEADER_STYLE_BOOTSTRAP
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 HEADER_STYLE_BOOTSTRAP;
 
-echo <<<HEADER_CUSTOM_STYLE
-    <script src="../js/notification.js"></script>
-HEADER_CUSTOM_STYLE;
-
 ?>
 
 
@@ -24,7 +20,7 @@ HEADER_CUSTOM_STYLE;
                 echo <<<EOD
                     <div class="col-md-3 mb-2 mb-md-0">
                         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                            <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                            <img src="../assets/mtg-logo.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
                         </a>
                     </div>
 
@@ -40,11 +36,14 @@ HEADER_CUSTOM_STYLE;
             } else {
                 switch ($role) {
                     case Role::USER:
+                        echo <<<HEADER_CUSTOM_STYLE
+                            <script src="../js/notification.js"></script>
+                        HEADER_CUSTOM_STYLE;
                         // This is for User Header
                         echo <<<EOD
                         <div class="col-md-3 mb-2 mb-md-0">
                             <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                                <img src="../assets/mtg-logo.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
                             </a>
                         </div>
             
@@ -81,10 +80,13 @@ HEADER_CUSTOM_STYLE;
                         EOD;
                         break;
                     case Role::ADMIN:
+                        echo <<<HEADER_CUSTOM_STYLE
+                            <script src="../js/notification.js"></script>
+                        HEADER_CUSTOM_STYLE;
                         // This is for Admin Header
                         echo <<<EOD
                         <div>
-                            <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                            <img src="../assets/mtg-logo.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
                         </div>
             
                         <div class="nav">
