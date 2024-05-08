@@ -79,7 +79,6 @@
                     $fee = 100;
                 }
 
-            }
                 //add rental
                 $rental = new Rental();
                 $rental->createOnlyStudentId($student->StudID);
@@ -98,6 +97,23 @@
                     echo "<script> alert('Board Game Rented');
                     document.location.href = 'user-board_games.php';
                     </script>";
+            }
+
+            if(isset($_POST['back']))
+            {
+                echo "<script>
+                document.location.href = 'user-board_games.php';
+                </script>";
+            }
+
+            if(isset($_POST['reserve']))
+            {
+            $gameID = $_POST["gameID"];
+                echo "<script>
+                document.location.href = 'user-reservation_details.php?gameId={$gameID}';
+                </script>";
+
+            }
     }  
 ?>
 
@@ -283,18 +299,13 @@
                 <div class="button-container">
                     <?php
                         echo '<input type="hidden" name="gameID" value=' . $gameID . '>';
-                        echo '<a href="../templates/user-board_game_details.php?gameId='.$gameID.'">';
                         echo '<button class="button" name="rent">RENT THIS GAME</button>';
-                        echo '</a>';
-                        echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
-                        echo '<button class="button">RESERVE THIS GAME</button>';
-                        echo '</a>';
+                        echo '<button class="button" name="reserve">RESERVE THIS GAME</button>';
+
                     ?>
                 </div>
                 <div class="back-button-container">
-                    <a href="../templates/user-board_games.php">
                         <button class="back-button" name="back">BACK</button>
-                    </a>
                 </div>
             </div>
         </div>
