@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/BoardGameService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
