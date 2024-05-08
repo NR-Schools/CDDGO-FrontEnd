@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/EventService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
@@ -11,28 +12,43 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $inputImage = file_get_contents($_FILES['inputImage']['tmp_name']);
-    $inputImageEncoded = base64_encode($inputImage);
-
-    $dateposted = date('Y-m-d H:i:s');
-
-    $event = new Event();
-
-    $event->EventName = $_POST['inputName'];
-    $event->EventLocation = $_POST['inputLocation'];
-    $event->EventDate = $_POST['inputDate'];
-    $event->EventImage = $inputImageEncoded;
-    $event->EventDescription = $_POST['inputDescription'];
-    $event->DatePosted = $dateposted;
-
-    EventService::addEvent($event);
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["EventName", $_POST['inputName'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["EventLocation", $_POST['inputLocation'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["EventDate", $_POST['inputDate'], [new MinLengthRule(1),]],
+        ["EventImage", $_FILES['inputImage'], [new ExistingFileRule()]],
+        ["EventDescription", $_POST['inputDescription'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+    ]);
 
     echo <<<EOD
     <script>
-        alert('Event Added');
-        document.location.href = 'admin-manage_events.php';
+        alert('{$error}');
+        document.location.href = '{$_SERVER['REQUEST_URI']}';
     </script>
     EOD;
+
+    if ($status) {
+        $inputImage = file_get_contents($_FILES['inputImage']['tmp_name']);
+        $inputImageEncoded = base64_encode($inputImage);
+
+        $event = new Event();
+        $event->EventName = $_POST['inputName'];
+        $event->EventLocation = $_POST['inputLocation'];
+        $event->EventDate = $_POST['inputDate'];
+        $event->EventImage = $inputImageEncoded;
+        $event->EventDescription = $_POST['inputDescription'];
+        $event->DatePosted = date('Y-m-d H:i:s');
+
+        EventService::addEvent($event);
+
+        echo <<<EOD
+        <script>
+            alert('Event Added');
+            document.location.href = 'admin-manage_events.php';
+        </script>
+        EOD;
+    }
 }
 ?>
 
