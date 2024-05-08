@@ -81,13 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ["Password", $_POST['password'], [new MinLengthRule(5), new MaxLengthRule(20)]]
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
-
     if ($status) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -103,7 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             return;
         }
 
-
         // redirect to correct home page based on role
         [$email, $role] = AuthService::getCurrentlyLoggedIn();
         assert($role instanceof Role);
@@ -114,6 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             header("Location: /templates/user-homepage.php");
         }
+    }
+    else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
     }
 }
 

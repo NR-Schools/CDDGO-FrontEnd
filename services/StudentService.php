@@ -28,8 +28,7 @@ class StudentService
     {
         $dbStudent = StudentRepository::getStudentById($student->StudID);
 
-        // If password is changed, hash it
-        //$student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
+        UserRepository::updateUser($student);
         StudentRepository::updateStudent($student);
 
         // Call MemberRepository to update member assoc with student

@@ -67,6 +67,8 @@ class RentalRepository
                     ON RENTALS.StudID = STUDENTS.StudID
                 INNER JOIN BOARD_GAMES
                     ON RENTALS.GameID = BOARD_GAMES.GameID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
                 WHERE RentConfirm = :rentConfirm;
             ",
             [":rentConfirm" => $rentConfirm]
@@ -90,6 +92,8 @@ class RentalRepository
                     ON RENTALS.StudID = STUDENTS.StudID
                 INNER JOIN BOARD_GAMES
                     ON RENTALS.GameID = BOARD_GAMES.GameID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
                 WHERE RentalID = :rentalId;
             ",
             [":rentalId" => $rentId]
@@ -109,8 +113,9 @@ class RentalRepository
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT *
-            FROM RENTALS r
+            SELECT * FROM RENTALS r
+            INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
             WHERE r.StudID = :studId
             AND r.RentConfirm = TRUE
             ",
