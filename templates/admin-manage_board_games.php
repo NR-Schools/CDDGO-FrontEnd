@@ -33,6 +33,7 @@ $games = BoardGameService::getAllBoardGames();
 
     <!-- Include Header -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
 <div class="main-container">
     <!-- Start Board Game Cards -->
     <div class="title-container">
@@ -62,7 +63,9 @@ $games = BoardGameService::getAllBoardGames();
                 echo '<p class="game-card-text">' . $game->GameCategory . '</p>';
                 echo '<p class="game-card-text">' . $game->QuantityAvailable . '</p>';
                 echo '</div>';
-                echo '<a class="button-container" href="/templates/admin-edit_board_game.php?gameId=' . $game->GameID . '"><button class="add-btn">Edit</button></a>';
+                echo '<a class="button-container" href="/templates/admin-edit_board_game.php?gameId=' . $game->GameID . '">';
+                echo '<button class="add-btn">Edit</button>';
+                echo '</a>';
                 echo '</div>';
 
 

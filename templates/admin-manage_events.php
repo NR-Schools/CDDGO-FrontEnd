@@ -25,47 +25,47 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
 <body>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
-<div class="main-container">
-    <!-- Start Board Game Cards -->
-    <div class="title-container">
-        <div class="title">
-            ALL EVENTS
+    <div class="main-container">
+        <!-- Start Board Game Cards -->
+        <div class="title-container">
+            <div class="title">
+                ALL EVENTS
+            </div>
+        </div>
+        <div class="add-button">
+            <a href="/templates/admin-add_event.php">
+                <button class="add-btn-2">ADD NEW EVENT</button>
+            </a>
+        </div>
+
+        <div class="game-card-container">
+
+            <?php
+            $events = EventService::getAllEvents();
+            if ($events != 0) {
+                foreach ($events as $event) {
+                    assert($event instanceof Event);
+
+                    //Output events
+                    echo '<div class="game-card" style="padding:0">';
+                    echo '<img class="game-card-pic" style="height:300px;min-width:300" src="data:image/' . pathinfo($event->EventImage, PATHINFO_EXTENSION) . ';base64,' . $event->EventImage . '" id="event_image">';
+                    echo '<div class="game-card-body">';
+                    echo '<h4 class="game-card-title">' . $event->EventName . '</h4>';
+                    echo '<p class="game-card-desc">' . $event->EventDescription . '</p>';
+                    echo '<p class="game-card-text">' . $event->EventLocation . '</p>';
+                    echo '<p class="game-card-text">' . $event->EventDate . '</p>';
+                    echo '<p class="game-card-text">' . $event->DatePosted. '</p>';
+                    echo '</div>';
+                    echo '<a class="button-container" href="/templates/admin-edit_event.php?eventId=' . $event->EventID.'"><button class="add-btn">EDIT</button></a>';
+                    echo '</div>';
+
+
+
+                }
+            }
+            ?>
         </div>
     </div>
-    <div class="add-button">
-        <a href="/templates/admin-add_event.php">
-            <button class="add-btn-2">ADD NEW EVENT</button>
-        </a>
-    </div>
-
-    <div class="game-card-container">
-
-        <?php
-        $events = EventService::getAllEvents();
-        if ($events != 0) {
-            foreach ($events as $event) {
-                assert($event instanceof Event);
-
-                //Output events
-                echo '<div class="game-card" style="padding:0">';
-                echo '<img class="game-card-pic" style="height:300px;min-width:300" src="data:image/' . pathinfo($event->EventImage, PATHINFO_EXTENSION) . ';base64,' . $event->EventImage . '" id="event_image">';
-                echo '<div class="game-card-body">';
-                echo '<h4 class="game-card-title">' . $event->EventName . '</h4>';
-                echo '<p class="game-card-desc">' . $event->EventDescription . '</p>';
-                echo '<p class="game-card-text">' . $event->EventLocation . '</p>';
-                echo '<p class="game-card-text">' . $event->EventDate . '</p>';
-                echo '<p class="game-card-text">' . $event->DatePosted. '</p>';
-                echo '</div>';
-                echo '<a class="button-container" href="/templates/admin-edit_event.php?eventId=' . $event->EventID.'"><button class="add-btn">EDIT</button></a>';
-                echo '</div>';
-
-
-
-            }
-        }
-        ?>
-    </div>
-</div>
 
     <!-- Include Footer -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
