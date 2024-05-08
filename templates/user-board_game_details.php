@@ -244,6 +244,9 @@
                         echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
                         echo '<button class="button">RESERVE THIS GAME</button>';
                         echo '</a>';
+                        echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
+                        echo '<button class="button">RESERVE THIS GAME</button>';
+                        echo '</a>';
                     ?>
                 </div>
                 <div class="back-button-container">
