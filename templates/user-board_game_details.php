@@ -65,19 +65,12 @@
                 $student = StudentService::getStudentByEmail($email);
 
                 //get date
-                $currDate = date("Y-m-d");
+                $currDate = date("Y-m-d", strtotime('tomorrow')); // Apparently, in php, current day = day + 1
                 echo $currDate;
 
                 //check if member
-                if($student->member !== null) 
-                {
-                    $fee = 0;
-                }
-
-                else
-                {
-                    $fee = 100;
-                }
+                if($student->member !== null) { $fee = 0; }
+                else { $fee = 100; }
 
                 //add rental
                 $rental = new Rental();
