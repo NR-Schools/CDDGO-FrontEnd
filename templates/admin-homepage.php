@@ -19,7 +19,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <title>Document</title>
+    <title>MTG - Admin Homepage</title>
 </head>
 
 <body>

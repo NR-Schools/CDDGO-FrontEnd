@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     [$status, $error] = validate_many_inputs([
         ["First Name", $_POST['fname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
         ["Last Name", $_POST['lname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
-        ["Email", $_POST['email'], [new MinLengthRule(1), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
+        ["Email", $_POST['email'], [new MinLengthRule(21), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
         ["Student Number", $_POST['studentNumber'], [new MinLengthRule(10), new MaxLengthRule(10)]],
-        ["Program", $_POST['program'], [new MinLengthRule(1), new MaxLengthRule(20)]],
-        ["Password", $_POST['password'], [new MinLengthRule(1), new MaxLengthRule(50)]],
+        ["Program", $_POST['program'], [new MinLengthRule(2), new MaxLengthRule(20)]],
+        ["Password", $_POST['password'], [new MinLengthRule(8), new MaxLengthRule(50)]],
     ]);
 
     if ($status) {
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <title>Sign Up</title>
+    <title>MTG - Sign Up</title>
 </head>
 
 <body>
