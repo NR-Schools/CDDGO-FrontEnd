@@ -20,11 +20,8 @@
 
 .button-container{
     width: 100%;
-    position: absolute;
-    left: 200px;
-    bottom: 20px;
-
-    
+    display: flex;
+    justify-content: right;
 }
 
 .game-card-title {
@@ -126,6 +123,8 @@
     border-radius: 8px;
     border: solid #9e0671;
     transition:background-color 0.5s, border-style 0.5s, color 0.5s;
+    margin-top: -70px;
+    margin-right: 20px;
 }
 
 .add-btn:hover
