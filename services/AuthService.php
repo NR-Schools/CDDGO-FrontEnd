@@ -53,6 +53,16 @@ class AuthService
             $role = Role::ADMIN;
         }
 
+        // If User (User = Student), Check if verified
+        // Do NOT proceed if unverified
+        if ($role === Role::USER)
+        {
+            $student = StudentRepository::getStudentByEmail($email);
+            if (!$student->isVerified) {
+                return [false, "User is unverified by MTG Admin!"];
+            }
+        }
+
         // Set Session
         AuthGuard::set_session($email, $role);
 
