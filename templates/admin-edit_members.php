@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/guards/AuthGuard.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::ADMIN)) {
     // Return to root
@@ -10,20 +11,36 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
 <?php
 
-    if (isset($_GET['studId'])) {
-        $studId = $_GET['studId'];
-        $student = StudentService::getStudentById($studId);
-        if ($student == null) {
-            echo "<script> alert('Invalid Student');
+if (isset($_GET['studId'])) {
+    $studId = $_GET['studId'];
+    $student = StudentService::getStudentById($studId);
+    if ($student == null) {
+        echo "<script> alert('Invalid Student');
                 </script>";
-        }
     }
+}
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (isset($_POST['edit'])) {
-            $studID = $_POST['studID'];
-            $student = StudentService::getStudentById($studID);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['edit'])) {
+        $studID = $_POST['studID'];
+        $student = StudentService::getStudentById($studID);
 
+        // Perform Validation
+        [$status, $error] = validate_many_inputs([
+            ["FirstName", $_POST['editFirstname'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["LastName", $_POST['editLastname'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["Email", $_POST['editEmail'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["Program", $_POST['editProgram'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ]);
+
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
+
+        if ($status) {
             $student->FirstName = $_POST['editFirstname'];
             $student->LastName = $_POST['editLastname'];
             $student->Email = $_POST['editEmail'];
@@ -54,12 +71,14 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
             echo "<script> alert('User Updated');
                 document.location.href = 'admin-manage_users.php';
                 </script>";
-        } elseif (isset($_POST['cancel'])) {
-            echo "<script> document.location.href = 'admin-manage_users.php'; </script>";
         }
-    }
 
-    ?>
+    } elseif (isset($_POST['cancel'])) {
+        echo "<script> document.location.href = 'admin-manage_users.php'; </script>";
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
