@@ -1,9 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
                     Not registered?
                 </div>
                 <div>
-                    <a  class="sign-up-button" href="../templates/sign-up.php">Sign-Up</a>    
+                    <a class="sign-up-button" href="../templates/sign-up.php">Sign-Up</a>
                 </div>
             </form>
         </div>
@@ -71,33 +73,47 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
 
 // When trying to log in, load the html first before checking log in
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
-{
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    [$status, $error] =  AuthService::login($email, $password);
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["Email", $_POST['email'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["Password", $_POST['password'], [new MinLengthRule(5), new MaxLengthRule(20)]]
+    ]);
 
-    if (!$status) {
-        echo <<<EOD
-        <script>
-            alert("{$error}");
-        </script>
-        EOD;
-        return;
-    }
+    echo <<<EOD
+    <script>
+        alert('{$error}');
+        document.location.href = '{$_SERVER['REQUEST_URI']}';
+    </script>
+    EOD;
+
+    if ($status) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        [$status, $error] = AuthService::login($email, $password);
+
+        if (!$status) {
+            echo <<<EOD
+            <script>
+                alert("{$error}");
+            </script>
+            EOD;
+            return;
+        }
 
 
-    // redirect to correct home page based on role
-    [$email, $role] = AuthService::getCurrentlyLoggedIn();
-    assert($role instanceof Role);
+        // redirect to correct home page based on role
+        [$email, $role] = AuthService::getCurrentlyLoggedIn();
+        assert($role instanceof Role);
 
 
-    if ($role === Role::ADMIN) {
-        header("Location: /templates/admin-homepage.php");
-    }
-    else {
-        header("Location: /templates/user-homepage.php");
+        if ($role === Role::ADMIN) {
+            header("Location: /templates/admin-homepage.php");
+        } else {
+            header("Location: /templates/user-homepage.php");
+        }
     }
 }
 
