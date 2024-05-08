@@ -24,9 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         [$status, $error] = validate_many_inputs([
             ["FirstName", $_POST['editFirstname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
             ["LastName", $_POST['editLastname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
-            ["Email", $_POST['editEmail'], [new MinLengthRule(1), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
-            ["Program", $_POST['editProgram'], [new MinLengthRule(1), new MaxLengthRule(20)]],
-            ["Password", $_POST['editPassword'], [new MinLengthRule(1), new MaxLengthRule(50)]]
+            ["Email", $_POST['editEmail'], [new MinLengthRule(21), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
+            ["Program", $_POST['editProgram'], [new MinLengthRule(2), new MaxLengthRule(20)]],
+            ["Password", $_POST['editPassword'], [new MinLengthRule(8), new MaxLengthRule(50)]]
         ]);
 
         if ($status) {
