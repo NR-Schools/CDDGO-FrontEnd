@@ -24,20 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ["GameCategory", $_POST['game_category'], [new MinLengthRule(1), new MaxLengthRule(100)]],
         ]);
 
-        echo <<<EOD
-        <script>
-            alert('{$error}');
-            document.location.href = '{$_SERVER['REQUEST_URI']}';
-        </script>
-        EOD;
+
 
         if ($status) {
             $game->GameName = htmlspecialchars($_POST['game_name']);
             $game->GameDescription = htmlspecialchars($_POST['description']);
-            if (boolval($_FILES['newImage']['error'] === 0)) {
+            if (boolval($_FILES['game_img']['error'] === 0)) {
                 $game_image = file_get_contents($_FILES['game_img']['tmp_name']);
                 $image_encoded = base64_encode($game_image);
-                $game->GameImage = $newImageEncoded;
+                $game->GameImage = $image_encoded;
             }
             $game->QuantityAvailable = $_POST['quantity_avail'];
             $game->GameCategory = htmlspecialchars($_POST['game_category']);
@@ -52,6 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </script>"
             EOD;
         }
+
+        else {
+            echo <<<EOD
+            <script>
+                alert('{$error}');
+                document.location.href = '{$_SERVER['REQUEST_URI']}';
+            </script>
+            EOD;
+        }
     }
 
     if (isset($_POST["delete"])) {
@@ -62,6 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 document.location.href = 'admin-manage_board_games.php';
                 </script>";
     }
+
+    if(isset($_POST["back"])) {
+        echo <<<EOD
+        <script>
+            document.location.href = 'admin-manage_board_games.php';
+        </script>"
+        EOD;
+    }
+
 }
 
 
@@ -183,6 +196,7 @@ if (isset($_GET["gameId"])) {
                 <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
                 <button type="submit" class="btn-submit" name="edit" value="edit">Edit Board Game</button>
                 <button type="submit" class="btn-cancel" name="delete" value="delete">Delete Board Game</button>
+                <button type="submit" class="btn-cancel" name="back" value="back">Cancel</button>
             </div>
         </form>
 
