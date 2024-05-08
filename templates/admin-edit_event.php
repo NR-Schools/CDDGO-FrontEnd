@@ -128,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="hidden" name="eventID" id="eventID" value="<?php echo $eventId; ?>">
                 <button type="sumbit" class="btn-edit" name="edit" value="edit">Apply Changes</button>
                 <button type="submit" class="btn-delete" name="delete" value="delete">Remove Event</button>
+                <button type="button" onclick="window.location.href='admin-manage_events.php'" class="btn-delete" name="cancel" value="cancel">Cancel</button>
             </div>
         </form>
     </div>
