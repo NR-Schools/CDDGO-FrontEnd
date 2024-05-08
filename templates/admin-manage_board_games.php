@@ -33,17 +33,17 @@ $games = BoardGameService::getAllBoardGames();
 
     <!-- Include Header -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
-
+<div class="main-container">
     <!-- Start Board Game Cards -->
     <div class="title-container">
         <div class="title">
-            <h3>ALL BOARD GAMES</h3>
+            ALL BOARD GAMES
         </div>
-        <div class="add-button">
-            <a href="admin-add_board_game.php">
-                <button class="add-btn">Add Board Game </button>
-            </a>
-        </div>
+    </div>
+    <div class="add-button">
+        <a href="admin-add_board_game.php">
+            <button class="add-btn-2">ADD NEW BOARD GAME</button>
+        </a>
     </div>
 
     <div class="game-card-container">
@@ -62,7 +62,7 @@ $games = BoardGameService::getAllBoardGames();
                 echo '<p class="game-card-text">' . $game->GameCategory . '</p>';
                 echo '<p class="game-card-text">' . $game->QuantityAvailable . '</p>';
                 echo '</div>';
-                echo '<a class="button-container" href="/templates/admin-edit_board_game.php?gameId=' . $game->GameID . '"><button class="game-btn">Edit</button></a>';
+                echo '<a class="button-container" href="/templates/admin-edit_board_game.php?gameId=' . $game->GameID . '"><button class="add-btn">Edit</button></a>';
                 echo '</div>';
 
 
@@ -71,6 +71,7 @@ $games = BoardGameService::getAllBoardGames();
         }
         ?>
     </div>
+</div>
 
     <!-- Include Header -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>

@@ -16,53 +16,56 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Events</title>
-    <link type="text/css" rel="stylesheet" href="../css/admin-manage_events.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/admin-manage_board_games.css">
 </head>
 
 <body>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+<div class="main-container">
+    <!-- Start Board Game Cards -->
+    <div class="title-container">
+        <div class="title">
+            ALL EVENTS
+        </div>
+    </div>
+    <div class="add-button">
+        <a href="/templates/admin-add_event.php">
+            <button class="add-btn-2">ADD NEW EVENT</button>
+        </a>
+    </div>
 
-    <!-- Include Header -->
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
+    <div class="game-card-container">
 
-
-    <!-- Start Body -->
-    <div class="main-body">
-        <p>ALL EVENTS</p>
-        <hr />
-
-        <a href="/templates/admin-add_event.php" class="btn btn-primary">Add New Event</a>
-
-
-        <div class="custom-layout-manager">
-
-            <?php
-            // Get all events
-            $events = EventService::getAllEvents();
+        <?php
+        $events = EventService::getAllEvents();
+        if ($events != 0) {
             foreach ($events as $event) {
                 assert($event instanceof Event);
-                $editLink = "/templates/admin-edit_event.php?eventId=" . $event->EventID;
-                $photoResource = 'data:image/' . pathinfo($event->EventImage, PATHINFO_EXTENSION) . ';base64,' . $event->EventImage;
-                echo <<<EOD
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{$photoResource}"  alt="{Card image}">
-                    <div class="card-body">
-                        <h5 class="card-title">{$event->EventName}</h5>
-                        <p class="card-text">{$event->EventDescription}</p>
-                        <p class="card-text">Location: {$event->EventLocation}</p>
-                        <p class="card-text">Event Date: {$event->EventDate}</p>
-                        <a href="$editLink" class="btn btn-primary">Edit Event</a>
-                        <br />
-                        <br />
-                        <span class="card-subtitle mb-2 text-muted fs-6">{$event->DatePosted}</span>
-                    </div>
-                </div>
-                EOD;
+
+                //Output events
+                echo '<div class="game-card" style="padding:0">';
+                echo '<img class="game-card-pic" style="height:300px;min-width:300" src="data:image/' . pathinfo($event->EventImage, PATHINFO_EXTENSION) . ';base64,' . $event->EventImage . '" id="event_image">';
+                echo '<div class="game-card-body">';
+                echo '<h4 class="game-card-title">' . $event->EventName . '</h4>';
+                echo '<p class="game-card-desc">' . $event->EventDescription . '</p>';
+                echo '<p class="game-card-text">' . $event->EventLocation . '</p>';
+                echo '<p class="game-card-text">' . $event->EventDate . '</p>';
+                echo '<p class="game-card-text">' . $event->DatePosted. '</p>';
+                echo '</div>';
+                echo '<a class="button-container" href="/templates/admin-edit_event.php?eventId=' . $event->EventID.'"><button class="add-btn">EDIT</button></a>';
+                echo '</div>';
+
+
+
             }
-            ?>
-
-        </div>
-
+        }
+        ?>
     </div>
+</div>
 
     <!-- Include Footer -->
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
