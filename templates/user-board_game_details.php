@@ -77,8 +77,8 @@
             require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
         ?>
         <!--Content Start For non-members-->
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
         <div class="main-container">
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                 <div class="left-column">
                     <div class="img-container">
                         <?php
@@ -166,7 +166,6 @@
                     </div>
                     <div class="divider"></div>
                 </div>
-            </form>
             <div class="right-column">
                 <?php
                     echo <<< EOD
@@ -239,10 +238,9 @@
                 ?>
                 <div class="divider"></div>
                 <div class="button-container">
-                    <button class="button">RENT THIS GAME</button>
                     <?php
-                        echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
-                        echo '<button class="button">RESERVE THIS GAME</button>';
+                        echo '<a href="../templates/user-add_rental.php?gameId='.$gameID.'">';
+                        echo '<button class="button">RENT THIS GAME</button>';
                         echo '</a>';
                         echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
                         echo '<button class="button">RESERVE THIS GAME</button>';
@@ -256,5 +254,6 @@
                 </div>
             </div>
         </div>
+        </form>
 </body>
 </html>
