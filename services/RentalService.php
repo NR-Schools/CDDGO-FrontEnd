@@ -83,6 +83,11 @@ class RentalService
         // When returned, remove rental entry
         return RentalRepository::deleteRentalById($rentalId);
     }
+
+    static function getCurrentlyRentedByStudent(int $studentId): Rental|null
+    {
+        return RentalRepository::getRentalByUser($studentId);
+    }
 }
 
 

@@ -5,6 +5,8 @@
     require_once($_SERVER['DOCUMENT_ROOT']. "/services/StudentService.php");
     require_once($_SERVER['DOCUMENT_ROOT']. "/services/EventService.php");
     require_once($_SERVER['DOCUMENT_ROOT']. "/services/ReservationService.php");
+    require_once($_SERVER['DOCUMENT_ROOT']. "/services/RentalService.php");
+
 
     if (!AuthGuard::guard_route(Role::USER)) {
         // Return to root
@@ -18,6 +20,7 @@
     $reservations = ReservationService::getAllConfirmedReservations();
     $student = StudentService::getStudentByEmail($email);
     $studReserveGame = ReservationService::getAllReservationsByStudent($student->StudID);
+    $getRentRecord = RentalService::getCurrentlyRentedByStudent($student->StudID);
 
 ?>
 <!DOCTYPE html>

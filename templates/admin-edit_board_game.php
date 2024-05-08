@@ -36,8 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             $game->QuantityAvailable = $_POST['quantity_avail'];
             $game->GameCategory = htmlspecialchars($_POST['game_category']);
-            $game->GameImage = $image_encoded;
-
+            
             BoardGameService::updateExistingBoardGame($game);
 
             echo <<<EOD
@@ -141,8 +140,6 @@ if (isset($_GET["gameId"])) {
             <div class="form-group">
                 <label for="game_category">Category</label>
                 <select name="game_category">
-                    <option value="No Category" <?php echo ($game->GameCategory == "No Category") ? 'selected' : ''; ?>>
-                        Select Category</option>
                     <option value="Abstract Strategy" <?php echo ($game->GameCategory == "Abstract Strategy") ? 'selected' : ''; ?>>Abstract Strategy</option>
                     <option value="Area Control" <?php echo ($game->GameCategory == "Area Control") ? 'selected' : ''; ?>>
                         Area Control</option>
