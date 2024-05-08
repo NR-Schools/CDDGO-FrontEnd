@@ -79,7 +79,6 @@
                     $fee = 100;
                 }
 
-            }
                 //add rental
                 $rental = new Rental();
                 $rental->createOnlyStudentId($student->StudID);
@@ -98,6 +97,14 @@
                     echo "<script> alert('Board Game Rented');
                     document.location.href = 'user-board_games.php';
                     </script>";
+            }
+
+            if(isset($_POST['back']))
+            {
+                echo "<script>
+                document.location.href = 'user-board_games.php';
+                </script>";
+            }
     }  
 ?>
 
