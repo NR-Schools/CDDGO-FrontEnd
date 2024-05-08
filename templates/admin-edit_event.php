@@ -27,23 +27,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $eventID = $_POST['eventID'];
         $event = EventService::getEventById($eventID);
 
-        $event->EventName = $_POST['newName'];
-        $event->EventLocation = $_POST['newLocation'];
-        $event->EventDate = $_POST['newDate'];
-        if (boolval($_FILES['newImage']['error'] === 0)) {
-            $newImage = file_get_contents($_FILES['newImage']['tmp_name']);
-            $newImageEncoded = base64_encode($newImage);
-            $event->EventImage = $newImageEncoded;
+        // Perform Validation
+        [$status, $error] = validate_many_inputs([
+            ["EventName", $_POST['inputName'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["EventLocation", $_POST['inputLocation'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+            ["EventDate", $_POST['inputDate'], [new MinLengthRule(1),]],
+            ["EventDescription", $_POST['inputDescription'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ]);
+
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
+
+        if ($status) {
+            $event->EventName = $_POST['newName'];
+            $event->EventLocation = $_POST['newLocation'];
+            $event->EventDate = $_POST['newDate'];
+            if (boolval($_FILES['newImage']['error'] === 0)) {
+                $newImage = file_get_contents($_FILES['newImage']['tmp_name']);
+                $newImageEncoded = base64_encode($newImage);
+                $event->EventImage = $newImageEncoded;
+            }
+            $event->EventDescription = $_POST['newDescription'];
+            $event->DatePosted = date('Y-m-d H:i:s');
+
+            // Update Event
+            EventService::updateEvent($event);
+
+            echo <<<EOD
+            <script>
+                alert('Event Added');
+                document.location.href = 'admin-manage_events.php';
+            </script>
+            EOD;
         }
-        $event->EventDescription = $_POST['newDescription'];
-        $event->DatePosted = date('Y-m-d H:i:s');
 
-        // Update Event
-        EventService::updateEvent($event);
-
-        echo "<script> alert('Event Updated');
-        document.location.href = 'admin-manage_events.php';
-        </script>";
     } elseif (isset($_POST['delete'])) {
         $eventID = $_POST['eventID'];
         EventService::deleteEvent($_POST['eventID']);
@@ -63,7 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Event</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-edit_event.css">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
