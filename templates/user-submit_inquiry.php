@@ -3,10 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/services/InquiryService.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/guards/AuthGuard.php";
-
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/utils/validator.php';
 
 if (!AuthGuard::guard_route(Role::USER)) {
     // Return to root
@@ -17,44 +14,58 @@ if (!AuthGuard::guard_route(Role::USER)) {
 
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-
-    //Backend Start
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get Currently Logged In Student
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
     $student = StudentService::getStudentByEmail($email);
 
-    // Construct Inquiry
-    $inquiry = new Inquiry();
-    $inquiry->InquiryTitle = $_POST['title'];
-    $inquiry->InquiryDesc = $_POST['message'];
-    $inquiry->student = $student;
+    // Perform Validation
+    [$status, $error] = validate_many_inputs([
+        ["InquiryTitle", $_POST['title'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+        ["InquiryDescription", $_POST['message'], [new MinLengthRule(5), new MaxLengthRule(20)]],
+    ]);
 
-    // Submit Inquiry
-    InquiryService::createStudentInquiry($inquiry);
+    echo <<<EOD
+    <script>
+        alert('{$error}');
+        document.location.href = '{$_SERVER['REQUEST_URI']}';
+    </script>
+    EOD;
 
-    header("Location: /templates/user-inquiries.php");
+    if ($status) {
+        // Construct Inquiry
+        $inquiry = new Inquiry();
+        $inquiry->InquiryTitle = $_POST['title'];
+        $inquiry->InquiryDesc = $_POST['message'];
+        $inquiry->student = $student;
+
+        // Submit Inquiry
+        InquiryService::createStudentInquiry($inquiry);
+
+        header("Location: /templates/user-inquiries.php");
+    }
 
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/user-submit_inquiry.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <title>Sign Up</title>
 </head>
+
 <body>
-    <?php 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; 
-        require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
-    ?>
+
+    <!-- Header -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php"; ?>
 
     <div class="main-container">
         <form id="inquiryForm" action="user-submit_inquiry.php" method="post" class="sign-up-container">
@@ -81,6 +92,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             </div>
         </form>
     </div>
-</body>
-</html>
 
+    <!-- Footer -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php"; ?>
+
+</body>
+
+</html>
