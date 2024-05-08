@@ -95,7 +95,7 @@ if (isset($_GET["gameId"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Board Game</title>
+    <title>MTG - Edit Board Game</title>
     <link type="text/css" rel="stylesheet" href="../css/admin-add_board_game.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
