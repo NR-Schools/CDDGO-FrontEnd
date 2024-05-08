@@ -68,8 +68,10 @@ class InquiryRepository
             Database::getPDO(),
             "
             SELECT * FROM INQUIRIES
-            INNER JOIN STUDENTS
-            ON INQUIRIES.InquiryStudID = STUDENTS.StudID
+                INNER JOIN STUDENTS
+                    ON INQUIRIES.InquiryStudID = STUDENTS.StudID
+                INNER JOIN USERS
+                    ON STUDENTS.StudID = USERS.UserID
             WHERE InquiryID = :inquiryId;
             ",
             [
@@ -93,8 +95,8 @@ class InquiryRepository
             Database::getPDO(),
             "
             SELECT * FROM INQUIRIES
-            INNER JOIN STUDENTS
-            ON INQUIRIES.InquiryStudID = STUDENTS.StudID
+                INNER JOIN STUDENTS
+                    ON INQUIRIES.InquiryStudID = STUDENTS.StudID
             WHERE STUDENTS.StudID = :studentId
             ",
             [
@@ -117,8 +119,8 @@ class InquiryRepository
             Database::getPDO(),
             "
             SELECT res.* FROM INQUIRIES inq
-            INNER JOIN INQUIRY_RESPONSES res
-            ON inq.InquiryID = res.RefInquiryID
+                INNER JOIN INQUIRY_RESPONSES res
+                    ON inq.InquiryID = res.RefInquiryID
             WHERE res.RefInquiryID = :inquiryId;
             ",
             [
