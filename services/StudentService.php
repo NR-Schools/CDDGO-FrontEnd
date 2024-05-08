@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/MemberModel.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/StudentModel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/MemberRepository.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/UserRepository.php";
 
 
 class StudentService
@@ -27,7 +28,9 @@ class StudentService
     static function updateStudent(Student $student): bool
     {
         $dbStudent = StudentRepository::getStudentById($student->StudID);
-
+        $dbUser = UserRepository::getUserByEmail($dbStudent->Email);
+        $student->UserID = $student->StudID;
+        $student->Role = $dbUser->Role;
         UserRepository::updateUser($student);
         StudentRepository::updateStudent($student);
 

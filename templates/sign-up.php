@@ -30,14 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         [$status, $error] = AuthService::signup($student);
 
         if ($status) {
+            // Redirect to sign in page
+            header("Location: ../templates/sign-in.php");
+        } else {
+
             echo <<<EOD
             <script>
                 alert('{$error}');
             </script>
             EOD;
-        } else {
-            // Redirect to sign in page
-            header("Location: ../templates/sign-in.php");
 
         }
     } else {
