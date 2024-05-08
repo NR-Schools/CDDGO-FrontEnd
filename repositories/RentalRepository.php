@@ -113,11 +113,14 @@ class RentalRepository
         $queryResult = Database::SQLwithFetch(
             Database::getPDO(),
             "
-            SELECT * FROM RENTALS r
+            SELECT * FROM RENTALS
+            INNER JOIN STUDENTS
+                ON STUDENTS.StudID = RENTALS.StudID
             INNER JOIN USERS
-                    ON STUDENTS.StudID = USERS.UserID
-            WHERE r.StudID = :studId
-            AND r.RentConfirm = TRUE
+                ON USERS.UserID = RENTALS.StudID
+            INNER JOIN BOARD_GAMES
+                ON RENTALS.GameID = BOARD_GAMES.GameID
+            WHERE RENTALS.StudID = :studId;
             ",
             [":studId" => $studentId]
         );

@@ -15,11 +15,13 @@
 
     //Extracting the rented boardgame
     [$email, $role] = AuthService::getCurrentlyLoggedIn();
-    $getRentedBoardGame = BoardGameService::getCurrentlyRentedBoardGame($email);
     $events = EventService::getAllEvents();
     $reservations = ReservationService::getAllConfirmedReservations();
     $student = StudentService::getStudentByEmail($email);
     $studReserveGame = ReservationService::getAllReservationsByStudent($student->StudID);
+
+    //Rented boardgame
+    //$getRentedBoardGame = BoardGameService::getCurrentlyRentedBoardGame($email);
     $getRentRecord = RentalService::getCurrentlyRentedByStudent($student->StudID);
 
 ?>
@@ -48,27 +50,27 @@
                             <div class="title-styling">CURRENTLY RENTED GAME</div>
                             <div>
                                 <?php 
-                                    if(empty($getRentedBoardGame)){
+                                    if(empty($getRentRecord)){
                                         echo '<img class="img-styling" src="../assets/img-placeholder.png">';
                                     }else{
-                                        echo '<img class="img-styling" src="data:image/' . pathinfo($getRentedBoardGame->GameImage, PATHINFO_EXTENSION) . ';base64,' . $getRentedBoardGame->GameImage . '>';
+                                        echo '<img class="img-styling" src="data:image/' . pathinfo($getRentRecord->boardGame->GameImage, PATHINFO_EXTENSION) . ';base64,' . $getRentRecord->boardGame->GameImage . '>';
                                     }
                                 ?>
                             </div>
                             <div class="board-game-info">
                                 <div class="game-name-styling" name="gName">
                                     <?php 
-                                    if(empty($getRentedBoardGame)){
+                                    if(empty($getRentRecord)){
                                         echo "No Board Game";
                                     }else{
-                                        echo $getRentedBoardGame->GameName;
+                                        echo $getRentRecord->boardGame->GameName;
                                     }
                                     ?>
                                 </div>
                                 <div class="date-styling"></div>
                                 <div class="date-styling" name="rDate">
                                     <?php 
-                                        if(empty($getRentedBoardGame)){
+                                        if(empty($getRentRecord)){
                                             echo "No Return Date";
                                         }else{
                                             echo $getRentRecord->BorrowDate;
