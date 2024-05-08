@@ -4,7 +4,7 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/StudentService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/AuthService.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/services/TestimonialService.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/models/TestimonialModel.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/services/RentalService.php");
 
     if (!AuthGuard::guard_route(Role::USER)) {
         // Return to root
@@ -53,10 +53,53 @@
                 $id = $_POST["reviewedGame"];
                 header("Location:../templates/user-board_game_details.php?gameId=". $id);
             }
-        }
+
+            if(isset($_POST['rent']))
+            {
+                //get game
+                $gameID = $_POST["gameID"];
+                $game = BoardGameService::getBoardGameById($gameID);
+                
+                //get user
+                [$email, $role] = AuthService::getCurrentlyLoggedIn();
+                $student = StudentService::getStudentByEmail($email);
+
+                //get date
+                $currDate = date("Y-m-d");
+                echo $currDate;
+
+                //check if member
+                if($student->member !== null) 
+                {
+                    $fee = 0;
+                }
+
+                else
+                {
+                    $fee = 100;
+                }
+
+            }
+                //add rental
+                $rental = new Rental();
+                $rental->createOnlyStudentId($student->StudID);
+                $rental->createOnlyBoardGameId($gameID);
+                $rental->BorrowDate = $currDate;
+                $rental->Rent = $fee;
+                
+                $result = RentalService::addUserRentsGame($rental);
+                if (!$result) {
+                    // Rental Failed!
+                    echo "<script> alert('Rental Failed');
+                    document.location.href = 'user-board_games.php';
+                    </script>";
+                }
+                //Rental Success!
+                    echo "<script> alert('Board Game Rented');
+                    document.location.href = 'user-board_games.php';
+                    </script>";
+    }  
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +120,7 @@
             require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
         ?>
         <!--Content Start For non-members-->
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+        <form action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>" method="POST">
         <div class="main-container">
                 <div class="left-column">
                     <div class="img-container">
@@ -239,8 +282,9 @@
                 <div class="divider"></div>
                 <div class="button-container">
                     <?php
-                        echo '<a href="../templates/user-add_rental.php?gameId='.$gameID.'">';
-                        echo '<button class="button">RENT THIS GAME</button>';
+                        echo '<input type="hidden" name="gameID" value=' . $gameID . '>';
+                        echo '<a href="../templates/user-board_game_details.php?gameId='.$gameID.'">';
+                        echo '<button class="button" name="rent">RENT THIS GAME</button>';
                         echo '</a>';
                         echo '<a href="../templates/user-reservation_details.php?gameId='.$gameID.'">';
                         echo '<button class="button">RESERVE THIS GAME</button>';
