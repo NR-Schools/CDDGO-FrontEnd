@@ -31,7 +31,7 @@
             $reservation->createOnlyStudentId($currentUser->StudID);
             $reservation->createOnlyBoardGameId($gameID);
 
-            $result = ReservationService::addUserReservation($reservation);
+            [$result, $error] = ReservationService::addUserReservation($reservation);
 
             if (!$result) {
                 // Reservation Failed!
