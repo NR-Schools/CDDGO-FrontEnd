@@ -55,18 +55,18 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
             // Only Update Password when Changed {1}
             if (strlen($_POST["editPassword"]) > 0) {
-                [$status, $error] = validate_many_inputs(
+                [$pass_status, $pass_error] = validate_many_inputs([
                     ["Password", $_POST['editPassword'], [new MinLengthRule(8), new MaxLengthRule(50)]]
-                );
+                ]);
 
                 global $isPasswordUpdated;
                 $isPasswordUpdated = false;
-                if ($status) {
+                if ($pass_status) {
                     $isPasswordUpdated = true;
                 } else {
                     echo <<<EOD
                 <script>
-                    alert('{$error}, Password will not be updated');
+                    alert('{$pass_error}, Password will not be updated');
                 </script>
                 EOD;
                 }
@@ -128,7 +128,7 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
     ?>
 
-    <form class="row g-3" action="admin-edit_members.php" method="POST" enctype="multipart/form-data">
+    <form class="row g-3" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
 
         <div class="main-container">
             <div class="edit-container">

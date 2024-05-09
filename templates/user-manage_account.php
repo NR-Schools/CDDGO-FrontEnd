@@ -30,18 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Only Update Password when Changed {1}
         if (strlen($_POST["editPassword"]) > 0) {
-            [$status, $error] = validate_many_inputs(
+            [$pass_status, $pass_error] = validate_many_inputs([
                 ["Password", $_POST['editPassword'], [new MinLengthRule(8), new MaxLengthRule(50)]]
-            );
+            ]);
 
             global $isPasswordUpdated;
             $isPasswordUpdated = false;
-            if ($status) {
+            if ($pass_status) {
                 $isPasswordUpdated = true;
             } else {
                 echo <<<EOD
                 <script>
-                    alert('{$error}, Password will not be updated');
+                    alert('{$pass_error}, Password will not be updated');
                 </script>
                 EOD;
             }
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once $_SERVER['DOCUMENT_ROOT'] . "/components/header.php";
     require_once $_SERVER['DOCUMENT_ROOT'] . "/components/footer.php";
     ?>
-    <form action="user-manage_account.php" method="POST" enctype="multipart/form-data">
+    <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
         <div class="main-container">
             <div class="sign-up-container">
                 <div class="sign-up-title">
@@ -166,7 +166,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div>
                             <label class="label-styling" for="editPassword">Password</label>
-                            <input class="input-styling" type="password" id="editPassword" name="editPassword" placeholder="Change your password by entering new password here!">
+                            <input class="input-styling" type="password" id="editPassword" name="editPassword"
+                                placeholder="Change your password by entering new password here!">
                         </div>
                         <div style="text-align:right">
                             <div>
