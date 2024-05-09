@@ -27,7 +27,7 @@ function addNotification(notification) {
     // Add Notification
     const notificationContainer = document.getElementById('notification-container');
     newNotifDisplay = `
-    <li class="alert alert-success" style="margin-bottom: 10px; background-color: #9e0671; color: white;">
+    <li class="alert alert-success" style="margin-bottom: 10px; background-color: #9e0671; color: white; padding-bottom: 0px">
         <p>${notification.NotificationTitle}</p>
         <p>${notification.NotificationBody}</p=>
     </li>
