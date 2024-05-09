@@ -123,6 +123,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div>
                             <input type="hidden" name="rentalId" value="{$rental->RentalID}"> 
                             <input type="submit" name="confirm" value="Confirm" class="confirm-btn">
+                            &nbsp;
+                            <input type="submit" class="confirm-btn" name="remove" value="Delete">
                         </div>
                     </form>
                     EOD;

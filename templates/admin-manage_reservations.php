@@ -131,6 +131,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="hidden" name="reservationId" value="{$unconfirmedReservation->ReservationID}">
                             <input type="submit" name="Confirm" value="CONFIRM" class="confirm-btn">
                         </form>
+                        &nbsp;
+                        <form action="admin-manage_reservations.php" method="post">
+                            <input type="hidden" name="reservationId" value="{$unconfirmedReservation->ReservationID}">
+                            <input type="submit" name="Remove" value="Remove" class="confirm-btn">
+                        </form>
                     </div>
                 </div>
                 EOD;
