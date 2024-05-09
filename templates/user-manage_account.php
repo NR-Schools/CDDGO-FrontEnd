@@ -26,15 +26,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ["LastName", $_POST['editLastname'], [new MinLengthRule(1), new MaxLengthRule(50)]],
             ["Email", $_POST['editEmail'], [new MinLengthRule(21), new MaxLengthRule(50), new EmailRule(["@mymail.mapua.edu.ph"])]],
             ["Program", $_POST['editProgram'], [new MinLengthRule(2), new MaxLengthRule(20)]],
-            ["Password", $_POST['editPassword'], [new MinLengthRule(8), new MaxLengthRule(50)]]
         ]);
 
+        // Only Update Password when Changed {1}
+        if (strlen($_POST["editPassword"]) > 0) {
+            [$status, $error] = validate_many_inputs(
+                ["Password", $_POST['editPassword'], [new MinLengthRule(8), new MaxLengthRule(50)]]
+            );
+
+            global $isPasswordUpdated;
+            $isPasswordUpdated = false;
+            if ($status) {
+                $isPasswordUpdated = true;
+            } else {
+                echo <<<EOD
+                <script>
+                    alert('{$error}, Password will not be updated');
+                </script>
+                EOD;
+            }
+        }
+
+        // Update User Info
         if ($status) {
             $student->FirstName = $_POST['editFirstname'];
             $student->LastName = $_POST['editLastname'];
             $student->Email = $_POST['editEmail'];
             $student->Program = $_POST['editProgram'];
             $student->Password = $_POST['editPassword'];
+
+            // Only Update Password when Changed {2}
+            if ($isPasswordUpdated) {
+                $student->Password = $_POST['editPassword'];
+            }
 
             // Check if the student is being made a member
             if (isset($_POST['radioButtons']) && $_POST['radioButtons'] == "memberRadio") {
@@ -142,8 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div>
                             <label class="label-styling" for="editPassword">Password</label>
-                            <input required class="input-styling" type="password" id="editPassword" name="editPassword"
-                                value="<?php echo $student->Password; ?>">
+                            <input class="input-styling" type="password" id="editPassword" name="editPassword" placeholder="Change your password by entering new password here!">
                         </div>
                         <div style="text-align:right">
                             <div>
