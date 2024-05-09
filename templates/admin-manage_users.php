@@ -39,6 +39,17 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
 
         <div class="reservation-list-container">
             <?php
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['delete'])) {
+                    
+                    $studentId = $_POST['studentId'];
+                    // Confirm student registration
+                    StudentService::deleteStudent($studentId);
+                    echo "<script> alert('User Deleted');
+                        </script>";
+                }
+            }
             // Get all students
             $students = StudentService::getAllStudents();
 
@@ -79,7 +90,10 @@ if (!AuthGuard::guard_route(Role::ADMIN)) {
                             </div>
                             <div>
                                 <button type="button" class="btn btn-danger" onclick="window.location.href='{$editLink}'">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <form action="admin-manage_users.php" method="POST">
+                                    <input type="hidden" name="studentId" value="{$student->StudID}">
+                                    <button type="submit" class="btn btn-danger" name="delete" value="delete">Delete</button>
+                                </form>
                             </div>
                         </div>
                         EOD;

@@ -65,6 +65,12 @@ class StudentService
         return StudentRepository::deleteStudent($studentId);
     }
 
+    static function deleteStudent(int $studentId): bool
+    {
+        // Delete Student
+        return StudentRepository::deleteStudent($studentId);
+    }
+
     // This is for members
     static function addMembers(int $studentId, Member $member): bool
     {
