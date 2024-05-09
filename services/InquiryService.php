@@ -29,7 +29,7 @@ class InquiryService
         $notification = new Notification();
         $notification->NotificationTitle = "Student Inquiry";
         $notification->NotificationBody = "{$inquiry->student->getFullName()} has a new inquiry!";
-        $notification->TargetEmail = $inquiry->student->Email;
+        $notification->TargetEmail = "admin@email.com";
         NotificationService::addNewNotification($notification);
         return true;
     }
