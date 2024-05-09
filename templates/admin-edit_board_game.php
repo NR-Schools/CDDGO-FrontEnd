@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ["GameCategory", $_POST['game_category'], [new MinLengthRule(1), new MaxLengthRule(100)]],
         ]);
 
-
-
         if ($status) {
             $game->GameName = htmlspecialchars($_POST['game_name']);
             $game->GameDescription = htmlspecialchars($_POST['description']);

@@ -51,6 +51,7 @@
                     ["Program", $_POST['editProgram'], [new MinLengthRule(2), new MaxLengthRule(20)]],
                     ["Password", $_POST['editPassword'], [new MinLengthRule(8), new MaxLengthRule(50)]]
                 ]);
+                
             if($status){
                 $studID = $_POST['studID'];
                 $student = StudentService::getStudentById($studID);

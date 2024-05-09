@@ -25,13 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ["InquiryDescription", $_POST['message'], [new MinLengthRule(1), new MaxLengthRule(100)]],
     ]);
 
-    echo <<<EOD
-    <script>
-        alert('{$error}');
-        document.location.href = '{$_SERVER['REQUEST_URI']}';
-    </script>
-    EOD;
-
     if ($status) {
         // Construct Inquiry
         $inquiry = new Inquiry();
@@ -43,6 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         InquiryService::createStudentInquiry($inquiry);
 
         header("Location: /templates/user-inquiries.php");
+    }
+    else {
+        echo <<<EOD
+        <script>
+            alert('{$error}');
+            document.location.href = '{$_SERVER['REQUEST_URI']}';
+        </script>
+        EOD;
     }
 
 }

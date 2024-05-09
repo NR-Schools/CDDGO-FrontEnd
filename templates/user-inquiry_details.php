@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $inquiryResponse->RefInquiryID = $inquiryId;
         $inquiryResponse->ResponseText = $_POST['replyText'];
         InquiryService::userReplyToInquiry($inquiryResponse);
-    }else {
+    } else {
         echo <<<EOD
         <script>
             alert('{$error}');

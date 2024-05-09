@@ -67,9 +67,6 @@ $games = BoardGameService::getAllBoardGames();
                 echo '<button class="add-btn">Edit</button>';
                 echo '</a>';
                 echo '</div>';
-
-
-
             }
         }
         ?>
