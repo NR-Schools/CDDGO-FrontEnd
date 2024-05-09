@@ -22,8 +22,8 @@
         [$email, $role] = AuthService::getCurrentlyLoggedIn();
         $currentUser = StudentService::getStudentByEmail($email);
         $testimonials = TestimonialService::getAllTestimonials();
-        $queryGetTestimonial = "SELECT * FROM testimonials WHERE GameID = $game->GameID";
-        $queryGetMember = "SELECT * FROM members WHERE MemberID = $currentUser->StudID";
+        $queryGetTestimonial = "SELECT * FROM TESTIMONIALS WHERE GameID = $game->GameID";
+        $queryGetMember = "SELECT * FROM MEMBERS WHERE MemberID = $currentUser->StudID";
         $checkMember = Database::SQLwithFetch(Database::getPDO(), $queryGetMember);
         $checkTestimonial = Database::SQLwithFetch(Database::getPDO(), $queryGetTestimonial);
         if ($game == null)
