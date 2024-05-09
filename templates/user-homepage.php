@@ -53,7 +53,7 @@
                                     if(empty($getRentRecord)){
                                         echo '<img class="img-styling" src="../assets/img-placeholder.png">';
                                     }else{
-                                        echo '<img class="img-styling" src="data:image/' . pathinfo($getRentRecord->boardGame->GameImage, PATHINFO_EXTENSION) . ';base64,' . $getRentRecord->boardGame->GameImage . '>';
+                                        echo '<img class="img-styling" src="data:image/' . pathinfo($getRentRecord->boardGame->GameImage, PATHINFO_EXTENSION) . ';base64,' . $getRentRecord->boardGame->GameImage . '">';
                                     }
                                 ?>
                             </div>
