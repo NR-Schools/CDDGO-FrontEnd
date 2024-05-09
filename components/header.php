@@ -61,14 +61,15 @@ HEADER_STYLE_BOOTSTRAP;
                             <img style="width:36px;" src="../assets/gear.png" alt="">
                         </a>   
                         
-                        <div class="dropdown" onclick=openNotification()>
-                            <div class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="position:relative;background-color:transparent;border:none;"> 
+                        <div class="dropdown" onclick="openNotification()">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="position:relative;background-color:transparent;border:none;"> 
                                 <img style="width:36px;" src="../assets/bell.png" alt="">
                                 <div style="width:13px;height:13px;background-color:red;border-radius:100%;position:absolute;top:10px;right:30px;opacity:0" id="notification-red-dot"></div>
-                            </div>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="notification-container">
+                            </button>
+                            <ul class="dropdown-menu" style="width:300px; padding: 10px; padding-bottom: 0px; background-color: #32064e;" aria-labelledby="dropdownMenuButton1" id="notification-container">
                             </ul>
                         </div>
+
                         EOD;
                         break;
                     case Role::ADMIN:
@@ -87,8 +88,8 @@ HEADER_STYLE_BOOTSTRAP;
                                     <img style="width:36px;" src="../assets/bell.png" alt="">
                                     <div style="width:13px;height:13px;background-color:red;border-radius:100%;position:absolute;top:10px;right:30px;opacity:0" id="notification-red-dot"></div>
                                 </div>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="notification-container">
-                                </ul>
+                                <ul class="dropdown-menu" style="width:300px; padding: 10px; padding-bottom: 0px; background-color: #32064e;" aria-labelledby="dropdownMenuButton1" id="notification-container">
+                            </ul>
                             </div>
                             <li><a style="color:white !important;font-weight:bold;" href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
                             <li><a style="color:white !important;font-weight:bold;" href="../templates/logout.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
