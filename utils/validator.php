@@ -64,9 +64,9 @@ class EmailRule implements ValidationRule
         foreach($this->endsWithStrs as $endWithStr)
         {
             if (str_ends_with($var, $endWithStr))
-                return [true, "Valid Email"];
+                return [true, "Valid Email Format"];
         }
-        return [false, "Invalid Email"];
+        return [false, "Invalid Email Format"];
     }
 }
 
@@ -83,7 +83,7 @@ function validate_input(string $label, $var, array $validationRules = []): array
             break;
         }
     }
-    return [$status, "{$error} on {$label}"];
+    return [$status, "({$label}): {$error}"];
 }
 
 function validate_many_inputs(array $validationMaps): array
