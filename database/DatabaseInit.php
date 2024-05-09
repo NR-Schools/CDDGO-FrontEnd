@@ -108,7 +108,7 @@ Database::BasicSQL(
     );
 
     INSERT INTO USERS (Email, Password, Role)
-    SELECT 'admin@email.com', 'admin', 'ADMIN'
+    SELECT 'admin@email.com', '\$2y\$10\$PjrQJgd5AG/dCDQcWgLonO0O.0kLAi3P9pMJpWnJRm2UwAS4BqLVG', 'ADMIN'
     WHERE NOT EXISTS (SELECT 1 FROM USERS WHERE Email = 'admin@email.com');    
     "
 );
