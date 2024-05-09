@@ -36,14 +36,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $boardgame->GameCategory = $_POST['game_category'];
         $boardgame->GameStatus = "Available";
     
-        BoardGameService::addNewBoardGame($boardgame);
+        [$status, $error] = BoardGameService::addNewBoardGame($boardgame);
+        if ($status) {
+            echo <<<SCRIPT
+                <script>
+                    alert('Board Game Added');
+                    document.location.href = 'admin-manage_board_games.php';
+                </script>
+            SCRIPT;
+        }
+        else {
+            echo <<<SCRIPT
+                <script>
+                    alert('Board Game Failed to Add: {$error}');
+                    document.location.href = 'admin-manage_board_games.php';
+                </script>
+            SCRIPT;
+        }
     
-        echo <<<SCRIPT
-            <script>
-                alert('Board Game Added');
-                document.location.href = 'admin-manage_board_games.php';
-        </script>
-        SCRIPT;
+
     }
     else {
         echo <<<EOD

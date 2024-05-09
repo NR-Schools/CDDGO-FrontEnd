@@ -9,16 +9,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/repositories/StudentRepository.php";
 class BoardGameService
 {
 
-    static function addNewBoardGame(BoardGame $boardGame): bool
+    static function addNewBoardGame(BoardGame $boardGame): array
     {
 
         // Check if board game is unique
         $boardGameCheck = BoardGameRepository::getBoardGameByName($boardGame->GameName);
         if ($boardGameCheck !== null)
-            return false;
+            return [false, "Duplicate Name"];
 
         // Create board game
-        return BoardGameRepository::addNewBoardGame($boardGame);
+        BoardGameRepository::addNewBoardGame($boardGame);
+
+        return [true, ""];
     }
 
     static function getAllBoardGames(): array
