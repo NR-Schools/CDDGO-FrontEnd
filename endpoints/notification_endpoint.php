@@ -50,16 +50,16 @@ if ($email == null)
                         ->setErrorMessage("No Logged In User")
                         ->setNotifications([])
                         ->build();
-    exit();
 }
-
-// Return Notifications
-echo NotificationDTO::create()
+else {
+    // Return Notifications
+    echo NotificationDTO::create()
                         ->setStatus(true)
                         ->setErrorMessage("None")
                         ->setNotifications(
                             NotificationService::getAllNotificationsByEmail($email)
                         )
                         ->build();
+}
 
 ?>

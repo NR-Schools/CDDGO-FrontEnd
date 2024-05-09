@@ -14,8 +14,9 @@ class BoardGameService
 
         // Check if board game is unique
         $boardGameCheck = BoardGameRepository::getBoardGameByName($boardGame->GameName);
-        if ($boardGameCheck !== null)
+        if ($boardGameCheck !== null) {
             return [false, "Duplicate Name"];
+        }
 
         // Create board game
         BoardGameRepository::addNewBoardGame($boardGame);

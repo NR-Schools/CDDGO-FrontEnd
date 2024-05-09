@@ -34,7 +34,7 @@ class TestimonialRepository
                 INNER JOIN STUDENTS
                     ON TESTIMONIALS.StudID = STUDENTS.StudID
                 INNER JOIN BOARD_GAMES
-                    ON TESTIMONIALS.GameID = BOARD_GAMES.GameID;
+                    ON TESTIMONIALS.GameID = BOARD_GAMES.GameID
                 INNER JOIN USERS
                     ON STUDENTS.StudID = USERS.UserID
             ",
