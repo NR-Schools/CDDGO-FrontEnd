@@ -18,7 +18,7 @@ $inquiryId = $_GET['inquiryId'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Perform Validation
     [$status, $error] = validate_many_inputs([
-        ["ResponseText", $_POST['replyText'], [new MinLengthRule(5), new MaxLengthRule(20)]]
+        ["ResponseText", $_POST['replyText'], [new MinLengthRule(1), new MaxLengthRule(400)]]
     ]);
 
     echo <<<EOD
