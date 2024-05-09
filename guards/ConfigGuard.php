@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 // Set Environment Variables
 $env = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . "/.env");
 foreach ($env as $key => $value) {

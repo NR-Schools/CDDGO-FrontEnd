@@ -28,6 +28,12 @@ class StudentService
     static function updateStudent(Student $student): bool
     {
         $dbStudent = StudentRepository::getStudentById($student->StudID);
+
+        // If password is not the same with db, re-hash and change password
+        if ($student->Password !== $dbStudent->Password) {
+            $student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
+        }
+
         UserRepository::updateUser($student);
         StudentRepository::updateStudent($student);
 

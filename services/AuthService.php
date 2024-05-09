@@ -21,6 +21,9 @@ class AuthService
         if ($studentCheck !== null)
             return [false, "Email already registered!"];
 
+        // Hash password
+        $student->Password = password_hash($student->Password, PASSWORD_BCRYPT);
+
         // Create New User
         $student->Role = "USER";
         UserRepository::createUser($student);
@@ -43,7 +46,7 @@ class AuthService
             return [false, "User Does Not Exist!!"];
 
         // Compare Passwords
-        if ($password !== $user->Password)
+        if (!password_verify($password, $user->Password))
             return [false, "Incorrect Password for User !!"];
         
         // Determine Role
