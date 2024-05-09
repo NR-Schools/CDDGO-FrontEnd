@@ -20,20 +20,24 @@ setInterval(async () => {
 // Function for updating UI
 function addNotification(notification) {
 
-    // Get Ref to Notification Container
+    // Show Red Dot
+    const redDot = document.getElementById("notification-red-dot");
+    redDot.style.opacity = 1;
+
+    // Add Notification
     const notificationContainer = document.getElementById('notification-container');
+    newNotifDisplay = `
+    <li class="alert alert-success">
+        <p>${notification.NotificationTitle}</p>
+        <p>${notification.NotificationBody}</p=>
+    </li>
+    `;
+    notificationContainer.innerHTML = notificationContainer.innerHTML + newNotifDisplay;
+}
 
-    // Create New Entry To Be Placed Under Container
-    // Example: <li><a class="dropdown-item" href="#"></a></li>
-    const a_elem = document.createElement('a');
-    a_elem.setAttribute('class', 'dropdown-item');
-    a_elem.textContent = `${notification.NotificationBody}`;
-
-    const li_elem = document.createElement('li');
-    li_elem.setAttribute('id', notification.NotificationID);
-    li_elem.appendChild(a_elem);
-
-    // Add New Entry
-    notificationContainer.appendChild(li_elem);
+function openNotification() {
+    // Hide Red Dot
+    const redDot = document.getElementById("notification-red-dot");
+    redDot.style.opacity = 0;
 
 }

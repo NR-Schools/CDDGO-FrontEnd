@@ -36,9 +36,9 @@ HEADER_STYLE_BOOTSTRAP;
             } else {
                 switch ($role) {
                     case Role::USER:
-                        echo <<<HEADER_CUSTOM_STYLE
+                        echo <<<HEADER_CUSTOM_SCRIPT
                             <script src="../js/notification.js"></script>
-                        HEADER_CUSTOM_STYLE;
+                        HEADER_CUSTOM_SCRIPT;
                         // This is for User Header
                         echo <<<EOD
                         <div class="col-md-3 mb-2 mb-md-0">
@@ -61,20 +61,20 @@ HEADER_STYLE_BOOTSTRAP;
                             <img style="width:36px;" src="../assets/gear.png" alt="">
                         </a>   
                         
-                        <div class="dropdown">
-                        <div class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="position:relative;background-color:transparent;border:none;"> 
-                            <img style="width:36px;" src="../assets/bell.png" alt="">
-                            <div style="width:13px;height:13px;background-color:red;border-radius:100%;position:absolute;top:10px;right:30px"></div>
-                        </div>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="notification-container">
-                        </ul>
+                        <div class="dropdown" onclick=openNotification()>
+                            <div class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="position:relative;background-color:transparent;border:none;"> 
+                                <img style="width:36px;" src="../assets/bell.png" alt="">
+                                <div style="width:13px;height:13px;background-color:red;border-radius:100%;position:absolute;top:10px;right:30px;opacity:0" id="notification-red-dot"></div>
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="notification-container">
+                            </ul>
                         </div>
                         EOD;
                         break;
                     case Role::ADMIN:
-                        echo <<<HEADER_CUSTOM_STYLE
+                        echo <<<HEADER_CUSTOM_SCRIPT
                             <script src="../js/notification.js"></script>
-                        HEADER_CUSTOM_STYLE;
+                        HEADER_CUSTOM_SCRIPT;
                         // This is for Admin Header
                         echo <<<EOD
                         <div>
@@ -82,6 +82,14 @@ HEADER_STYLE_BOOTSTRAP;
                         </div>
             
                         <div class="nav">
+                            <div class="dropdown" onclick=openNotification()>
+                                <div class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="position:relative;background-color:transparent;border:none;"> 
+                                    <img style="width:36px;" src="../assets/bell.png" alt="">
+                                    <div style="width:13px;height:13px;background-color:red;border-radius:100%;position:absolute;top:10px;right:30px;opacity:0" id="notification-red-dot"></div>
+                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="notification-container">
+                                </ul>
+                            </div>
                             <li><a style="color:white !important;font-weight:bold;" href="../templates/admin-homepage.php" class="nav-link px-2 link-body-emphasis">ADMIN MENU</a></li>
                             <li><a style="color:white !important;font-weight:bold;" href="../templates/logout.php" class="nav-link px-2 link-body-emphasis">LOGOUT</a></li>
                         </div>
